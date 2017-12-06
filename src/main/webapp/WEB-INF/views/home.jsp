@@ -49,6 +49,8 @@
 </style>
 </head>
 <body>
+
+<jsp:include page="header.jsp" />
 	<div class="bg">
 		<div class="container">
 			<div class="row">

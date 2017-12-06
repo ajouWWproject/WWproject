@@ -8,11 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-body {
-	background:
-		url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');
-	padding: 50px;
-}
+
 
 #login-dp {
 	min-width: 250px;
@@ -33,7 +29,7 @@ body {
 }
 
 #login-dp .social-buttons {
-	margin: 12px 0
+	margin: 0px 0
 }
 
 #login-dp .social-buttons a {
@@ -41,7 +37,7 @@ body {
 }
 
 #login-dp .form-group {
-	margin-bottom: 10px;
+	margin-bottom: 0px;
 }
 
 .btn-fb {
@@ -73,6 +69,13 @@ body {
 		background-color: inherit;
 		border-top: 0 none;
 	}
+}
+
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
 }
 </style>
 <link
