@@ -10,9 +10,9 @@
 	 <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 			<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-			<property name="url" value="://127.0.0.1:3306/database_sy​"></property>
+			<property name="url" value="://127.0.0.1:3306/db_ww"></property>
 			<property name="username" value="root"></property>
-			<property name="password" value="1234"></property>
+			<property name="password" value="thdud2399"></property>
     </bean>
 	<!-- MyBatis 연동 설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
