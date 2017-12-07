@@ -12,7 +12,7 @@
 			<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 			<property name="url" value="://127.0.0.1:3306/wwproject"></property>
 			<property name="username" value="root"></property>
-			<property name="password" value="1004"></property>
+			<property name="password" value="thdud2399"></property>
     </bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -23,15 +23,4 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean>
-	
-	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
-		<property name="dataSource" ref="dataSource" /> </bean> 어노테이션 기반 트랜잭션 관리 
-		설정 <tx:annotation-driven transaction-manager="transactionManager"/> -->
-<<<<<<< HEAD
 </beans>
-=======
-
-
-
-</beans>
->>>>>>> branch 'master' of https://github.com/ajouWWproject/WWproject.git
