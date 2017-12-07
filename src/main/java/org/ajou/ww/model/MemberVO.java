@@ -4,17 +4,17 @@ public class MemberVO {
 	private String id;
 	private String password;
 	private String name;
-	private String address;
+	private String phone;
 	public MemberVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberVO(String id, String password, String name, String address) {
+	public MemberVO(String id, String password, String name, String phone) {
 		super();
 		this.id = id;
 		this.password = password;
 		this.name = name;
-		this.address = address;
+		this.phone = phone;
 	}
 	public String getId() {
 		return id;
@@ -34,15 +34,16 @@ public class MemberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAddress() {
-		return address;
+	public String getPhone() {
+		return phone;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", address=" + address + "]";
+		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", phone=" + phone + "]";
 	}
+	
 	
 }
