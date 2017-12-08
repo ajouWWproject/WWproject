@@ -53,7 +53,14 @@ public class MemberController {
 			session.invalidate();
 		return "home";
 	}
-
+	
+	
+	@RequestMapping("mypage.do")
+	public String mypage(HttpServletRequest request) {
+		
+		return "mypage";
+	}
+	
 	// @RequestMapping("findMemberById.do")
 	// public String findMemberById(String id,Model model){
 	// MemberVO vo=memberService.findMemberById(id);
