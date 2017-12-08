@@ -23,7 +23,8 @@ insert into category values(null, 'Ruby', 'ruby.png');
 create table board(
 	board_no int auto_increment,
 	title varchar(30) not null,
-	content varchar(500) not null,
+	content_back varchar(500) not null,
+	content_detail varchar(500) not null,
 	hits int default 0,
 	likes int default 0,
 	timePosted date not null,
@@ -34,5 +35,5 @@ create table board(
 	foreign key(category_no) references category(category_no)
 );
 
-
+insert into member values('ajou', '1234', '임소영 ', '01023991943','ruby.png');
 

@@ -10,12 +10,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 -->
 <configuration>	
 	<typeAliases>
-		<package name="org.ajou.ww.model"/>
+		 <package name="org.ajou.ww.model"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/config/member.xml"/>	
-
-		<mapper resource="mybatis/config/test.xml"/>	
 	</mappers>
 	
 </configuration>
