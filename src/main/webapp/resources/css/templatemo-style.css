@@ -273,10 +273,10 @@ hr {
 -------------------------------------------------------- */
 .sidebar-menu {
   float: left;
-  width: 18%;
+  width: 20%;
   height: 100%;
   position: fixed;
-  background-color: #E91E63;
+  background-color: #5f6d7e;
   color: white;
   overflow-y: hidden;
 }
@@ -421,7 +421,8 @@ h3.profile-title {
 -------------------------------------------------------- */
 /*------ banner ------ */
 .banner-bg {
-  padding: 130px 80px;
+  width: 80%;
+  padding: 120px 120px;
   position: relative;
   background: url("../img/7.jpg");
   background-repeat: no-repeat;
@@ -443,6 +444,7 @@ h3.profile-title {
 .welcome-text {
   position: relative;
   z-index: 4;
+  text-align: center;
 }
 .welcome-text h2 {
   font-size: 42px;

@@ -75,7 +75,7 @@
             <div class="banner-overlay"></div>
             <div class="welcome-text">
                 <h2>My Space</h2>
-                <h5>This is your space. Start make your career!</h5>
+                <h5>Manage your own portfolio</h5>
             </div>
         </div>
 
@@ -89,7 +89,7 @@
                     <div class="page-section" id="about">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="widget-title">Learn About Me</h4>
+                            <h4 class="widget-title">About Me</h4>
                             <div class="about-image">
                                 <img src="${pageContext.request.contextPath}/resources/img/8.jpg" alt="about me">
                             </div>
@@ -103,7 +103,7 @@
                     <div class="page-section" id="projects">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="widget-title">PHOTOS OF WHAT I DO</h4>
+                            <h4 class="widget-title">My Portfolio</h4>
                             <p>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Maecenas et lorem molestie, maximus justo dignissim, cursus nisl. Nullam at ante quis ex pharetra pulvinar quis id dolor. Integer lorem odio, euismod ut sem sit amet, imperdiet condimentum diam.</p>
                         </div>
                     </div>
@@ -182,7 +182,7 @@
                     <div class="page-section" id="contact">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="widget-title">PLACE TO TALK WITH ME</h4>
+                            <h4 class="widget-title">What I Like</h4>
                             <p>Vestibulum ac iaculis erat, in semper dolor. Maecenas et lorem molestie, maximus justo dignissim, cursus nisl. Nullam at ante quis ex pharetra pulvinar quis id dolor. Integer lorem odio, euismod ut sem sit amet, imperdiet condimentum diam.</p>
                         </div>
                     </div>

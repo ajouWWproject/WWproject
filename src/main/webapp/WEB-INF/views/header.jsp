@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
 #login-dp {
 	min-width: 250px;
@@ -66,6 +67,23 @@
 	margin-bottom: 0px;
 	border: 1px solid transparent;
 }
+
+.navbar-text {
+	color: #ccc;
+}
+
+.navbar-inverse .navbar-text {
+    color: #eee;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #eee;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #eee;
+}
+
 </style>
 
 
@@ -88,7 +106,7 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="${pageContext.request.contextPath}/board_list.do">OpenSource</a></li>
+					<li><a href="${pageContext.request.contextPath}/board_list.do">OpenSource</a></li>
 					<li><a href="#">Link</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Dropdown <span class="caret"></span></a>
@@ -109,9 +127,9 @@
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-					<li><p class="navbar-text">Already have an account?</p></li>
+					<li><p class="navbar-text">이미 계정이 있으신가요?</p></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+						data-toggle="dropdown"><b>로그인</b> <span class="caret"></span></a>
 						<ul id="login-dp" class="dropdown-menu">
 							<li>
 								<div class="row">
@@ -122,24 +140,24 @@
 											<div class="form-group">
 												<label class="sr-only" for="exampleInputEmail2">ID
 													</label> <input type="text" class="form-control"
-													id="id" placeholder="enter your id"
+													id="id" placeholder="아이디"
 													required>
 											</div>
 											<div class="form-group">
 												<label class="sr-only" for="exampleInputPassword2">Password</label>
 												<input type="password" class="form-control"
-													id="password" placeholder="Password" required>
+													id="password" placeholder="비밀번호" required>
 												
 											</div>
 											<br>
 											<div class="form-group">
-												<button type="submit" id = "loginBtn" class="btn btn-primary btn-block">Login</button>
+												<button type="submit" id = "loginBtn" class="btn btn-primary btn-block">로그인</button>
 											</div>
 											<br>
 										</form>
 									</div>
 									<div class="bottom text-center">
-										New here ? <a href="#"><b>Join Us</b></a>
+										새로 오셨나요? <a href="#"><b>회원가입</b></a>
 									</div>
 								</div>
 							</li>
