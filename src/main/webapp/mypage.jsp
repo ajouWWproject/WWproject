@@ -4,12 +4,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Volton Free Responsive Template</title>
+        <title>My Space</title>
         <meta name="description" content="">
-        <!-- 
-    	Volton Template
-    	http://www.templatemo.com/tm-441-volton
-        -->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <link rel="stylesheet" href="./resources/css/normalize.css">
@@ -28,8 +25,8 @@
                                 <img src="./resources/img/profile.jpg" alt="Volton">
                             </div>
                             <div class="profile-content">
-                                <h3 class="profile-title">Volton</h3>
-                                <p class="profile-description">Digital Photographer</p>
+                                <h3 class="profile-title">정다혜</h3>
+                                <p class="profile-description">대학생</p>
                             </div>
                         </div>
                     </div>
@@ -52,15 +49,15 @@
                 <div class="profile-image">
                     <img src="./resources/img/profile.jpg" alt="Volton">
                 </div>
-                <h3 class="profile-title">Volton</h3>
-                <p class="profile-description">Digital Photography</p>
+                <h3 class="profile-title">정다혜</h3>
+                <p class="profile-description">대학생</p>
             </div> <!-- top-section -->
             <div class="main-navigation">
                 <ul class="navigation">
                     <li><a href="#top"><i class="fa fa-globe"></i>Welcome</a></li>
                     <li><a href="#about"><i class="fa fa-pencil"></i>About Me</a></li>
-                    <li><a href="#projects"><i class="fa fa-paperclip"></i>My Gallery</a></li>
-                    <li><a href="#contact"><i class="fa fa-link"></i>Contact Me</a></li>
+                    <li><a href="#projects"><i class="fa fa-paperclip"></i>My Portfolio</a></li>
+                    <li><a href="#contact"><i class="fa fa-link"></i>What I Like</a></li>
                 </ul>
             </div> <!-- .main-navigation -->
             <div class="social-icons">
@@ -69,8 +66,6 @@
                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
             </div> <!-- .social-icons -->
         </div> <!-- .sidebar-menu -->
@@ -79,8 +74,8 @@
         <div class="banner-bg" id="top">
             <div class="banner-overlay"></div>
             <div class="welcome-text">
-                <h2>Simple Design | Personal Portfolio</h2>
-                <h5>This is a mobile friendly layout with Bootstrap v3.3.1 framework. Maecenas eu ante at nunc posuere fringilla sit amet non dolor. Proin condimentum fermentum nunc.</h5>
+                <h2>My Space</h2>
+                <h5>This is your space. Start make your career!</h5>
             </div>
         </div>
 
@@ -215,7 +210,7 @@
 
                     <div class="row" id="footer">
                         <div class="col-md-12 text-center">
-                            <p class="copyright-text">Copyright &copy; 2015 Company Name</p>
+                            <p class="copyright-text">Copyright &copy; 2017 Database Team Project</p>
                         </div>
                     </div>
 
