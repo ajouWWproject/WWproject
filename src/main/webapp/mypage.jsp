@@ -9,11 +9,11 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link rel="stylesheet" href="./resources/css/normalize.css">
-        <link rel="stylesheet" href="./resources/css/font-awesome.css">
-        <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./resources/css/templatemo-style.css">
-        <script src="./resources/js/vendor/modernizr-2.6.2.min.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/normalize.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/templatemo-style.css">
+        <script src="${pageContext.request.contextPath}/resources/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>    
         <div class="responsive-header visible-xs visible-sm">
@@ -22,7 +22,7 @@
                     <div class="col-md-12">
                         <div class="top-section">
                             <div class="profile-image">
-                                <img src="./resources/img/profile.jpg" alt="Volton">
+                                <img src="${pageContext.request.contextPath}/resources/img/profile.jpg">
                             </div>
                             <div class="profile-content">
                                 <h3 class="profile-title">정다혜</h3>
@@ -91,7 +91,7 @@
                         <div class="col-md-12">
                             <h4 class="widget-title">Learn About Me</h4>
                             <div class="about-image">
-                                <img src="./resources/img/8.jpg" alt="about me">
+                                <img src="${pageContext.request.contextPath}/resources/img/8.jpg" alt="about me">
                             </div>
                             <p>Volton is free website design from <span class="blue">template</span><span class="green">mo</span>. You can use this template for any purpose. Please tell your friends about it. Thank you. Credit goes to <a rel="nofollow" href="http://unsplash.com" target="_parent">Unsplash</a> for images used in this design. You can <strong>change menu icons</strong> by checking <a rel="nofollow" href="http://fontawesome.info/font-awesome-icon-world-map/" target="_parent">Font Awesome</a> (version 4). Example: <strong>&lt;i class=&quot;fa fa-camera&quot;&gt;&lt;/i&gt;</strong></p>
                             <hr>
@@ -110,7 +110,7 @@
                     <div class="row projects-holder">
                         <div class="col-md-4 col-sm-6">
                             <div class="project-item">
-                                <img src="./resources/img/1.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/resources/img/1.jpg" alt="">
                                 <div class="project-hover">
                                     <div class="inside">
                                         <h5><a href="#">Pellentesque porta ligula</a></h5>
@@ -121,7 +121,7 @@
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <div class="project-item">
-                                <img src="./resources/img/2.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/resources/img/2.jpg" alt="">
                                 <div class="project-hover">
                                     <div class="inside">
                                         <h5><a href="#">Pellentesque porta ligula</a></h5>
@@ -132,7 +132,7 @@
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <div class="project-item">
-                                <img src="./resources/img/3.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/resources/img/3.jpg" alt="">
                                 <div class="project-hover">
                                     <div class="inside">
                                         <h5><a href="#">Pellentesque porta ligula</a></h5>
@@ -165,7 +165,7 @@
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <div class="project-item">
-                                <img src="./resources/img/6.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/resources/img/6.jpg" alt="">
                                 <div class="project-hover">
                                     <div class="inside">
                                         <h5><a href="#">Pellentesque porta ligula</a></h5>
@@ -219,9 +219,9 @@
             </div>
         </div>
 
-        <script src="./resources/js/vendor/jquery-1.10.2.min.js"></script>
-        <script src="./resources/js/min/plugins.min.js"></script>
-        <script src="./resources/js/min/main.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/vendor/jquery-1.10.2.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/min/plugins.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/min/main.min.js"></script>
 
     </body>
 </html>
