@@ -4,7 +4,8 @@ public class BoardVO {
 	private int no;
 	
 	private String title;
-	private String content;
+	private String content_back;//기획배경/내용설명/
+	private String content_detail;
 	private int hits;
 	private int likes;
 
@@ -16,12 +17,13 @@ public class BoardVO {
 		super();		
 	}
 
-	public BoardVO(int no, String title, String content, int hits, int likes, String timePosted, MemberVO memberVO,
-			CategoryVO categoryVO) {
+	public BoardVO(int no, String title, String content_back, String content_detail, int hits, int likes,
+			String timePosted, MemberVO memberVO, CategoryVO categoryVO) {
 		super();
 		this.no = no;
 		this.title = title;
-		this.content = content;
+		this.content_back = content_back;
+		this.content_detail = content_detail;
 		this.hits = hits;
 		this.likes = likes;
 		this.timePosted = timePosted;
@@ -45,12 +47,20 @@ public class BoardVO {
 		this.title = title;
 	}
 
-	public String getContent() {
-		return content;
+	public String getContent_back() {
+		return content_back;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setContent_back(String content_back) {
+		this.content_back = content_back;
+	}
+
+	public String getContent_detail() {
+		return content_detail;
+	}
+
+	public void setContent_detail(String content_detail) {
+		this.content_detail = content_detail;
 	}
 
 	public int getHits() {
@@ -95,9 +105,10 @@ public class BoardVO {
 
 	@Override
 	public String toString() {
-		return "BoardVO [no=" + no + ", title=" + title + ", content=" + content + ", hits=" + hits + ", likes=" + likes
-				+ ", timePosted=" + timePosted + ", memberVO=" + memberVO + ", categoryVO=" + categoryVO + "]";
-	}	
-	
+		return "BoardVO [no=" + no + ", title=" + title + ", content_back=" + content_back + ", content_detail="
+				+ content_detail + ", hits=" + hits + ", likes=" + likes + ", timePosted=" + timePosted + ", memberVO="
+				+ memberVO + ", categoryVO=" + categoryVO + "]";
+	}
+
 	
 }
