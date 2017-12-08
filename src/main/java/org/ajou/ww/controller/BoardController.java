@@ -30,10 +30,12 @@ public class BoardController{
 	}
 	@RequestMapping("opensource_write.do")
 	public String moveToWrite(HttpServletRequest request){
-	
+		
 		return "board/opensource_write";
 	
 	}
+	
+	
 	
 }
 
