@@ -46,6 +46,14 @@ public class MemberController {
 		return path;
 	}
 
+	@RequestMapping("logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null)
+			session.invalidate();
+		return "home";
+	}
+
 	// @RequestMapping("findMemberById.do")
 	// public String findMemberById(String id,Model model){
 	// MemberVO vo=memberService.findMemberById(id);
@@ -64,13 +72,7 @@ public class MemberController {
 	// return "redirect:home";
 	// }
 	// }
-	// @RequestMapping("logout.do")
-	// public String logout(HttpServletRequest request){
-	// HttpSession session=request.getSession(false);
-	// if(session!=null)
-	// session.invalidate();
-	// return "home.tiles";
-	// }
+
 	// @RequestMapping(value="registerMember.do", method = RequestMethod.POST)
 	// public String register(MemberVO vo) {
 	// memberService.registerMember(vo);
