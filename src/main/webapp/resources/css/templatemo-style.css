@@ -273,17 +273,17 @@ hr {
 -------------------------------------------------------- */
 .sidebar-menu {
   float: left;
-  width: 23%;
+  width: 18%;
   height: 100%;
   position: fixed;
-  background-color: #5f6d7e;
+  background-color: #E91E63;
   color: white;
   overflow-y: hidden;
 }
 @media screen and (max-width: 1290px) {
   .sidebar-menu {
     overflow-y: scroll;
-    width: 30%;
+    width: 20%;
   }
 }
 
@@ -421,7 +421,7 @@ h3.profile-title {
 -------------------------------------------------------- */
 /*------ banner ------ */
 .banner-bg {
-  padding: 260px 80px;
+  padding: 130px 80px;
   position: relative;
   background: url("../img/7.jpg");
   background-repeat: no-repeat;

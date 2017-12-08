@@ -50,6 +50,7 @@ body {
 	align-items: auto;
 }
 
+<<<<<<< HEAD
 .card {
 	min-width: 275px;
 	width: 275px;
@@ -64,7 +65,12 @@ body {
 	border: 1px solid rgba(128, 128, 128, 0.15);
 	box-sizing: border-box;
 }
+=======
+<!-- Bootstrap core CSS -->
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+>>>>>>> branch 'master' of https://github.com/ajouWWproject/WWproject.git
 
+<<<<<<< HEAD
 .card .card-social {
 	position: absolute;
 	height: 75px;
@@ -76,6 +82,10 @@ body {
 	box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
 	top: 275px;
 }
+=======
+<!-- Custom styles for this template -->
+<link href="${pageContext.request.contextPath}/resources/css/heroic-features.css" rel="stylesheet">
+>>>>>>> branch 'master' of https://github.com/ajouWWproject/WWproject.git
 
 .card .card-social ul {
 	padding: 0;
