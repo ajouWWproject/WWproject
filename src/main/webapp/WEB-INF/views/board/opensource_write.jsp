@@ -20,7 +20,7 @@
 <body>
 <jsp:include page="../header.jsp" />
 <div class="container">
-<br><br><br><br> 
+<br>
 	<span>
 		<h1 class="panel-title pull-center" style="font-size:30px">
 			
@@ -28,7 +28,7 @@
 			<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 		</h1>
 	</span> 
-	<br><br><br>
+	<br>
 	<div class="col-md-6 col-md-offset-3" style="height: 150%">
     <form action="${pageContext.request.contextPath}/opensouce_register.do"  enctype="multipart/form-data" method="post" id="board_register_from" align="center">
         <div class="required-field-block">
@@ -36,7 +36,7 @@
             <input type="text" placeholder="Title" class="form-control" name="title" id="reportTitle">
         </div>
         <br>
-     
+     	<label class = "opensourceLabel">작성ID</label>
         	<input type="text" class="form-control" name="writerId" id="writerId" value="${sessionScope.mvo.id}" readonly="readonly">
         	<br>
         <div class="required-field-block">
