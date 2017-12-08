@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Sql Mapper -->
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member"> 	
-	<sql id="selectMember">
-		
-	</sql>
-	<select id="login" resultType="memberVO" parameterType="memberVO">
- 		
- 	</select>
+
+	<select id="login" parameterType="memberVO" resultType="memberVO">
+		select id,name from member
+		where id=#{id} and password=#{password}
+	</select>	
 
 	
 </mapper>
