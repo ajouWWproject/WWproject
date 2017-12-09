@@ -1,5 +1,7 @@
 package org.ajou.ww.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +14,9 @@ public class HomeController {
 	 * 우선적으로 실행되고 
 	 * 존재하지 않으면 @PathVariable 메서드가 실행된다 
 	 */
-	@RequestMapping("{viewName}.do")
-	public String showView(@PathVariable String viewName){
-		//System.out.println("@PathVariable:"+viewName);
-		return viewName;
+	@RequestMapping("home.do")
+	public String home( HttpServletRequest request){
+		return "home";
 	}
-	@RequestMapping("{dirName}/{viewName}.do")
-	public String showView(@PathVariable String dirName,
-			@PathVariable String viewName){
-		//System.out.println("@PathVariable:"+dirName+"/"+viewName);
-		return dirName+"/"+viewName+".tiles";
-	}
+	
 }

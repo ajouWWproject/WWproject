@@ -22,8 +22,8 @@ public class MemberDAOImpl implements MemberDAO{
 		template.insert("member.register", memberVO);			
 	}
 	
-//	@Override
-//	public int idcheck(String id) {
-//		return template.selectOne("member.idcheck",id);				
-//	}	
+	@Override
+	public int checkId(String id) {
+		return template.selectOne("member.checkId",id);				
+	}	
 }

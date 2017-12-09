@@ -3,9 +3,15 @@
 <mapper namespace="mypage"> 	
 
 	<select id="getMemberInfo" parameterType="memberVO" resultType="memberVO">
-		select id, password, name, phone, prifile_path from member
-		where id = #{id}
+		SELECT id, password, name, phone, profile_path 
+		FROM member
+		WHERE id = #{id}
 	</select>	
+	
+	<update id="editMemberInfo" parameterType="memberVO">
+		UPDATE member SET password = #{password}, name = #{name}, phone = ${phone}, profile_path = "${profile_path}"
+		WHERE id = #{id}
+	</update>	
 
 	
 </mapper>

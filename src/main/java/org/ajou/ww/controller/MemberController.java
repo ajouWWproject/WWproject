@@ -9,6 +9,8 @@ import org.ajou.ww.model.MemberService;
 import org.ajou.ww.model.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MemberController {
@@ -37,6 +39,11 @@ public class MemberController {
 
 		return path;
 	}
+	
+	@RequestMapping(value = "checkId.do", method= RequestMethod.GET)
+    public @ResponseBody int idCheck(String id) {
+        return memberService.checkId(id);
+    }
 	
 	@RequestMapping("register.do")
 	public String register(MemberVO mvo, HttpServletRequest request) {
