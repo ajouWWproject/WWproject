@@ -64,3 +64,10 @@ where title like '%java%';
 
 
 
+create table file(
+	file_no int auto_increment not null,
+	board_no int not null,
+	file_path varchar(30) not null,
+	primary key(file_no, board_no),
+	foreign key (board_no) references board(board_no)
+);

@@ -14,23 +14,24 @@ public class BoardServiceImpl implements BoardService {
 	public void write(BoardVO bvo){
 		boardDAO.write(bvo);
 	}	
-	@Override
+	/*@Override
 	public ListVO getBoardList(){				
 		return getBoardList("1");
-	}
+	}*/
 	@Override
-	public ListVO getBoardList(String pageNo){			
-		int totalCount=boardDAO.getTotalContentCount();
-		PagingBean pagingBean=null;
-		if(pageNo==null)
-			pagingBean=new PagingBean(totalCount);
-		else
-			pagingBean=new PagingBean(totalCount,Integer.parseInt(pageNo));		
-		/*HashMap<String,Integer> paramMap=new HashMap<String,Integer>();
-		paramMap.put("startRowNumber",pagingBean.getStartRowNumber());
-		paramMap.put("endRowNumber", pagingBean.getEndRowNumber());*/
-		return new ListVO(boardDAO.getBoardList(pagingBean),pagingBean);
+	public ListVO getBoardList() {
+		return new ListVO(boardDAO.getBoardList());
 	}
+	
+	
+	
+	@Override
+	public ListVO getBoardList(MemberVO mvo){			
+		int totalCount = boardDAO.getTotalContentCount();
+		return new ListVO(boardDAO.getBoardList(mvo));
+	}
+	
+	
 	
 	@Override
 	public BoardVO showContent(int no){
@@ -55,6 +56,9 @@ public class BoardServiceImpl implements BoardService {
 	public void updateBoard(BoardVO bvo){
 		boardDAO.updateBoard(bvo);
 	}
+	
+	
+	
 		
 }
 

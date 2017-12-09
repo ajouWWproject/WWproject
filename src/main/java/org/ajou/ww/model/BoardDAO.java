@@ -15,7 +15,9 @@ public interface BoardDAO {
 	public  void updateBoard(BoardVO bvo);
 
 	public  int getTotalContentCount();
+	
+	public List<BoardVO> getBoardList();
 
-	public List<BoardVO> getBoardList(PagingBean pagingBean);	
+	public List<BoardVO> getBoardList(MemberVO mvo);
 
 }

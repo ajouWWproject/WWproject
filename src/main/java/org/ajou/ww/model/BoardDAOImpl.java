@@ -41,11 +41,18 @@ public class BoardDAOImpl implements BoardDAO {
 	public int getTotalContentCount(){
 		return sqlSessionTemplate.selectOne("board.getTotalContentCount");
 	}
+	
+	
+	@Override
+	public List<BoardVO> getBoardList() {
+		return sqlSessionTemplate.selectList("board.getBoardList");
+	}
 
 	@Override
-	public List<BoardVO> getBoardList(PagingBean pagingBean) {
-		return sqlSessionTemplate.selectList("board.getBoardList", pagingBean);
-	}	
+	public List<BoardVO> getBoardList(MemberVO mvo) {
+		return sqlSessionTemplate.selectList("board.getBoardList", mvo);
+	}
+
 }
 
 

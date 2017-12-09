@@ -17,10 +17,9 @@ public class ListVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ListVO(List<BoardVO> list, PagingBean pagingBean) {
+	public ListVO(List<BoardVO> list) {
 		super();
 		this.list = list;
-		this.pagingBean = pagingBean;
 	}
 
 	public List<BoardVO> getList() {
