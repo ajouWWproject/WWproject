@@ -224,16 +224,16 @@
          <form class="w3-container" action="/action_page.php">
             <div class="w3-section">
                <label><b>아이디</b></label><br>
-               <input class="register-form-input" type="text" placeholder="사용할 아이디를 입력해주세요" name="usrname" required>&nbsp;&nbsp;
+               <input class="register-form-input" id="id" type="text" placeholder="사용할 아이디를 입력해주세요" name="id" required>&nbsp;&nbsp;
                <button class="btn" style="background-color: #EF5350; color: #fff; width: 85px; height: 40px;">중복 확인</button><br><br>            
                <label><b>비밀번호</b></label><br>
-               <input class="register-form-input" type="password" placeholder="비밀번호를 입력해주세요" name="psw" required><br><br>
+               <input class="register-form-input" id="pw" type="password" placeholder="비밀번호를 입력해주세요" name="pw" required><br><br>
                <label><b>비밀번호 확인</b></label><br>
-               <input class="register-form-input" id="Pw" type="password" placeholder="비밀번호를 한번 더 입력해주세요" name="psw" required><br><br>
+               <input class="register-form-input" id="pwOk" type="password" placeholder="비밀번호를 한번 더 입력해주세요" name="pwOk" required><br><br>
                <label><b>이름</b></label><br>
-               <input class="register-form-input" id="PwCheck" type="text" placeholder="이름을 입력해주세요" name="psw" required><br><br>
+               <input class="register-form-input" id="name" type="text" placeholder="이름을 입력해주세요" name="name" required><br><br>
                <label><b>전화번호</b></label><br>
-               <input class="register-form-input" type="text" placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" name="psw" required><br><br>
+               <input class="register-form-input" id="phone" type="text" placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" name="phone" required><br><br>
                <br>
                
                <button class="btn btn-primary btn-block register-btn" type="submit">회원가입</button>

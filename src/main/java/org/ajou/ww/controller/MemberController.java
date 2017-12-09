@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberController {
 	@Resource
 	private MemberService memberService;
-	
-	@Resource
-	private BoardService boardService;
+
 
 	@RequestMapping("login.do")
 	public String login(MemberVO mvo, HttpServletRequest request) {
