@@ -116,11 +116,15 @@
 <script>
 	$(document).ready(function() {
 		var idCheck = false;
+		var pwCheck = false;
 		
 		$("#idCheck").click(function() {
 			
 			
 		});
+		
+		$(".signupbtn").prop("disabled", true);
+        $(".signupbtn").css("background-color", "#aaaaaa");
 		
 		
 		function check() { 
@@ -157,7 +161,7 @@
                 alert("환영합니다!");
                 return true;
             }
-        });
+        }
 	});
 </script>
 
