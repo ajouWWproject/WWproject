@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.ajou.ww.model.BoardService;
 import org.ajou.ww.model.BoardVO;
+import org.ajou.ww.model.FileVO;
 import org.ajou.ww.model.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,11 +38,16 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "opensouce_register.do", method = RequestMethod.POST)
-	public ModelAndView write(HttpServletRequest request, BoardVO bvo) {
+	public String write(HttpServletRequest request, BoardVO bvo, FileVO fvo) {
+		//boardService.write(bvo);
+		System.out.println("bvo : " + bvo);
+		System.out.println("fvo : " + fvo);
 		boardService.write(bvo);
-		System.out.println("fdjsklfjskldfjlsk" + bvo);
-		return new ModelAndView("redirect:findReportNo.do?reportNo=");
+		return "redirect:home.do";
 
 	}
+	
+	
 
-}
+
+	}
