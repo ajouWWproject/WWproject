@@ -1,5 +1,6 @@
 package org.ajou.ww.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,6 +15,23 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public void write(BoardVO bvo){
 		sqlSessionTemplate.insert("board.write",bvo);
+	}
+
+	@Override
+	public void insertFile(Object mul) {
+		sqlSessionTemplate.insert("board.insertFile",mul);
+	}
+
+	@Override
+	public List<CategoryVO> findCategoryList() {
+		
+		return sqlSessionTemplate.selectList("board.findCategoryList");
+	}
+
+	@Override
+	public List<FolderVO> findFolderList() {
+		
+		return sqlSessionTemplate.selectList("board.findFolderList");
 	}			
 	
 	

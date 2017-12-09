@@ -1,9 +1,15 @@
+
+drop table file;
+drop table board;
+drop table category
+drop table member;
+
 create table member(
 	id varchar(30) not null,
 	password varchar(30) not null,
 	name varchar(30) not null,
 	phone varchar(30) not null,
-	prifile_path varchar(30) not null,
+	profile_path varchar(30) not null,
 	primary key(id)
 
 );
@@ -20,6 +26,11 @@ insert into category values(null, 'PHP', 'php.jpg');
 insert into category values(null, 'Python', 'python.png');
 insert into category values(null, 'Ruby', 'ruby.png');
 
+
+create table folder(
+	folder_no int auto_increment primary key,
+	folder_name varchar(30) not null
+);
 create table board(
 	board_no int auto_increment,
 	title varchar(30) not null,
@@ -30,12 +41,12 @@ create table board(
 	timePosted date not null,
 	id varchar(30) not null,
 	category_no int not null,
+	folder_no int not null,
 	primary key(board_no),
 	foreign key(id) references member(id),
-	foreign key(category_no) references category(category_no)
+	foreign key(category_no) references category(category_no),
+	foreign key(folder_no) references folder(folder_no)
 );
-
-insert into member values('ajou', '1234', '임소영 ', '01023991943','ruby.png');
 
 create table file(
 	file_no int auto_increment not null,
@@ -44,3 +55,12 @@ create table file(
 	primary key(file_no, board_no),
 	foreign key (board_no) references board(board_no)
 );
+
+insert into member values('ajou', '1234', '임소영 ', '01023991943','ruby.png');
+insert into folder values(null, 'Ajou 2017-2');
+
+
+
+
+
+select category_no,category_name from category;

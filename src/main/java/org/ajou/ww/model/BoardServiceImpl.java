@@ -2,9 +2,12 @@ package org.ajou.ww.model;
 
 
 
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 @Service
 public class BoardServiceImpl implements BoardService {
 	
@@ -13,7 +16,24 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void write(BoardVO bvo){
 		boardDAO.write(bvo);
+	}
+	@Override
+	public void insertFile(MultipartFile multipartFile) {
+		boardDAO.insertFile(multipartFile);
+		
+	}
+	@Override
+	public ArrayList<CategoryVO> findCategoryList() {
+		
+		return (ArrayList<CategoryVO>) boardDAO.findCategoryList();
+	}
+	@Override
+	public ArrayList<FolderVO> findFolderList() {
+		
+		return (ArrayList<FolderVO>) boardDAO.findFolderList();
 	}	
+
+		
 //	@Override
 //	public ListVO getBoardList(){				
 //		return getBoardList("1");
@@ -55,7 +75,7 @@ public class BoardServiceImpl implements BoardService {
 //	public void updateBoard(BoardVO bvo){
 //		boardDAO.updateBoard(bvo);
 //	}
-		
+	
 }
 
 
