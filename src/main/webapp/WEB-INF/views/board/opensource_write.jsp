@@ -56,9 +56,10 @@
 			}//function
 		});//ajax
 
-		$("#insertFolderForm").on("click",function() {
+		$("#insertFolderBtn").on("click",function() {
 			//$('#layerpop').modal();
-			alert("추가!!");
+			$("#insertFolderForm").submit();
+			
 		});
 
 		
@@ -98,7 +99,7 @@
 			} else if ($("#content_back").val() == "") {
 				alert("기획 배경을 입력해주세요!!");
 			} else if ($("#content_detail").val() == "") {
-				alert("기획 배경을 입력해주세요!!");
+				alert("상세 내용을 입력해주세요!!");
 			} else {
 				$("#opensouce_register_from").submit();
 			}
@@ -193,7 +194,6 @@
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">프로젝트 폴더 추가</h4>
 							</div>
-							<form id = "insertFolderForm" action = "${pageContext.request.contextPath}/insertFolder.do">
 							
 								<div class="modal-body">
 										<div class="required-field-block" style="margin-top: 30px">
@@ -205,7 +205,7 @@
 								<div class="modal-footer">
 										<input type="button" value = "추가 " id = "insertFolderBtn" class="btn btn-default" data-dismiss="modal"> 
 								</div>
-							</form>
+							
 						</div>
 
 					</div>
@@ -221,7 +221,7 @@
 
 
 				<br> <label class="opensourceLabel">작성ID</label> <input
-					type="text" class="form-control" name="writerId" id="writerId"
+					type="text" class="form-control" name="id" id="writerId"
 					value="${sessionScope.mvo.id}" readonly="readonly"> <br>
 				<div class="required-field-block">
 					<label class="opensourceLabel">기획 배경 </label>

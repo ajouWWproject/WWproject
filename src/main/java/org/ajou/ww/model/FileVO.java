@@ -7,11 +7,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileVO {
 	private int boardNo;
 	private int fileNo;
-	private List<MultipartFile> file;
+	private String file;
 	public FileVO() {
 		super();
 	}
-	public FileVO(int boardNo, int fileNo, List<MultipartFile> file) {
+	public FileVO(int boardNo, int fileNo, String file) {
 		super();
 		this.boardNo = boardNo;
 		this.fileNo = fileNo;
@@ -29,16 +29,18 @@ public class FileVO {
 	public void setFileNo(int fileNo) {
 		this.fileNo = fileNo;
 	}
-	public List<MultipartFile> getFile() {
+	public String getFile() {
 		return file;
 	}
-	public void setFile(List<MultipartFile> file) {
+	public void setFile(String file) {
 		this.file = file;
 	}
 	@Override
 	public String toString() {
 		return "FileVO [boardNo=" + boardNo + ", fileNo=" + fileNo + ", file=" + file + "]";
 	}
+	
+	
 	
 	
 	

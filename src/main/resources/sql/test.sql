@@ -9,7 +9,7 @@ create table member(
 	password varchar(30) not null,
 	name varchar(30) not null,
 	phone varchar(30) not null,
-	profile_path varchar(30) not null,
+	profile_path varchar(30),
 	primary key(id)
 
 );
@@ -64,3 +64,6 @@ insert into folder values(null, 'Ajou 2017-2');
 
 
 select category_no,category_name from category;
+delete table board;
+select * from board;
+select * from file;

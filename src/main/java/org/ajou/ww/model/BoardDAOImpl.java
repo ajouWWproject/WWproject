@@ -13,13 +13,13 @@ public class BoardDAOImpl implements BoardDAO {
 	private SqlSessionTemplate sqlSessionTemplate;	
 	
 	@Override
-	public void write(BoardVO bvo){
-		sqlSessionTemplate.insert("board.write",bvo);
+	public int write(BoardVO bvo){
+		return sqlSessionTemplate.insert("board.write",bvo);
 	}
 
 	@Override
-	public void insertFile(Object mul) {
-		sqlSessionTemplate.insert("board.insertFile",mul);
+	public void insertFile(FileVO fvo) {
+		sqlSessionTemplate.insert("board.insertFile",fvo);
 	}
 
 	@Override
