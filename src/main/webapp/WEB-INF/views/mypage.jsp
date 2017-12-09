@@ -1,74 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>My Space</title>
-        <meta name="description" content="">
-        
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>WW</title>
         
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/normalize.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/templatemo-style.css">
         <script src="${pageContext.request.contextPath}/resources/js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        
+        <style>
+		      
+		      table {
+		      	width: 100%;"
+		      }
+		      
+		      th {
+		      	text-align: center;
+		      	width: 25%;"
+		      }
+		     
+        </style>
+        
     </head>
-    <body>    
-        <div class="responsive-header visible-xs visible-sm">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="top-section">
-                            <div class="profile-image">
-                                <img src="${pageContext.request.contextPath}/resources/img/profile.jpg">
-                            </div>
-                            <div class="profile-content">
-                                <h3 class="profile-title">정다혜</h3>
-                                <p class="profile-description">대학생</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
-                <div class="main-navigation responsive-menu">
-                    <ul class="navigation">
-                        <li><a href="#top"><i class="fa fa-home"></i>Home</a></li>
-                        <li><a href="#about"><i class="fa fa-user"></i>About Me</a></li>
-                        <li><a href="#projects"><i class="fa fa-newspaper-o"></i>My Gallery</a></li>
-                        <li><a href="#contact"><i class="fa fa-envelope"></i>Contact Me</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- SIDEBAR -->
+    <body>
+    	<jsp:include page="header.jsp" />
+        
         <div class="sidebar-menu hidden-xs hidden-sm">
             <div class="top-section">
                 <div class="profile-image">
-                    <img src="./resources/img/profile.jpg" alt="Volton">
+                    <img src="${pageContext.request.contextPath}/resources/img/profile.jpg" alt="Volton">
                 </div>
-                <h3 class="profile-title">정다혜</h3>
-                <p class="profile-description">대학생</p>
-            </div> <!-- top-section -->
+                <h3 class="profile-title">${mvo.name}</h3>
+                <p class="profile-description">${mvo.id}</p>
+            </div>
             <div class="main-navigation">
                 <ul class="navigation">
                     <li><a href="#top"><i class="fa fa-globe"></i>Welcome</a></li>
                     <li><a href="#about"><i class="fa fa-pencil"></i>About Me</a></li>
-                    <li><a href="#projects"><i class="fa fa-paperclip"></i>My Portfolio</a></li>
-                    <li><a href="#contact"><i class="fa fa-link"></i>What I Like</a></li>
+                    <li><a href="#portfolio"><i class="fa fa-paperclip"></i>My Portfolio</a></li>
+                    <li><a href="#like"><i class="fa fa-link"></i>What I Like</a></li>
                 </ul>
-            </div> <!-- .main-navigation -->
-            <div class="social-icons">
-                <ul>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                </ul>
-            </div> <!-- .social-icons -->
-        </div> <!-- .sidebar-menu -->
+            </div>
+        </div>
         
 
         <div class="banner-bg" id="top">
@@ -82,25 +63,86 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="fluid-container">
-
                 <div class="content-wrapper">
-                
                     <!-- ABOUT -->
                     <div class="page-section" id="about">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4 class="widget-title">About Me</h4>
-                            <div class="about-image">
-                                <img src="${pageContext.request.contextPath}/resources/img/8.jpg" alt="about me">
-                            </div>
-                            <p>Volton is free website design from <span class="blue">template</span><span class="green">mo</span>. You can use this template for any purpose. Please tell your friends about it. Thank you. Credit goes to <a rel="nofollow" href="http://unsplash.com" target="_parent">Unsplash</a> for images used in this design. You can <strong>change menu icons</strong> by checking <a rel="nofollow" href="http://fontawesome.info/font-awesome-icon-world-map/" target="_parent">Font Awesome</a> (version 4). Example: <strong>&lt;i class=&quot;fa fa-camera&quot;&gt;&lt;/i&gt;</strong></p>
-                            <hr>
-                        </div>
-                    </div> <!-- #about -->
+	                    <div class="row">
+	                        <div class="col-md-12">
+	                            <h4 class="widget-title">About Me</h4>
+	                            <div class="about-image">
+	                                <img src="${pageContext.request.contextPath}/resources/img/8.jpg" alt="about me">
+		                        </div>
+	
+								<div id="register-form">
+									<div class="w3-modal-content w3-card-4 w3-animate-zoom"
+										style="max-width: 600px; border-radius: 20px; padding: 30px;">
+										<div class="w3-center">
+											<h2 style="font-weight: bold;">My Information</h2>
+											<br>
+										</div>
+	
+										<form action="">
+											<table>
+												<tr>
+													<th></th>
+													<td>
+														<c:choose>
+															<c:when test="${mvo.profile_path == null}">
+																<img style="width:50%;" src="${pageContext.request.contextPath}/resources/img/user.png" border='0' onclick='document.all.file.click(); document.all.filePath.value=document.all.file.value; this.src=document.all.file.value'>
+															</c:when>
+															<c:otherwise>
+																<img style="width:50%;" src="${pageContext.request.contextPath}/resources/img/user.png" border='0' onclick='document.all.file.click(); document.all.filePath.value=document.all.file.value; this.src=document.all.file.value'>
+															</c:otherwise>
+														</c:choose>
+													</td>
+												</tr>
+											
+												<tr>
+													<th><label><b>아이디</b></label></th>
+													<td><input class="register-form-input" id="id_e" type="text" value="${mvo.id}" name="id_e" readonly="readonly"></td>
+												</tr>
+												<tr>
+													<th><label><b>비밀번호</b></label></th>
+													<td><input class="register-form-input" id="pw_e" type="password"
+														placeholder="바꿀 비밀번호를 입력해주세요" name="pw_e" required></td>
+												</tr>
+												<tr>
+													<th><label><b>비밀번호 확인</b></label></th>
+													<td><input class="register-form-input" id="pwOk_e"
+														type="password" placeholder="비밀번호를 한번 더 입력해주세요" name="pwOk_e"
+														required></td>
+												</tr>
+												<tr>
+													<th><label><b>이름</b></label></th>
+													<td><input class="register-form-input" id="name_e"
+														type="text" placeholder="이름을 입력해주세요" value="${mvo.name}" name="name_e" required></td>
+												</tr>
+												<tr>
+													<th><label><b>전화번호</b></label></th>
+													<td><input class="register-form-input" type="text" id="phone_e"
+														placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" value="${mvo.phone}" name="phone_e" required></td>
+												</tr>
+											</table>
+											
+											<input type="file" name="file" style="display: none;"> 
+											<input type="text" name="filePath" id="filePath" style="display: none;"> 
+											
+											<button class="btn btn-primary btn-block register-btn"
+												type="submit">수정</button>
+										</form>
+									</div>
+								</div>
+	
+	
+	
+	
+								<hr>
+	                        </div>
+	                    </div> <!-- #about -->
                     </div>
                     
                     <!-- PROJECTS -->
-                    <div class="page-section" id="projects">
+                    <div class="page-section" id="portfolio">
                     <div class="row">
                         <div class="col-md-12">
                             <h4 class="widget-title">My Portfolio</h4>
@@ -143,7 +185,7 @@
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <div class="project-item">
-                                <img src="./resources/img/4.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/resources/img/4.jpg" alt="">
                                 <div class="project-hover">
                                     <div class="inside">
                                         <h5><a href="#">Pellentesque porta ligula</a></h5>
@@ -154,7 +196,7 @@
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <div class="project-item">
-                                <img src="./resources/img/5.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/resources/img/5.jpg" alt="">
                                 <div class="project-hover">
                                     <div class="inside">
                                         <h5><a href="#">Pellentesque porta ligula</a></h5>
@@ -174,37 +216,86 @@
                                 </div>
                             </div>
                         </div>
-                    </div> <!-- .projects-holder -->
+                    </div> <!-- my projects -->
                     </div>
                     <hr>
 
                     <!-- CONTACT -->
-                    <div class="page-section" id="contact">
+                    <div class="page-section" id="like">
                     <div class="row">
                         <div class="col-md-12">
                             <h4 class="widget-title">What I Like</h4>
                             <p>Vestibulum ac iaculis erat, in semper dolor. Maecenas et lorem molestie, maximus justo dignissim, cursus nisl. Nullam at ante quis ex pharetra pulvinar quis id dolor. Integer lorem odio, euismod ut sem sit amet, imperdiet condimentum diam.</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <form action="#" method="post" class="contact-form">
-                            <fieldset class="col-md-4 col-sm-6">
-                                <input type="text" id="your-name" placeholder="Your Name...">
-                            </fieldset>
-                            <fieldset class="col-md-4 col-sm-6">
-                                <input type="email" id="email" placeholder="Your Email...">
-                            </fieldset>
-                            <fieldset class="col-md-4 col-sm-12">
-                                <input type="text" id="your-subject" placeholder="Subject...">
-                            </fieldset>
-                            <fieldset class="col-md-12 col-sm-12">
-                                <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
-                            </fieldset>
-                            <fieldset class="col-md-12 col-sm-12">
-                                <input type="submit" class="button big default" value="Send Message">
-                            </fieldset>
-                        </form>
-                    </div> <!-- .contact-form -->
+                    <div class="row projects-holder">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="project-item">
+                                <img src="${pageContext.request.contextPath}/resources/img/1.jpg" alt="">
+                                <div class="project-hover">
+                                    <div class="inside">
+                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="project-item">
+                                <img src="${pageContext.request.contextPath}/resources/img/2.jpg" alt="">
+                                <div class="project-hover">
+                                    <div class="inside">
+                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="project-item">
+                                <img src="${pageContext.request.contextPath}/resources/img/3.jpg" alt="">
+                                <div class="project-hover">
+                                    <div class="inside">
+                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="project-item">
+                                <img src="${pageContext.request.contextPath}/resources/img/4.jpg" alt="">
+                                <div class="project-hover">
+                                    <div class="inside">
+                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="project-item">
+                                <img src="${pageContext.request.contextPath}/resources/img/5.jpg" alt="">
+                                <div class="project-hover">
+                                    <div class="inside">
+                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="project-item">
+                                <img src="${pageContext.request.contextPath}/resources/img/6.jpg" alt="">
+                                <div class="project-hover">
+                                    <div class="inside">
+                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- like project -->
                     </div>
                     <hr>
 
