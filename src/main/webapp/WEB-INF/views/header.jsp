@@ -1,94 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
-#loginInfo {
-   color: rgb(255, 255, 255);
-}
-
-#login-dp {
-   min-width: 250px;
-   padding: 14px 14px 0;
-   overflow: hidden;
-   background-color: rgba(255, 255, 255, .8);
-}
-
-#login-dp .help-block {
-   font-size: 12px
-}
-
-#login-dp .bottom {
-   background-color: rgba(255, 255, 255, .8);
-   border-top: 1px solid #ddd;
-   clear: both;
-   padding: 14px;
-}
-
-#login-dp .social-buttons {
-   margin: 0px 0
-}
-
-#login-dp .social-buttons a {
-   width: 49%;
-}
-
-#login-dp .form-group {
-   margin-bottom: 0px;
-}
-
-.btn-fb {
-   color: #fff;
-   background-color: #3b5998;
-}
-
-.btn-fb:hover {
-   color: #fff;
-   background-color: #496ebc
-}
-
-.btn-tw {
-   color: #fff;
-   background-color: #55acee;
-}
-
-.btn-tw:hover {
-   color: #fff;
-   background-color: #59b5fa;
-}
-
-@media ( max-width :768px) {
-   #login-dp {
-      background-color: inherit;
-      color: #fff;
-   }
-   #login-dp .bottom {
-      background-color: inherit;
-      border-top: 0 none;
-   }
-}
-
-.navbar {
-   position: relative;
-   min-height: 50px;
-   margin-bottom: 0px;
-   border: 1px solid transparent;
-}
-
-.navbar-text {
-   color: #ccc;
-}
-
-.navbar-inverse .navbar-text {
-   color: #eee;
-}
-
-.navbar-inverse .navbar-nav>li>a {
-   color: #eee;
-}
-
-.navbar-inverse .navbar-brand {
-   color: #eee;
-}
+	#loginInfo {
+	   color: rgb(255, 255, 255);
+	}
+	
+	#login-dp {
+	   min-width: 250px;
+	   padding: 14px 14px 0;
+	   overflow: hidden;
+	   background-color: rgba(255, 255, 255, .8);
+	}
+	
+	#login-dp .help-block {
+	   font-size: 12px
+	}
+	
+	#login-dp .bottom {
+	   background-color: rgba(255, 255, 255, .8);
+	   border-top: 1px solid #ddd;
+	   clear: both;
+	   padding: 14px;
+	}
+	
+	#login-dp .social-buttons {
+	   margin: 0px 0
+	}
+	
+	#login-dp .social-buttons a {
+	   width: 49%;
+	}
+	
+	#login-dp .form-group {
+	   margin-bottom: 0px;
+	}
+	
+	.btn-fb {
+	   color: #fff;
+	   background-color: #3b5998;
+	}
+	
+	.btn-fb:hover {
+	   color: #fff;
+	   background-color: #496ebc
+	}
+	
+	.btn-tw {
+	   color: #fff;
+	   background-color: #55acee;
+	}
+	
+	.btn-tw:hover {
+	   color: #fff;
+	   background-color: #59b5fa;
+	}
+	
+	@media ( max-width :768px) {
+	   #login-dp {
+	      background-color: inherit;
+	      color: #fff;
+	   }
+	   #login-dp .bottom {
+	      background-color: inherit;
+	      border-top: 0 none;
+	   }
+	}
+	
+	.navbar {
+	   position: relative;
+	   min-height: 50px;
+	   margin-bottom: 0px;
+	   border: 1px solid transparent;
+	}
+	
+	.navbar-text {
+	   color: #ccc;
+	}
+	
+	.navbar-inverse .navbar-text {
+	   color: #eee;
+	}
+	
+	.navbar-inverse .navbar-nav>li>a {
+	   color: #eee;
+	}
+	
+	.navbar-inverse .navbar-brand {
+	   color: #eee;
+	}
 
 
 </style>
@@ -113,17 +112,15 @@
          <div class="collapse navbar-collapse"
             id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-               <li><a href="${pageContext.request.contextPath}/board_list.do">프로젝트
-               </a></li>
+               <li><a href="${pageContext.request.contextPath}/board_list.do">프로젝트 </a></li>
                <li><a
-                  href="${pageContext.request.contextPath}/opensource_write.do">프로젝트
-                     추가 </a></li>
+                  href="${pageContext.request.contextPath}/opensource_write.do">프로젝트 추가 </a></li>
                <li class="dropdown"><a href="#" class="dropdown-toggle"
-                  data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                  data-toggle="dropdown">카테고리<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                     <li><a href="#">Action</a></li>
-                     <li><a href="#">Another action</a></li>
-                     <li><a href="#">Something else here</a></li>
+                     <li><a href="#">Java</a></li>
+                     <li><a href="#">C</a></li>
+                     <li><a href="#">HTML</a></li>
                      <li class="divider"></li>
                      <li><a href="#">Separated link</a></li>
                      <li class="divider"></li>
@@ -132,9 +129,9 @@
             </ul>
             <form class="navbar-form navbar-left" role="search">
                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
+                  <input type="text" class="form-control" placeholder="검색  키워드">
                </div>
-               <button type="submit" class="btn btn-default">Submit</button>
+               <button type="submit" class="btn btn-primary">검색</button>
             </form>
             <c:choose>
                <c:when test="${sessionScope.mvo==null}">

@@ -15,7 +15,8 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/templatemo-style.css">
         <script src="${pageContext.request.contextPath}/resources/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
-    <body>    
+    <body>
+    	<jsp:include page="header.jsp" />
         <div class="responsive-header visible-xs visible-sm">
             <div class="container">
                 <div class="row">
@@ -60,14 +61,6 @@
                     <li><a href="#contact"><i class="fa fa-link"></i>What I Like</a></li>
                 </ul>
             </div> <!-- .main-navigation -->
-            <div class="social-icons">
-                <ul>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                </ul>
-            </div> <!-- .social-icons -->
         </div> <!-- .sidebar-menu -->
         
 

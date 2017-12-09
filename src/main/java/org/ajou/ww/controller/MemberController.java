@@ -1,10 +1,15 @@
 package org.ajou.ww.controller;
 
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.ajou.ww.model.BoardService;
+import org.ajou.ww.model.BoardVO;
+import org.ajou.ww.model.ListVO;
 import org.ajou.ww.model.MemberService;
 import org.ajou.ww.model.MemberVO;
 import org.springframework.http.HttpRequest;
@@ -19,6 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberController {
 	@Resource
 	private MemberService memberService;
+	
+	@Resource
+	private BoardService boardService;
 
 	@RequestMapping("login.do")
 	public String login(MemberVO mvo, HttpServletRequest request) {
@@ -56,8 +64,15 @@ public class MemberController {
 	
 	
 	@RequestMapping("mypage.do")
-	public String mypage(HttpServletRequest request) {
+	public String mypage(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberVO memberInfo = (MemberVO) session.getAttribute("mvo");
+		ListVO myBoardList = boardService.getBoardList();
+		ListVO likeBoardList = boardService.getBoardList();
 		
+		model.addAttribute("memberInfo", memberInfo);
+		model.addAttribute("myBoardList", myBoardList);
+		model.addAttribute("likeBoardList", likeBoardList);
 		return "mypage";
 	}
 	
