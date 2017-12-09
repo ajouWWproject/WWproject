@@ -5,8 +5,9 @@ create table member(
 	phone varchar(30) not null,
 	profile_path varchar(30) not null,
 	primary key(id)
-
 );
+alter table  member prifile_path RENAME profile_path;
+
 create table category(
 	category_no int auto_increment primary key,
 	category_name varchar(30) not null,
@@ -35,7 +36,33 @@ create table board(
 	foreign key(category_no) references category(category_no)
 );
 
-insert into member values('ajou', '1234', '임소영 ', '01023991943','ruby.png');
+insert into member values('ajou', '1234', '임소영', '01023991943','ruby.png');
+insert into member values('ajou2', '1234', '정다혜', '01012345421','java.png');
+
+insert into board values(null, 'pickok',
+'금전 관리에 취약한 사회 초년생들과 가계부 수기 작성이 힘든 주부들을 위한 금전 관리 어플리케이션',
+'금전 관리 금전 관리 금전 관리 금전 관리 금전 관리 금전 관리 금전 관리 금전 관리 금전 관리 금전 관리 금전 관리 금전 관리 금전 관리 ',
+50,25,'2017-05-23','ajou2','JavaScript');
+insert into board values(null, 'Project_A','content_back_A','content_detail_A',
+50,5,'2017-06-01','ajou',3);
+
+select board.title
+from board,category
+where (category_no = board.category_no);
+
+select board.title,board.board_no
+from board
+where title like '%java%';
+
+
+
+
+
+
+
+
+
+
 
 create table file(
 	file_no int auto_increment not null,
