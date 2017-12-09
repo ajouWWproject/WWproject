@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <style>
 	#loginInfo {
 	   color: rgb(255, 255, 255);
@@ -88,12 +94,26 @@
 	.navbar-inverse .navbar-brand {
 	   color: #eee;
 	}
+	
+	.register-btn {
+         border-radius:10px;
+         font-size: 18px;
+         align-content: center;
+         width: 100%;
+         height: 60px;
+      }
+      
+      .register-form-input {
+         width: 80%;
+         height: 40px;
+         padding-left: 10px;
+         border: 1px solid #bbb;
+         border-radius: 5px;
+      }
+	
 
 
 </style>
-
-
-
 
 <body>
    <nav class="navbar navbar-default navbar-inverse" role="navigation">
@@ -149,14 +169,12 @@
                                        action="${pageContext.request.contextPath}/login.do"
                                        accept-charset="UTF-8" id="login-nav">
                                        <div class="form-group">
-                                          <label class="sr-only" for="exampleInputEmail2">ID
-                                          </label> <input type="text" class="form-control" id="id" name="id"
-                                             placeholder="아이디" required>
+                                          <label class="sr-only" for="exampleInputEmail2">ID</label> 
+                                          <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required>
                                        </div>
                                        <div class="form-group">
                                           <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                          <input type="password" class="form-control" id="password"
-                                             name="password" placeholder="비밀번호" required>
+                                          <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" required>
 
                                        </div>
                                        <br>
@@ -167,12 +185,12 @@
                                        <br>
                                     </form>
                                  </div>
-                                 <div class="bottom text-center">
-                                    새로 오셨나요? <a href="#"><b>회원가입</b></a>
+                                 <div class="bottom text-center">새로 오셨나요?&nbsp;&nbsp;<button class="btn" id="register-member" onclick="document.getElementById('register-form').style.display='block'"><b>회원가입</b></button></div>
                                  </div>
                               </div>
                            </li>
-                        </ul></li>
+                        </ul>
+                      </li>
                   </ul>
                </c:when>
 
@@ -180,7 +198,7 @@
                   <ul class="nav navbar-nav navbar-right">
                      <li><p class="navbar-text">${sessionScope.mvo.id }님로그인</p></li>
                      <li>
-                        <button type="button" id="mypageBtn" onclick="location.href='${pageContext.request.contextPath}/mypage.do'" style="background-color:transparent; border:none;">
+                        <button type="button" id="mypageBtn" onclick="location.href='${pageContext.request.contextPath}/myPage/mypage.do'" style="background-color:transparent; border:none;">
                            <img style=" width:30px; height:30px;margin-top:8px;" src="${pageContext.request.contextPath}/resources/img/ic_mypage.png">
                         </button>
                      </li>
@@ -189,18 +207,38 @@
                         
                         <button type="submit" class="btn btn-default">로그아웃 </button>
                      </form>
-
                   </ul>
-
-
                </c:otherwise>
             </c:choose>
-
-
-
-
          </div>
-         <!-- /.navbar-collapse -->
       </div>
-      <!-- /.container-fluid -->
    </nav>
+   <div id="register-form" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width: 600px; border-radius:20px; padding: 30px;" >
+         <div class="w3-center">
+            <span onclick="document.getElementById('register-form').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+            <h2 style="font-weight:bold;">회원가입</h2>
+            <br>
+         </div>
+
+         <form class="w3-container" action="/action_page.php">
+            <div class="w3-section">
+               <label><b>아이디</b></label><br>
+               <input class="register-form-input" type="text" placeholder="사용할 아이디를 입력해주세요" name="usrname" required>&nbsp;&nbsp;
+               <button class="btn" style="background-color: #EF5350; color: #fff; width: 85px; height: 40px;">중복 확인</button><br><br>            
+               <label><b>비밀번호</b></label><br>
+               <input class="register-form-input" type="password" placeholder="비밀번호를 입력해주세요" name="psw" required><br><br>
+               <label><b>비밀번호 확인</b></label><br>
+               <input class="register-form-input" id="Pw" type="password" placeholder="비밀번호를 한번 더 입력해주세요" name="psw" required><br><br>
+               <label><b>이름</b></label><br>
+               <input class="register-form-input" id="PwCheck" type="text" placeholder="이름을 입력해주세요" name="psw" required><br><br>
+               <label><b>전화번호</b></label><br>
+               <input class="register-form-input" type="text" placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" name="psw" required><br><br>
+               <br>
+               
+               <button class="btn btn-primary btn-block register-btn" type="submit">회원가입</button>
+            </div>
+         </form>
+      </div>
+   </div>
+ </body>

@@ -48,7 +48,7 @@
         <div class="sidebar-menu hidden-xs hidden-sm">
             <div class="top-section">
                 <div class="profile-image">
-                    <img src="./resources/img/profile.jpg" alt="Volton">
+                    <img src="${pageContext.request.contextPath}/resources/img/profile.jpg" alt="Volton">
                 </div>
                 <h3 class="profile-title">정다혜</h3>
                 <p class="profile-description">대학생</p>
