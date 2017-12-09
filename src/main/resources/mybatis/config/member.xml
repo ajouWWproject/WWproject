@@ -5,8 +5,13 @@
 
 	<select id="login" parameterType="memberVO" resultType="memberVO">
 		select id,name from member
-		where id=#{id} and password=#{password}
+		where id = #{id} and password = #{password}
 	</select>	
+	
+	<insert id="register" parameterType="memberVO">
+		insert into member (id, password, name, phone, profile_path) 
+		values (#{id}, #{password}, #{name}, #{phone}, #{profile_path})
+	</insert>
 
 	
 </mapper>

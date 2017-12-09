@@ -4,9 +4,9 @@ public interface MemberService {
 
 	//MemberVO findMemberById(String id);
 
-	MemberVO login(MemberVO memberVO);
-//
-//	void registerMember(MemberVO vo);
+	public MemberVO login(MemberVO memberVO);
+
+	public void register(MemberVO memberVO);
 //
 //	int idcheck(String id);
 

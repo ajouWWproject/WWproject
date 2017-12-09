@@ -18,17 +18,13 @@ public class MemberController {
 
 	@RequestMapping("login.do")
 	public String login(MemberVO mvo, HttpServletRequest request) {
-		System.out.println("login.do 실행!!");
-		System.out.print("넘어온 값 " + mvo);
 		String path = "";
 
 		MemberVO loginVO = memberService.login(mvo);
-		System.out.print("로그인 값 " + loginVO);
 		HttpSession session = request.getSession();
 
 		if (loginVO != null) {
 			session.setAttribute("mvo", loginVO);
-			System.out.println("로그인성공");
 
 			if (session != null) {
 				MemberVO vo = (MemberVO) session.getAttribute("mvo");
@@ -41,6 +37,31 @@ public class MemberController {
 
 		return path;
 	}
+	
+	@RequestMapping("register.do")
+	public String register(MemberVO mvo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		System.out.println("register.do 실행!!");
+		System.out.print("넘어온 값 " + mvo);
+		String path = "";
+
+		memberService.register(mvo); // 회원가입
+		MemberVO loginVO = memberService.login(mvo); // 바로 로그인
+
+		if (loginVO != null) {
+			session.setAttribute("mvo", loginVO);
+
+			if (session != null) {
+				MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			}
+
+			path = "redirect:home.do";
+		} else {
+			path = "member/login_fail";
+		}
+		return path;
+	}
+	
 
 	@RequestMapping("logout.do")
 	public String logout(HttpServletRequest request) {

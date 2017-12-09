@@ -16,10 +16,12 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO login(MemberVO memberVO) {
 		return template.selectOne("member.login", memberVO);
 	}
-//	@Override
-//	public void registerMember(MemberVO vo) {
-//		template.insert("member.registerMember",vo);			
-//	}
+	
+	@Override
+	public void register(MemberVO memberVO) {
+		template.insert("member.register", memberVO);			
+	}
+	
 //	@Override
 //	public int idcheck(String id) {
 //		return template.selectOne("member.idcheck",id);				
