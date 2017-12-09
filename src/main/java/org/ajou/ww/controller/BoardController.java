@@ -43,11 +43,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "opensouce_register.do", method = RequestMethod.POST)
-	public String write(HttpServletRequest request, BoardVO bvo, CategoryVO cvo, FileVO fvo) {
+	public String write(HttpServletRequest request, BoardVO bvo, CategoryVO cvo, FileVO fvo,FolderVO foldervo) {
 		//boardService.write(bvo);
 		System.out.println("bvo : " + bvo);
 		System.out.println("fvo : " + fvo);
 		System.out.println("cvo : " + cvo);
+		System.out.println("foldervo" + foldervo);
 		
 		bvo.setCategoryVO(cvo);
 		boardService.write(bvo);
@@ -65,7 +66,7 @@ public class BoardController {
 		response.setContentType("text/html;charset=UTF-8"); 
 		
 		ArrayList<CategoryVO> cvoList = boardService.findCategoryList();
-		System.out.println("cvoList" + cvoList);
+		//System.out.println("cvoList" + cvoList);
 		return cvoList;
 	}
 	@RequestMapping("findFolderList.do")
@@ -74,10 +75,20 @@ public class BoardController {
 		response.setContentType("text/html;charset=UTF-8"); 
 		
 		ArrayList<FolderVO> fvoList = boardService.findFolderList();
-		System.out.println("cvoList" + fvoList);
+		//System.out.println("cvoList" + fvoList);
 		return fvoList;
 	}
 	
+	
+	@RequestMapping("addFolder.do")
+	public String addFolder(HttpServletRequest request,FolderVO fvo) {
+		System.out.println("folderName : " + fvo);
+	
+		//boardService.write(bvo);
+		
+		return "redirect:opensource_write.do";
+
+	}
 
 
 }
