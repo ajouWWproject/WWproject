@@ -3,7 +3,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board"> 	
 
+
+	<select id="findCategoryList" resultType="categoryVO">
+		select category_no as categoryNo,category_name as categoryName from category
+	</select>
 	
+	<select id="findFolderList" resultType="folderVO">
+		select folder_no as folderNO,folder_name as folderName from folder
+	</select>
+	<insert id="write" parameterType="boardVO">
+ 		
+ 		insert into board(board_no,title,content_back,content_detail,timePosted,id,category_no)
+ 		values(#{no},#{title},#{content_back},#{content_detail},now(), ${categoryVO.categoryNo})
+ 		<!-- 
+ 		현제 시퀀스 값에 bvo의 정보를 데이터 베이스에 인설트 해준다 
+ 		게시판 번호, 게시판 제목, 신고자, 신고 할 아이디, 내용, 작성 시간....
+ 		-->
+ 	</insert>
 
 	
 </mapper>
