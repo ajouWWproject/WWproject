@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface BoardService {
-	public  void write(BoardVO bvo);
+	public int write(BoardVO bvo);
 
-	public void insertFile(MultipartFile multipartFile);
+	public void insertFile(FileVO fvo);
 
 	public ArrayList<CategoryVO> findCategoryList();
 

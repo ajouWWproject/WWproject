@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface BoardDAO {
 
-	public  void write(BoardVO bvo);
+	public int write(BoardVO bvo);
 
-	public void insertFile(Object mul);
+	public void insertFile(FileVO fvo);
 
 	public List<CategoryVO> findCategoryList();
 

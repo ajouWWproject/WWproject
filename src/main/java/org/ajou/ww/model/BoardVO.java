@@ -1,7 +1,7 @@
 package org.ajou.ww.model;
 
 public class BoardVO {
-	private int no;
+	private int board_no;
 	
 	private String title;
 	private String content_back;//기획배경/내용설명/
@@ -18,11 +18,10 @@ public class BoardVO {
 		super();		
 	}
 
-
-	public BoardVO(int no, String title, String content_back, String content_detail, int hits, int likes,
+	public BoardVO(int board_no, String title, String content_back, String content_detail, int hits, int likes,
 			String timePosted, MemberVO memberVO, CategoryVO categoryVO, FolderVO folderVO) {
 		super();
-		this.no = no;
+		this.board_no = board_no;
 		this.title = title;
 		this.content_back = content_back;
 		this.content_detail = content_detail;
@@ -34,13 +33,12 @@ public class BoardVO {
 		this.folderVO = folderVO;
 	}
 
-
-	public int getNo() {
-		return no;
+	public int getBoard_no() {
+		return board_no;
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+	public void setBoard_no(int board_no) {
+		this.board_no = board_no;
 	}
 
 	public String getTitle() {
@@ -107,13 +105,23 @@ public class BoardVO {
 		this.categoryVO = categoryVO;
 	}
 
+	public FolderVO getFolderVO() {
+		return folderVO;
+	}
+
+	public void setFolderVO(FolderVO folderVO) {
+		this.folderVO = folderVO;
+	}
 
 	@Override
 	public String toString() {
-		return "BoardVO [no=" + no + ", title=" + title + ", content_back=" + content_back + ", content_detail="
-				+ content_detail + ", hits=" + hits + ", likes=" + likes + ", timePosted=" + timePosted + ", memberVO="
-				+ memberVO + ", categoryVO=" + categoryVO + ", folderVO=" + folderVO + "]";
+		return "BoardVO [board_no=" + board_no + ", title=" + title + ", content_back=" + content_back
+				+ ", content_detail=" + content_detail + ", hits=" + hits + ", likes=" + likes + ", timePosted="
+				+ timePosted + ", memberVO=" + memberVO + ", categoryVO=" + categoryVO + ", folderVO=" + folderVO + "]";
 	}
+
+
+	
 
 
 	

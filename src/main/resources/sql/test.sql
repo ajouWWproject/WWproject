@@ -64,3 +64,6 @@ insert into folder values(null, 'Ajou 2017-2');
 
 
 select category_no,category_name from category;
+delete table board;
+select * from board;
+select * from file;

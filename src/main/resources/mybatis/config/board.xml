@@ -11,14 +11,25 @@
 	<select id="findFolderList" resultType="folderVO">
 		select folder_no as folderNO,folder_name as folderName from folder
 	</select>
-	<insert id="write" parameterType="boardVO">
+	<insert id="write" parameterType="boardVO"  useGeneratedKeys="true" keyProperty="no">
  		
- 		insert into board(board_no,title,content_back,content_detail,timePosted,id,category_no)
- 		values(#{no},#{title},#{content_back},#{content_detail},now(), ${categoryVO.categoryNo})
+ 		insert into board(board_no,title,content_back,content_detail,timePosted,id,category_no,folder_no)
+ 		values(null,#{title},#{content_back},#{content_detail},now(),#{memberVO.id}, #{categoryVO.categoryNo}, #{folderVO.folderNo})
  		<!-- 
  		현제 시퀀스 값에 bvo의 정보를 데이터 베이스에 인설트 해준다 
  		게시판 번호, 게시판 제목, 신고자, 신고 할 아이디, 내용, 작성 시간....
+ 		
  		-->
+ 		
+ 		<selectKey keyProperty="board_no" resultType="int">
+ 			SELECT LAST_INSERT_ID() 
+ 		</selectKey>
+ 	</insert>
+ 	
+ 	<insert id = "insertFile" parameterType = "fileVO">
+ 	
+		insert into file (file_no, board_no, file_path)
+		values(null,#{boardNo} , #{file})
  	</insert>
 
 	

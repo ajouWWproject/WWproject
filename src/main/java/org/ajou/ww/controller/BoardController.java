@@ -1,7 +1,10 @@
 package org.ajou.ww.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +21,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -43,52 +48,84 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "opensouce_register.do", method = RequestMethod.POST)
-	public String write(HttpServletRequest request, BoardVO bvo, CategoryVO cvo, FileVO fvo,FolderVO foldervo) {
-		//boardService.write(bvo);
-		System.out.println("bvo : " + bvo);
-		System.out.println("fvo : " + fvo);
-		System.out.println("cvo : " + cvo);
-		System.out.println("foldervo" + foldervo);
-		
+	public String write(HttpServletRequest request, BoardVO bvo, MemberVO mvo, CategoryVO cvo, FolderVO foldervo) {
+		// boardService.write(bvo);
+	
+
+		String uploadPath = "";
+		uploadPath=request.getSession().getServletContext().getRealPath("/resources/upload/");
+		// 개발시에는 워크스페이스 업로드 경로로 준다
+
+		// 소영
+		//uploadPath = "/Users//imsoyeong//ww-workspace//WWproject/src/main/webapp/resources/upload/";
+
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		Iterator fileNameIter = multipartRequest.getFileNames();
+		bvo.setMemberVO(mvo);
 		bvo.setCategoryVO(cvo);
-		boardService.write(bvo);
-		for(int i=0;i<fvo.getFile().size();i++) {
-			boardService.insertFile(fvo.getFile().get(i));
-		}
+		bvo.setFolderVO(foldervo);
+		System.out.print(bvo);
 		
+		
+		while (fileNameIter.hasNext()) {
+			try {
+				String fileName = (String) fileNameIter.next();
+				MultipartFile file = multipartRequest.getFile(fileName);
+
+				String getFileName[] = file.getOriginalFilename().split("\\.");
+
+				String reNameFile = mvo.getId() + getFileName[0] + "." + getFileName[1];
+
+				file.transferTo(new File(uploadPath +"/"+ reNameFile));
+				FileVO filevo = new FileVO();
+				
+				filevo.setFile(reNameFile);
+				filevo.setBoardNo(boardService.write(bvo));
+				boardService.insertFile(filevo);
+				
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			
+			
+		}
+
+		
+
 		return "redirect:home.do";
 
 	}
-	
+
 	@RequestMapping("findCategoryList.do")
 	@ResponseBody
-	public ArrayList<CategoryVO> findCategoryList(HttpServletResponse response){
-		response.setContentType("text/html;charset=UTF-8"); 
-		
+	public ArrayList<CategoryVO> findCategoryList(HttpServletResponse response) {
+		response.setContentType("text/html;charset=UTF-8");
+
 		ArrayList<CategoryVO> cvoList = boardService.findCategoryList();
-		//System.out.println("cvoList" + cvoList);
+		// System.out.println("cvoList" + cvoList);
 		return cvoList;
 	}
+
 	@RequestMapping("findFolderList.do")
 	@ResponseBody
-	public ArrayList<FolderVO> findFolderList(HttpServletResponse response){
-		response.setContentType("text/html;charset=UTF-8"); 
-		
+	public ArrayList<FolderVO> findFolderList(HttpServletResponse response) {
+		response.setContentType("text/html;charset=UTF-8");
+
 		ArrayList<FolderVO> fvoList = boardService.findFolderList();
-		//System.out.println("cvoList" + fvoList);
+		System.out.println("cvoList" + fvoList);
 		return fvoList;
 	}
-	
-	
-	@RequestMapping("addFolder.do")
-	public String addFolder(HttpServletRequest request,FolderVO fvo) {
+
+	@RequestMapping("insertFolder.do")
+	public String insertFolder(HttpServletRequest request, FolderVO fvo) {
 		System.out.println("folderName : " + fvo);
-	
-		//boardService.write(bvo);
-		
+
+		// boardService.write(bvo);
+
 		return "redirect:opensource_write.do";
 
 	}
-
 
 }

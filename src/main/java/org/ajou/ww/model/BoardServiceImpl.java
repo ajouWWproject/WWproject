@@ -14,12 +14,12 @@ public class BoardServiceImpl implements BoardService {
 	@Resource(name="boardDAOImpl")
 	private BoardDAO boardDAO;	
 	@Override
-	public void write(BoardVO bvo){
-		boardDAO.write(bvo);
+	public int write(BoardVO bvo){
+		return boardDAO.write(bvo);
 	}
 	@Override
-	public void insertFile(MultipartFile multipartFile) {
-		boardDAO.insertFile(multipartFile);
+	public void insertFile(FileVO fvo) {
+		boardDAO.insertFile(fvo);
 		
 	}
 	@Override
