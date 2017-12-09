@@ -56,8 +56,9 @@
 			}//function
 		});//ajax
 
-		$("#addFolderBtn").click(function() {
+		$("#insertFolderForm").on("click",function() {
 			//$('#layerpop').modal();
+			alert("추가!!");
 		});
 
 		
@@ -175,7 +176,7 @@
 				</div>
 				<div class="required-field-block"
 					style="float: left; margin-left: 10px;">
-					<button type="button" id="addFolderBtn" data-toggle="modal"
+					<button type="button" id="" data-toggle="modal"
 						data-target="#myModal"
 						style="background-color: transparent; border: none;">
 						<img style="width: 30px; height: 30px;"
@@ -192,19 +193,19 @@
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">프로젝트 폴더 추가</h4>
 							</div>
+							<form id = "insertFolderForm" action = "${pageContext.request.contextPath}/insertFolder.do">
 							
-							<div class="modal-body">
-								<div class="required-field-block" style="margin-top: 30px">
-									<label class="opensourceLabel">폴더명  </label> <input type="text"
-										placeholder="Folder Name" class="form-control" name="folderName"
-										id="folderName">
+								<div class="modal-body">
+										<div class="required-field-block" style="margin-top: 30px">
+										<label class="opensourceLabel">폴더명  </label> 
+											<input type="text" placeholder="Folder Name" class="form-control" name="folderName" id="folderName">
+										
+										</div>
 								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button"  id = "addFolderBtn" class="btn btn-default"
-									data-dismiss="modal">추가 </button>
-							</div>
-							
+								<div class="modal-footer">
+										<input type="button" value = "추가 " id = "insertFolderBtn" class="btn btn-default" data-dismiss="modal"> 
+								</div>
+							</form>
 						</div>
 
 					</div>

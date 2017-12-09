@@ -12,13 +12,15 @@ public class BoardVO {
 	private String timePosted;
 	private MemberVO memberVO;	
 	private CategoryVO categoryVO;
+	private FolderVO folderVO;
 	
 	public BoardVO() {
 		super();		
 	}
 
+
 	public BoardVO(int no, String title, String content_back, String content_detail, int hits, int likes,
-			String timePosted, MemberVO memberVO, CategoryVO categoryVO) {
+			String timePosted, MemberVO memberVO, CategoryVO categoryVO, FolderVO folderVO) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -29,7 +31,9 @@ public class BoardVO {
 		this.timePosted = timePosted;
 		this.memberVO = memberVO;
 		this.categoryVO = categoryVO;
+		this.folderVO = folderVO;
 	}
+
 
 	public int getNo() {
 		return no;
@@ -103,12 +107,14 @@ public class BoardVO {
 		this.categoryVO = categoryVO;
 	}
 
+
 	@Override
 	public String toString() {
 		return "BoardVO [no=" + no + ", title=" + title + ", content_back=" + content_back + ", content_detail="
 				+ content_detail + ", hits=" + hits + ", likes=" + likes + ", timePosted=" + timePosted + ", memberVO="
-				+ memberVO + ", categoryVO=" + categoryVO + "]";
+				+ memberVO + ", categoryVO=" + categoryVO + ", folderVO=" + folderVO + "]";
 	}
+
 
 	
 }
