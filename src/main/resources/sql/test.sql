@@ -9,7 +9,7 @@ create table member(
 	password varchar(30) not null,
 	name varchar(30) not null,
 	phone varchar(30) not null,
-	profile_path varchar(30) not null,
+	profile_path varchar(30),
 	primary key(id)
 
 );
