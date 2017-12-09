@@ -110,10 +110,58 @@
          border: 1px solid #bbb;
          border-radius: 5px;
       }
-	
-
-
 </style>
+
+
+<script>
+	$(document).ready(function() {
+		var idCheck = false;
+		
+		$("#idCheck").click(function() {
+			
+			
+		});
+		
+		
+		function check() { 
+            if ($("#id").val() == "") {
+                alert("아이디를 꼭 입력하세요!");
+                $("#id").focus();
+                return false;
+            } else if ($("#pw").val() == "") {
+                alert("비밀번호를 꼭 입력하세요!");
+                $("#pw").focus();
+                return false;
+            } else if ($("#pwOk").val() == "") {
+                alert("비밀번호확인 을 꼭 입력하세요!");
+                $("#pwOk").focus();
+                return false;
+            } else if ($("#pw").val() != $("#pwOk").val()) {
+                alert("비밀번호와 비밀번호 확인이 일치하지않습니다.");
+                $("#pw").val("");
+                $("#pwOk").val("");
+                $("#pw").focus();
+                return false;
+            } else if ($("#name").val() == "") {
+                alert("이름을 꼭 입력하세요!");
+                $("#name").focus();
+                return false;
+            } else if ($("#phone").val() == "") {
+                alert("전화번호를 꼭 입력하세요!");
+                $("#tel1").focus();
+                return false;
+            } else if (!idCheck) {
+            	alert("아이디 중복 체크를 해주세요!")
+            	return false;
+            } else {
+                alert("환영합니다!");
+                return true;
+            }
+        });
+	});
+</script>
+
+
 
 <body>
    <nav class="navbar navbar-default navbar-inverse" role="navigation">
@@ -192,6 +240,7 @@
                         </ul>
                       </li>
                   </ul>
+                  
                </c:when>
 
                <c:otherwise>
@@ -205,7 +254,7 @@
                      
                      <form class="navbar-form navbar-right" role="logout" action = "${pageContext.request.contextPath}/logout.do">
                         
-                        <button type="submit" class="btn btn-default">로그아웃 </button>
+                        <button type="submit" class="btn btn-primary">로그아웃 </button>
                      </form>
                   </ul>
                </c:otherwise>
@@ -221,11 +270,11 @@
             <br>
          </div>
 
-         <form class="w3-container" action="/action_page.php">
+         <form class="w3-container" role="form" method="post" action="${pageContext.request.contextPath}/register.do" onsubmit="return check()">
             <div class="w3-section">
                <label><b>아이디</b></label><br>
-               <input class="register-form-input" id="id" type="text" placeholder="사용할 아이디를 입력해주세요" name="id" required>&nbsp;&nbsp;
-               <button class="btn" style="background-color: #EF5350; color: #fff; width: 85px; height: 40px;">중복 확인</button><br><br>            
+               <input class="register-form-input" id="register_id" type="text" placeholder="사용할 아이디를 입력해주세요" name="register_id" required>&nbsp;&nbsp;
+               <button class="btn" id="idCheck" style="background-color: #EF5350; color: #fff; width: 85px; height: 40px;">중복 확인</button><br><br>            
                <label><b>비밀번호</b></label><br>
                <input class="register-form-input" id="pw" type="password" placeholder="비밀번호를 입력해주세요" name="pw" required><br><br>
                <label><b>비밀번호 확인</b></label><br>
@@ -233,11 +282,9 @@
                <label><b>이름</b></label><br>
                <input class="register-form-input" id="name" type="text" placeholder="이름을 입력해주세요" name="name" required><br><br>
                <label><b>전화번호</b></label><br>
-               <input class="register-form-input" id="phone" type="text" placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" name="phone" required><br><br>
-               <br>
-               
-               <button class="btn btn-primary btn-block register-btn" type="submit">회원가입</button>
+               <input class="register-form-input" id="phone" type="text" placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" name="phone" required><br><br>  
             </div>
+            <button class="btn btn-primary btn-block register-btn" type="submit">회원가입</button>
          </form>
       </div>
    </div>

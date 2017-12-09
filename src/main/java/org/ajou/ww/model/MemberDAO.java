@@ -3,9 +3,9 @@ package org.ajou.ww.model;
 public interface MemberDAO {
 	//public MemberVO findMemberById(String id);
 
-	MemberVO login(MemberVO memberVO);
+	public MemberVO login(MemberVO memberVO);
 
-	//void registerMember(MemberVO vo);
+	public void register(MemberVO vo);
 
 	//int idcheck(String id);
 	

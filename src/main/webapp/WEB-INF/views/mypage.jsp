@@ -69,17 +69,10 @@
 	                    <div class="row">
 	                        <div class="col-md-12">
 	                            <h4 class="widget-title">About Me</h4>
-	                            <div class="about-image">
-	                                <img src="${pageContext.request.contextPath}/resources/img/8.jpg" alt="about me">
-		                        </div>
-	
+	                       
 								<div id="register-form">
 									<div class="w3-modal-content w3-card-4 w3-animate-zoom"
 										style="max-width: 600px; border-radius: 20px; padding: 30px;">
-										<div class="w3-center">
-											<h2 style="font-weight: bold;">My Information</h2>
-											<br>
-										</div>
 	
 										<form action="">
 											<table>
@@ -94,38 +87,37 @@
 																<img style="width:50%;" src="${pageContext.request.contextPath}/resources/img/user.png" border='0' onclick='document.all.file.click(); document.all.filePath.value=document.all.file.value; this.src=document.all.file.value'>
 															</c:otherwise>
 														</c:choose>
+														<br><br>
 													</td>
 												</tr>
+												
 											
 												<tr>
 													<th><label><b>아이디</b></label></th>
-													<td><input class="register-form-input" id="id_e" type="text" value="${mvo.id}" name="id_e" readonly="readonly"></td>
+													<td><input class="register-form-input" id="id_e" type="text" value="${mvo.id}" name="id_e" readonly="readonly"><br><br></td>
 												</tr>
 												<tr>
 													<th><label><b>비밀번호</b></label></th>
-													<td><input class="register-form-input" id="pw_e" type="password"
-														placeholder="바꿀 비밀번호를 입력해주세요" name="pw_e" required></td>
+													<td><input class="register-form-input" id="pw_e" type="password" placeholder="바꿀 비밀번호를 입력해주세요" name="pw_e" required><br><br></td>
 												</tr>
 												<tr>
 													<th><label><b>비밀번호 확인</b></label></th>
-													<td><input class="register-form-input" id="pwOk_e"
-														type="password" placeholder="비밀번호를 한번 더 입력해주세요" name="pwOk_e"
-														required></td>
+													<td><input class="register-form-input" id="pwOk_e" type="password" placeholder="비밀번호를 한번 더 입력해주세요" name="pwOk_e" required><br><br></td>
 												</tr>
 												<tr>
 													<th><label><b>이름</b></label></th>
-													<td><input class="register-form-input" id="name_e"
-														type="text" placeholder="이름을 입력해주세요" value="${mvo.name}" name="name_e" required></td>
+													<td><input class="register-form-input" id="name_e" type="text" placeholder="이름을 입력해주세요" value="${mvo.name}" name="name_e" required><br><br></td>
 												</tr>
 												<tr>
 													<th><label><b>전화번호</b></label></th>
-													<td><input class="register-form-input" type="text" id="phone_e"
-														placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" value="${mvo.phone}" name="phone_e" required></td>
+													<td><input class="register-form-input" type="text" id="phone_e" placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" value="${mvo.phone}" name="phone_e" required><br><br></td>
 												</tr>
 											</table>
 											
 											<input type="file" name="file" style="display: none;"> 
-											<input type="text" name="filePath" id="filePath" style="display: none;"> 
+											<input type="text" name="filePath" id="filePath" style="display: none;">
+											
+											<br>
 											
 											<button class="btn btn-primary btn-block register-btn"
 												type="submit">수정</button>
