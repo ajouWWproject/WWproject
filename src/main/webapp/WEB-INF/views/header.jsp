@@ -301,7 +301,7 @@
                <label><b>비밀번호</b></label><br>
                <input class="register-form-input" id="pw" type="password" placeholder="비밀번호를 입력해주세요" name="password" oninput="checkPw()" required><br><br>
                <label><b>비밀번호 확인</b></label>&nbsp;&nbsp;&nbsp;<p id="pw_label" style="display: inline-block; font-size:12px;"></p><br>
-               <input class="register-form-input" id="pwOk" type="password" placeholder="비밀번호를 한번 더 입력해주세요" name="password" oninput="checkPw()" required><br><br>
+               <input class="register-form-input" id="pwOk" type="password" placeholder="비밀번호를 한번 더 입력해주세요" name="pwd" oninput="checkPw()" required><br><br>
                <label><b>이름</b></label><br>
                <input class="register-form-input" id="name" type="text" placeholder="이름을 입력해주세요" name="name" required><br><br>
                <label><b>전화번호</b></label><br>
