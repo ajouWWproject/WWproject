@@ -7,7 +7,7 @@ public interface MemberDAO {
 
 	public void register(MemberVO vo);
 
-	//int idcheck(String id);
+	public int checkId(String id);
 	
 	
 	

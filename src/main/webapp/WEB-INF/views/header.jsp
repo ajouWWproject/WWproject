@@ -104,7 +104,7 @@
       }
       
       .register-form-input {
-         width: 80%;
+         width: 100%;
          height: 40px;
          padding-left: 10px;
          border: 1px solid #bbb;
@@ -114,55 +114,76 @@
 
 
 <script>
-	$(document).ready(function() {
-		var idCheck = false;
-		var pwCheck = false;
-		
-		$("#idCheck").click(function() {
-			
-			
-		});
-		
-		$(".signupbtn").prop("disabled", true);
-        $(".signupbtn").css("background-color", "#aaaaaa");
-		
-		
-		function check() { 
-            if ($("#id").val() == "") {
-                alert("아이디를 꼭 입력하세요!");
-                $("#id").focus();
-                return false;
-            } else if ($("#pw").val() == "") {
-                alert("비밀번호를 꼭 입력하세요!");
-                $("#pw").focus();
-                return false;
-            } else if ($("#pwOk").val() == "") {
-                alert("비밀번호확인 을 꼭 입력하세요!");
-                $("#pwOk").focus();
-                return false;
-            } else if ($("#pw").val() != $("#pwOk").val()) {
-                alert("비밀번호와 비밀번호 확인이 일치하지않습니다.");
-                $("#pw").val("");
-                $("#pwOk").val("");
-                $("#pw").focus();
-                return false;
-            } else if ($("#name").val() == "") {
-                alert("이름을 꼭 입력하세요!");
-                $("#name").focus();
-                return false;
-            } else if ($("#phone").val() == "") {
-                alert("전화번호를 꼭 입력하세요!");
-                $("#tel1").focus();
-                return false;
-            } else if (!idCheck) {
-            	alert("아이디 중복 체크를 해주세요!")
-            	return false;
-            } else {
-                alert("환영합니다!");
-                return true;
+	var idCheck = 0;
+	var pwCheck = 0;
+	
+	function checkId() {
+        var inputed = $('#register_id').val();
+        $.ajax({
+            data : {
+                id : inputed
+            },
+            url : "checkId.do",
+            success : function(data) {
+                if(inputed=="" && data=='0') {
+                	$("#register_btn").prop("disabled", true);
+                    $("#id_label").html("아이디를 입력해주세요.");
+                    $("#id_label").css("color", "#ff0000");
+                    idCheck = 0;
+                } else if (data == '0') {
+                    idCheck = 1;
+                    if(idCheck == 1) {
+                        $("#id_label").html("사용할 수 있는 아이디입니다.");
+                        $("#id_label").css("color", "#42a56b");
+	                    if(pwdCheck == 1) {
+	                    	$("#register_btn").prop("disabled", false);
+	                        signupCheck();
+	                    }
+                    }
+                } else if (data == '1') {
+                	$("#register_btn").prop("disabled", true);
+                    $("#id_label").html("중복된 아이디입니다.");
+                    $("#id_label").css("color", "#ff0000");
+                    idCheck = 0;
+                } 
             }
+        });
+    }
+	
+	
+	function checkPw() {
+        var inputed = $('#pw').val();
+        var reinputed = $('#pwOk').val();
+        if(reinputed=="" && (inputed != reinputed || inputed == reinputed)){
+        	$("#register_btn").prop("disabled", true);
+            $("#pw_label").html("비밀번호가 일치하지 않습니다.");
+            $("#pw_label").css("color", "#ff0000");
         }
-	});
+        else if (inputed == reinputed) {
+        	$("#pw_label").css("color", "#42a56b");
+        	$("#pw_label").html("비밀번호가 일치합니다.");
+            pwdCheck = 1;
+            if(idCheck==1 && pwdCheck == 1) {
+            	$("#register_btn").prop("disabled", false);
+                signupCheck();
+            }
+        } else if (inputed != reinputed) {
+            pwdCheck = 0;
+            $("#register_btn").prop("disabled", true);
+            $("#pw_label").html("비밀번호가 일치하지 않습니다.");
+            $("#pw_label").css("color", "#ff0000");
+        }
+    }
+    
+    function signupCheck() {
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        if(name == "" || phone == "") {
+        	$(".signupbtn").prop("disabled", true);
+        } else {
+        	
+        }
+    }
 </script>
 
 
@@ -271,24 +292,22 @@
          <div class="w3-center">
             <span onclick="document.getElementById('register-form').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
             <h2 style="font-weight:bold;">회원가입</h2>
-            <br>
          </div>
 
-         <form class="w3-container" role="form" method="post" action="${pageContext.request.contextPath}/register.do" onsubmit="return check()">
-            <div class="w3-section">
-               <label><b>아이디</b></label><br>
-               <input class="register-form-input" id="register_id" type="text" placeholder="사용할 아이디를 입력해주세요" name="register_id" required>&nbsp;&nbsp;
-               <button class="btn" id="idCheck" style="background-color: #EF5350; color: #fff; width: 85px; height: 40px;">중복 확인</button><br><br>            
+         <form class="w3-container" role="form" method="post" action="${pageContext.request.contextPath}/register.do">
+            <div class="w3-section" style="padding:30px;">
+               <label><b>아이디</b></label>&nbsp;&nbsp;&nbsp;<p id="id_label" style="display: inline-block; font-size:12px;"></p><br>
+               <input class="register-form-input" id="register_id" type="text" placeholder="사용할 아이디를 입력해주세요" name="id" oninput="checkId()" required><br><br>
                <label><b>비밀번호</b></label><br>
-               <input class="register-form-input" id="pw" type="password" placeholder="비밀번호를 입력해주세요" name="pw" required><br><br>
-               <label><b>비밀번호 확인</b></label><br>
-               <input class="register-form-input" id="pwOk" type="password" placeholder="비밀번호를 한번 더 입력해주세요" name="pwOk" required><br><br>
+               <input class="register-form-input" id="pw" type="password" placeholder="비밀번호를 입력해주세요" name="password" oninput="checkPw()" required><br><br>
+               <label><b>비밀번호 확인</b></label>&nbsp;&nbsp;&nbsp;<p id="pw_label" style="display: inline-block; font-size:12px;"></p><br>
+               <input class="register-form-input" id="pwOk" type="password" placeholder="비밀번호를 한번 더 입력해주세요" name="password" oninput="checkPw()" required><br><br>
                <label><b>이름</b></label><br>
                <input class="register-form-input" id="name" type="text" placeholder="이름을 입력해주세요" name="name" required><br><br>
                <label><b>전화번호</b></label><br>
                <input class="register-form-input" id="phone" type="text" placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" name="phone" required><br><br>  
             </div>
-            <button class="btn btn-primary btn-block register-btn" type="submit">회원가입</button>
+            <button id="register_btn" class="btn btn-primary btn-block register-btn" type="submit" disabled="disabled">회원가입</button>
          </form>
       </div>
    </div>

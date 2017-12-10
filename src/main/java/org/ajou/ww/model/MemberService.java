@@ -7,7 +7,7 @@ public interface MemberService {
 	public MemberVO login(MemberVO memberVO);
 
 	public void register(MemberVO memberVO);
-//
-//	int idcheck(String id);
+
+	public int checkId(String id);
 
 }
