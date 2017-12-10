@@ -21,19 +21,59 @@
 
 <script>
 	$(document).ready(function() {
-			$("a[name='file']").on("click", function(e) { //파일 이름
-				e.preventDefault();
-				fn_downloadFile($(this));
-			});
+		
+		$.ajax({
+			type : "post",
+			url : "findCategoryList.do",
+			dataType : "json",
+			success : function(json) {
+				var data = "";
 
-			$("#updateBtn").click(function() {
-					location.href = "${pageContext.request.contextPath}/updateBoard.do?boardNo="+ ${requestScope.bvo.board_no};
-											
-			});
+				for (var i = 0; i < json.length; i++) {
 
-						
+					data += "<li><a href='#' value='"+json[i].categoryNo+"'>";
+					data += json[i].categoryName + "</a></li>";
+				}
+				$("#categoryDropdown").html(data);
+			}//function
+		});//ajax
+
+		$.ajax({
+			type : "post",
+			url : "findFolderList.do",
+			dataType : "json",
+			success : function(json) {
+				var data = "";
+
+				for (var i = 0; i < json.length; i++) {
+
+					data += "<li><a href='#' value='"+json[i].folderNo+"'>";
+					data += json[i].folderName + "</a></li>";
+				}
+				$("#folderDropdown").html(data);
+			}//function
+		});//ajax
+		$("a[name='file']").on("click", function(e) { //파일 이름
+			e.preventDefault();
+			fn_downloadFile($(this));
+		});
+		
+		$("#updateBtn").click(function(){
+			location.href = "${pageContext.request.contextPath}/board/updateBoard.do?fileNo="+${requestScope.bvo.board_no};
+		});
+		
+		$("#categoryDropdown").on("click", "li >a", function() {
+			 //alert($(this).attr('value'));
+			 $("#categoryBtn").text($(this).text());
+			 $("#categoryNo").val($(this).attr('value'));
+		});
+		
+		$("#folderDropdown").on("click", "li >a", function() {
+			 //alert($(this).attr('value'));
+			 $("#folderBtn").text($(this).text());
+			 $("#folderNo").val($(this).attr('value'));
+		});
 	});
-	
 
 	function fn_downloadFile(obj) {
 		var fileName = obj.text();
@@ -166,7 +206,7 @@
 		<br> <span>
 			<h1 class="panel-title pull-center" style="font-size: 30px">
 
-				프로젝트 상세 &nbsp;<span class="glyphicon glyphicon-list-alt"
+				프로젝트 수정 &nbsp;<span class="glyphicon glyphicon-list-alt"
 					aria-hidden="true"></span>
 			</h1>
 		</span> <br>
@@ -177,10 +217,10 @@
 
 
 				<div class="required-field-block" style="float: left">
-					<div>
+					<div class = "dropdown">
 						<button class="btn btn-primary" type="button"
 							data-toggle="dropdown" id="categoryBtn">
-							${requestScope.bvo.categoryVO.categoryName}</button>
+							${requestScope.bvo.categoryVO.categoryName}<span class="caret"></span></button>
 						<ul class="dropdown-menu" id="categoryDropdown"></ul>
 
 					</div>
@@ -189,10 +229,10 @@
 
 				<div class="required-field-block"
 					style="float: left; margin-left: 10px;">
-					<div>
+					<div class = "dropdown">
 						<button class="btn btn-primary " type="button"
 							data-toggle="dropdown" id="folderBtn">
-							${requestScope.bvo.folderVO.folderName}</button>
+							${requestScope.bvo.folderVO.folderName}<span class="caret"></span></button>
 						<ul class="dropdown-menu" id="folderDropdown"></ul>
 
 					</div>
@@ -205,7 +245,7 @@
 				<div class="required-field-block" style="margin-top: 30px">
 					<label class="opensourceLabel">제목 </label> <input type="text"
 						placeholder="Title" class="form-control" name="title" id="title"
-						value="${requestScope.bvo.title}" readonly="readonly">
+						value="${requestScope.bvo.title}" >
 				</div>
 
 
@@ -216,7 +256,7 @@
 				<div class="required-field-block">
 					<label class="opensourceLabel">기획 배경 </label>
 					<textarea rows="10" class="form-control" name="content_back"
-						id="content_back" style="resize: none" readonly="readonly">${requestScope.bvo.content_back}</textarea>
+						id="content_back" style="resize: none">${requestScope.bvo.content_back}</textarea>
 				</div>
 				<br>
 
@@ -224,7 +264,7 @@
 				<div class="required-field-block">
 					<label class="opensourceLabel">프로젝트 상세 설명 </label>
 					<textarea rows="10" class="form-control" name="content_detail"
-						id="content_detail" style="resize: none" readonly="readonly">${requestScope.bvo.content_detail}</textarea>
+						id="content_detail" style="resize: none" >${requestScope.bvo.content_detail}</textarea>
 				</div>
 				<br>
 				<c:forEach var="fvo" items="${requestScope.fList}">
@@ -232,7 +272,7 @@
 						<input type="hidden" id="idx" value="${fvo.fileNo}"> <label
 							class="opensourceLabel"> 첨부 파일 : &nbsp; </label> <a href="#this"
 							name="file" style="float: left;">${fvo.file }</a>
-
+						<button type="button" class="btn btn-default" style = "float:left;margin-left:10px;">수정 </button>
 					</div>
 					<br>
 					<br>
@@ -247,19 +287,19 @@
 					id="moveToList" onclick="fn_openBoardList()">
 					<span class="glyphicon glyphicon-th-list"></span>
 				</button>
-
+				
 				<c:if test="${requestScope.bvo.memberVO.id==sessionScope.mvo.id}">
 					<button type="button" class="btn btn-warning btn-lg btn3d"
 						id="updateBtn">
 						<span class="glyphicon glyphicon-pencil"></span>
 					</button>
-
+					
 					<button type="button" class="btn btn-danger btn-lg btn3d"
 						id="removeBtn">
 						<span class="glyphicon glyphicon-remove"></span>
 					</button>
-
-
+					
+					
 				</c:if>
 
 

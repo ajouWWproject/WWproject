@@ -185,6 +185,8 @@ body {
 <script>
 	
 	$(document).ready(function() {
+		
+		
 		$(".card").on("click", function(){
 			var boardNo = $(this).children("#boardNo").val();
 			location.href = "${pageContext.request.contextPath}/board/moveToDetail.do?boardNo="+boardNo;

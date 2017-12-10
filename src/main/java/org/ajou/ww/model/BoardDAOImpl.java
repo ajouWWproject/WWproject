@@ -62,6 +62,11 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSessionTemplate.update("board.updateHit", boardNo);
 		
 	}
+
+	@Override
+	public List<FileVO> findFileByBoardNo(String boardNo) {
+		return sqlSessionTemplate.selectList("board.findFileByBoardNo", boardNo);
+	}
 	
 //	@Override
 //	public BoardVO showContent(int no){

@@ -64,6 +64,7 @@ create table file(
 
 insert into member values('ajou', '1234', '임소영 ', '01023991943','ruby.png');
 insert into folder values(null, 'Ajou 2017-2');
+select * from file;
 
 select category_no,category_name from category;
 

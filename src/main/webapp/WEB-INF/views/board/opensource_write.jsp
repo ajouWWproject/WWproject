@@ -255,14 +255,8 @@
 					id="writeBtn">
 					<span class="glyphicon glyphicon-ok"></span>
 				</button>
-				<button type="button" class="btn btn-danger btn-lg btn3d"
-					id="resetBtn">
-					<span class="glyphicon glyphicon-remove"></span>
-				</button>
-				<button type="button" class="btn btn-info btn-lg btn3d"
-					id="moveToList" onclick="fn_openBoardList()">
-					<span class="glyphicon glyphicon-th-list"></span>
-				</button>
+				
+				
 			</form>
 		</div>
 		<br> <br> <br>

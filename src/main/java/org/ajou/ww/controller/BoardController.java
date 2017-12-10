@@ -1,10 +1,14 @@
 package org.ajou.ww.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +22,7 @@ import org.ajou.ww.model.FileVO;
 import org.ajou.ww.model.FolderVO;
 import org.ajou.ww.model.MemberVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -73,6 +78,9 @@ public class BoardController {
 		foldervo = boardService.findFolderByNo(bvo.getFolderVO().getFolderNo());
 		bvo.setFolderVO(foldervo);
 		
+		ArrayList<FileVO> filevoList = new ArrayList<FileVO>();
+		filevoList = boardService.findFileByBoardNo(boardNo);
+		request.setAttribute("fList", filevoList);
 		request.setAttribute("bvo", bvo);
 		
 		
@@ -91,7 +99,10 @@ public class BoardController {
 		//uploadPath = "/Users//imsoyeong//ww-workspace//WWproject/src/main/webapp/resources/upload/";
 
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		Iterator fileNameIter = multipartRequest.getFileNames();
+		List<MultipartFile> files = multipartRequest.getFiles("file");
+		System.out.println("!!!!!" +files.size());
+
+		
 		bvo.setMemberVO(mvo);
 		
 		cvo = boardService.findCategoryVOByNo(cvo.getCategoryNo());
@@ -100,23 +111,26 @@ public class BoardController {
 		foldervo = boardService.findFolderByNo(foldervo.getFolderNo());
 		bvo.setFolderVO(foldervo);
 		
+		
+		
 		System.out.print(bvo);
+		int idx = boardService.write(bvo);
 		
-		
-		while (fileNameIter.hasNext()) {
+		for(int i=0;i<files.size();i++){
 			try {
-				String fileName = (String) fileNameIter.next();
-				MultipartFile file = multipartRequest.getFile(fileName);
+				System.out.println("fileNameIter");
+				String fileName = (String) files.get(i).getOriginalFilename();
+//				MultipartFile file = multipartRequest.getFile(fileName);
 
-				String getFileName[] = file.getOriginalFilename().split("\\.");
+				String getFileName[] = fileName.split("\\.");
 
 				String reNameFile = mvo.getId() + getFileName[0] + "." + getFileName[1];
 
-				file.transferTo(new File(uploadPath +"/"+ reNameFile));
+				files.get(i).transferTo(new File(uploadPath +"/"+ reNameFile));
 				FileVO filevo = new FileVO();
 				
 				filevo.setFile(reNameFile);
-				filevo.setBoardNo(boardService.write(bvo));
+				filevo.setBoardNo(idx);
 				boardService.insertFile(filevo);
 				
 			} catch (IllegalStateException | IOException e) {
@@ -163,5 +177,54 @@ public class BoardController {
 		return "redirect:opensource_write.do";
 
 	}
+	@RequestMapping("board/fileDownload.do")
+	public String fileDownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception{		
+		String path=request.getSession().getServletContext().getRealPath("/resources/upload/");
+		  
+		  request.getSession().getServletContext().getRealPath("/resources/upload/");
+		  System.out.println("DownloadView 실행 "+path+fileName);
+		  // 업로드 파일 객체 
+		  File file=new File(path+"/"+fileName);
+		  // 파일 다운로드 
+		     response.setContentType("application/octet-stream");
+		     response.setContentLength((int)file.length());//파일 크기 설정 
+		     // 다운로드 파일에 대한 설정 
+		     response.setHeader("Content-Disposition", 
+		       "attachment; fileName="
+		     +new String(file.getName().getBytes("UTF-8"),"8859_1"));
+		     //데이터 인코딩이 바이너리 파일임을 명시
+		     response.setHeader("Content-Transfer-encoding", "binary");
+		  
+		     //response에 연결된 OutputStream
+		     OutputStream os=response.getOutputStream();
+		     //업로드된 파일을 입력받기 위한 입력스트림 
+		     FileInputStream fis=new FileInputStream(file);
+		     FileCopyUtils.copy(fis, os);
+		     System.out.println("다운로드 ok:"+file.getName());
+		     return "redirect:board/opensource_detail";
+		
+	}
+
+	@RequestMapping("updateBoard.do")
+	public String updateBoard(HttpServletRequest request, String boardNo) {
+		
+		BoardVO bvo = boardService.findBoardByNo(boardNo);
+		boardService.updateHit(boardNo);
+		System.out.println(bvo);
+		CategoryVO cvo =new CategoryVO();
+		cvo = boardService.findCategoryVOByNo(bvo.getCategoryVO().getCategoryNo());
+		bvo.setCategoryVO(cvo);
+		
+		FolderVO foldervo = new FolderVO();
+		foldervo = boardService.findFolderByNo(bvo.getFolderVO().getFolderNo());
+		bvo.setFolderVO(foldervo);
+		
+		ArrayList<FileVO> filevoList = new ArrayList<FileVO>();
+		filevoList = boardService.findFileByBoardNo(boardNo);
+		request.setAttribute("fList", filevoList);
+		request.setAttribute("bvo", bvo);
+		return "board/opensource_update";
+	}
+	
 
 }

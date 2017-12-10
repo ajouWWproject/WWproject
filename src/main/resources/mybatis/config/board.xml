@@ -31,8 +31,7 @@
 	<insert id="insertFile" parameterType="fileVO">
 
 		insert into file (file_no, board_no, file_path)
-		values(null,#{boardNo} ,
-		#{file})
+		values(null,(select max(board_no) from board) ,#{file})
 	</insert>
 
 	<select id="getBoardList" resultMap="boardRM">
@@ -75,6 +74,12 @@
 		update board set hits=hits+1 
 		where board_no = #{value}
 	</update>
+	
+	<select id = "findFileByBoardNo" resultType = "fileVO">
+		select file_no as fileNo, file_path as file 
+		from file
+		where board_no = #{value}
+	</select>
 </mapper>
  
  

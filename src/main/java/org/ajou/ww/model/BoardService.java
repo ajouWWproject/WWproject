@@ -22,6 +22,8 @@ public interface BoardService {
 	public BoardVO findBoardByNo(String boardNo);
 
 	public void updateHit(String boardNo);
+
+	public ArrayList<FileVO> findFileByBoardNo(String boardNo);
 	
 
 	

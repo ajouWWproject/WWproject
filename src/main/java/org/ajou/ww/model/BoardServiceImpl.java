@@ -55,6 +55,11 @@ public class BoardServiceImpl implements BoardService {
 	public void updateHit(String boardNo) {
 		boardDAO.updateHit(boardNo);
 		
+	}
+	@Override
+	public ArrayList<FileVO> findFileByBoardNo(String boardNo) {
+		// TODO Auto-generated method stub
+		return (ArrayList<FileVO>) boardDAO.findFileByBoardNo(boardNo);
 	}	
 	
 	
