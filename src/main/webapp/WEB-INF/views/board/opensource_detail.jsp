@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,7 @@
 </style>
 
 <script>
-	var gfv_count = 1;
+/* 	var gfv_count = 1;
 
 	$(document).ready(function() {
 
@@ -104,12 +104,13 @@
 				$("#opensouce_register_from").submit();
 			}
 		});//writeBtn click
-	});
+	}); */
 
 	function fn_openBoardList() {
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/sample/openBoardList.do' />");
-		comSubmit.submit();
+		/* var comSubmit = new ComSubmit(); */
+		/* comSubmit.setUrl("<c:url value='/sample/openBoardList.do' />");
+		comSubmit.submit(); */
+		location.href = "${pageContext.request.contextPath}/board_list.do";
 	}
 
 	function fn_insertBoard() {
@@ -140,22 +141,22 @@
 		<br> <span>
 			<h1 class="panel-title pull-center" style="font-size: 30px">
 
-				프로젝트 등록 &nbsp; <span class="glyphicon glyphicon-pencil"
+				프로젝트 상세  &nbsp;<span class="glyphicon glyphicon-list-alt"
 					aria-hidden="true"></span>
 			</h1>
 		</span> <br>
 		<div class="col-md-6 col-md-offset-3" style="height: 150%">
 			<form
-				action="${pageContext.request.contextPath}/opensouce_register.do"
+				action="${pageContext.request.contextPath}/opensouce_update.do"
 				enctype="multipart/form-data" method="post"
 				id="opensouce_register_from" align="center">
 
 
 				<div class="required-field-block" style="float: left">
-					<div class="dropdown">
-						<button class="btn btn-primary dropdown-toggle" type="button"
+					<div >
+						<button class="btn btn-primary" type="button"
 							data-toggle="dropdown" id="categoryBtn">
-							Language Category <span class="caret"></span>
+							${requestScope.bvo.categoryVO.categoryName}
 						</button>
 						<ul class="dropdown-menu" id="categoryDropdown"></ul>
 
@@ -165,69 +166,34 @@
 
 				<div class="required-field-block"
 					style="float: left; margin-left: 10px;">
-					<div class="dropdown">
-						<button class="btn btn-primary dropdown-toggle" type="button"
+					<div >
+						<button class="btn btn-primary " type="button"
 							data-toggle="dropdown" id="folderBtn">
-							Folder Category <span class="caret"></span>
+							${requestScope.bvo.folderVO.folderName} 
 						</button>
 						<ul class="dropdown-menu" id="folderDropdown"></ul>
 
 					</div>
 
 				</div>
-				<div class="required-field-block"
-					style="float: left; margin-left: 10px;">
-					<button type="button" id="" data-toggle="modal"
-						data-target="#myModal"
-						style="background-color: transparent; border: none;">
-						<img style="width: 30px; height: 30px;"
-							src="${pageContext.request.contextPath}/resources/img/folder.png">
-					</button>
-				</div>
-
-				<div class="modal fade" id="myModal" role="dialog">
-					<div class="modal-dialog">
-
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title">프로젝트 폴더 추가</h4>
-							</div>
-							
-								<div class="modal-body">
-										<div class="required-field-block" style="margin-top: 30px">
-										<label class="opensourceLabel">폴더명  </label> 
-											<input type="text" placeholder="Folder Name" class="form-control" name="folderName" id="folderName">
-										
-										</div>
-								</div>
-								<div class="modal-footer">
-										<input type="button" value = "추가 " id = "insertFolderBtn" class="btn btn-default" data-dismiss="modal"> 
-								</div>
-							
-						</div>
-
-					</div>
-				</div>
-
-
+				
+				
 
 				<br>
 				<div class="required-field-block" style="margin-top: 30px">
 					<label class="opensourceLabel">제목 </label> <input type="text"
-						placeholder="Title" class="form-control" name="title" id="title">
+						placeholder="Title" class="form-control" name="title" id="title" value = "${requestScope.bvo.title}" readonly="readonly">
 				</div>
 
 
 				<br> <label class="opensourceLabel">작성ID</label> <input
 					type="text" class="form-control" name="id" id="writerId"
-					value="${sessionScope.mvo.id}" readonly="readonly"> <br>
+					value="${requestScope.bvo.memberVO.id}" readonly="readonly"> <br>
 				<div class="required-field-block">
 					<label class="opensourceLabel">기획 배경 </label>
 					<textarea rows="10" class="form-control"
-						placeholder="기획 배경을 작성해 주세요 " name="content_back"
-						id="content_back" style="resize: none"></textarea>
+						 name="content_back"
+						id="content_back" style="resize: none" readonly="readonly">${requestScope.bvo.content_back}</textarea>
 				</div>
 				<br>
 
@@ -235,22 +201,22 @@
 				<div class="required-field-block">
 					<label class="opensourceLabel">프로젝트 상세 설명 </label>
 					<textarea rows="10" class="form-control"
-						placeholder="프로젝트 상세 설명을 작성해 주세요 " name="content_detail"
-						id="content_detail" style="resize: none"></textarea>
+						 name="content_detail"
+						id="content_detail" style="resize: none" readonly="readonly">${requestScope.bvo.content_detail}</textarea>
 				</div>
 				<br>
 				<div id="fileDiv">
 					<p>
 
 						<input type="file" style="margin: 0px;" id="file_0" name="file">
-						<a href="#this" class="btn" id="delete" name="delete">삭제</a>
+					
 					</p>
 				</div>
 				<input type="hidden" id="categoryNo" name="categoryNo" value="">
 				<input type="hidden" id="folderNo" name="folderNo" value="">
 
 
-				<a href="#this" class="btn" id="addFile">파일 추가</a><br>
+				
 				<button type="button" class="btn btn-success btn-lg btn3d"
 					id="writeBtn">
 					<span class="glyphicon glyphicon-ok"></span>
@@ -259,6 +225,8 @@
 					id="resetBtn">
 					<span class="glyphicon glyphicon-remove"></span>
 				</button>
+				
+				
 				<button type="button" class="btn btn-info btn-lg btn3d"
 					id="moveToList" onclick="fn_openBoardList()">
 					<span class="glyphicon glyphicon-th-list"></span>

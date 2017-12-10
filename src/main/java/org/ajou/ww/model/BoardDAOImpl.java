@@ -38,6 +38,30 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> getBoardList() {
 		return sqlSessionTemplate.selectList("board.getBoardList");
 	}
+
+	@Override
+	public CategoryVO findCategoryVOByNo(int categoryNo) {
+		
+		return sqlSessionTemplate.selectOne("board.findCategoryVOByNo", categoryNo);
+	}
+
+	@Override
+	public FolderVO findFolderByNo(int folderNo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("board.findFolderByNo", folderNo);
+	}
+
+	@Override
+	public BoardVO findBoardByNo(String boardNo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("board.findBoardByNo", boardNo);
+	}
+
+	@Override
+	public void updateHit(String boardNo) {
+		sqlSessionTemplate.update("board.updateHit", boardNo);
+		
+	}
 	
 //	@Override
 //	public BoardVO showContent(int no){

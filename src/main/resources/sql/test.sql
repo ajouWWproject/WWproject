@@ -30,7 +30,7 @@ insert into category values(null, 'JavaScript', 'javascript.png');
 insert into category values(null, 'PHP', 'php.jpg');
 insert into category values(null, 'Python', 'python.png');
 insert into category values(null, 'Ruby', 'ruby.png');
-
+insert into category values(null, 'R', 'rstudio.png');
 
 create table folder(
 	folder_no int auto_increment primary key,
@@ -66,8 +66,21 @@ insert into member values('ajou', '1234', '임소영 ', '01023991943','ruby.png'
 insert into folder values(null, 'Ajou 2017-2');
 
 select category_no,category_name from category;
-delete table board;
+
 select * from board;
 select * from file;
-
+select * from member;
 show variables like 'c%';
+
+
+SELECT r.reportNo,r.reportTitle,r.reportDate,r.reporterId,r.blackId,r.contents FROM(
+			SELECT row_number() over(order by reportNo desc) as rnum,reportNo,reportTitle,reporterId,blackId,contents,
+			to_char(reportDate,'YYYY.MM.DD') as reportDate 
+			FROM rb_report
+) r where rnum between #{startRowNumber} and #{endRowNumber} order by reportNo desc
+
+delete from file;
+delete from board;
+
+select * from board;
+select * from file;

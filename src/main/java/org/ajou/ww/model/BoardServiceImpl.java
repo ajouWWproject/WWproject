@@ -35,7 +35,29 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public ArrayList<BoardVO> getBoardList() {
 		return (ArrayList<BoardVO>) boardDAO.getBoardList();
+	}
+	@Override
+	public CategoryVO findCategoryVOByNo(int categoryNo) {
+		
+		return boardDAO.findCategoryVOByNo(categoryNo);
+	}
+	@Override
+	public FolderVO findFolderByNo(int folderNo) {
+		// TODO Auto-generated method stub
+		return boardDAO.findFolderByNo(folderNo);
+	}
+	@Override
+	public BoardVO findBoardByNo(String boardNo) {
+		
+		return boardDAO.findBoardByNo(boardNo);
+	}
+	@Override
+	public void updateHit(String boardNo) {
+		boardDAO.updateHit(boardNo);
+		
 	}	
+	
+	
 
 		
 //	@Override
