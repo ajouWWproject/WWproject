@@ -13,18 +13,20 @@ public interface BoardDAO {
 
 	public List<FolderVO> findFolderList();		
 
-	public  BoardVO showContent(int no);
-
-	public  void updateCount(int no);
-
-	public  void deleteBoard(int no);
-
-	public  void updateBoard(BoardVO bvo);
-
-	public  int getTotalContentCount();
-	
 	public List<BoardVO> getBoardList();
+	
+//	public  BoardVO showContent(int no);
+//
+//	public  void updateCount(int no);
+//
+//	public  void deleteBoard(int no);
+//
+//	public  void updateBoard(BoardVO bvo);
+//
+//	public  int getTotalContentCount();
+	
+	
 
-	public List<BoardVO> getBoardList(MemberVO mvo);
+//	public List<BoardVO> getBoardList(MemberVO mvo);
 
 }

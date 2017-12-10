@@ -31,6 +31,10 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<FolderVO> findFolderList() {
 		
 		return (ArrayList<FolderVO>) boardDAO.findFolderList();
+	}
+	@Override
+	public ArrayList<BoardVO> getBoardList() {
+		return (ArrayList<BoardVO>) boardDAO.getBoardList();
 	}	
 
 		

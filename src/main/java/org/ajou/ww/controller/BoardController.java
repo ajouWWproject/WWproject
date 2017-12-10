@@ -34,6 +34,10 @@ public class BoardController {
 	public String list(HttpServletRequest request) {
 		// ListVO lvo = boardService.getReportList(pageNo);
 		// request.setAttribute("lvo", lvo);
+		
+		ArrayList<BoardVO> bvoList = boardService.getBoardList();
+		request.setAttribute("bvo", bvoList);
+
 		return "board/opensource_list";
 		/*
 		 * 헤더 레이아웃에 있는 신고 게시판을 누르면 board_list.do를 통해 리스트페이지로 넘어가게 되는데 ListVO에는
