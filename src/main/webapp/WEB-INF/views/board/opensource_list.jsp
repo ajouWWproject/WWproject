@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,15 +30,16 @@
 
 <link rel='stylesheet prefetch'
 	href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
 <style class="cp-pen-styles">
 body {
-	background: rgb(255,255,255);
+	background: rgb(255, 255, 255);
 }
 
 .card-container {
@@ -49,7 +52,6 @@ body {
 	justify-content: space-around;
 	align-items: auto;
 }
-
 
 .card {
 	min-width: 275px;
@@ -105,11 +107,9 @@ body {
 .card .card-image {
 	width: 100%;
 	height: 275px;
-	position: relative;
-	background-image:
-		url("https://d13yacurqjgara.cloudfront.net/users/150724/screenshots/2211976/365_the_end_1x.png");
-	border-top-right-radius: 5px;
+	position: relative; border-top-right-radius : 5px;
 	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .card .card-info {
@@ -166,7 +166,7 @@ body {
 	transform: scaleY(1);
 }
 
-.card:nth-of-type(2) .card-image {
+/* .card:nth-of-type(2) .card-image {
 	background-image:
 		url("https://d13yacurqjgara.cloudfront.net/users/150724/screenshots/2164720/337_writing_blog_post_1x.png");
 }
@@ -179,8 +179,22 @@ body {
 .card:nth-of-type(4) .card-image {
 	background-image:
 		url("https://d13yacurqjgara.cloudfront.net/users/150724/screenshots/2203790/362_chasing_dreams_1x.png");
-}
+} */
 </style>
+
+<script>
+	
+	$(document).ready(function() {
+		$(".card").on("click", function(){
+			var boardNo = $(this).children("#boardNo").val();
+			location.href = "${pageContext.request.contextPath}/board/moveToDetail.do?boardNo="+boardNo;
+			//document.location.reload(true);
+		});
+		
+	});
+	
+	
+</script>
 </head>
 
 <body>
@@ -188,76 +202,33 @@ body {
 	<jsp:include page="../header.jsp" />
 
 	<!-- Page Content -->
-	
+
 	<div class="card-container">
-		<div class="card">
-			<div class="card-image"></div>
-			<div class="card-info">
-				<div class="card-title">Hie</div>
-				<div class="card-detail">Lorem ipsum dolor sit amet,
-					consectetur adipisicing elit. Perspiciatis beatae nisi soluta ex
-					animi aperiam iste voluptatem, voluptatibus impedit rem natus
-					doloribus sed ullam provident sunt odit eaque excepturi modi.</div>
+		<c:forEach var="bvo" items="${requestScope.bvoList}">
+			<div class="card" id = "card${bvo.board_no}" >
+				<input type = "hidden" id = "boardNo" value = "${bvo.board_no}">
+				<div class="card-image" style="background-color: #fff;">
+					<img
+						style="width: 100%; position: relative; border-top-right-radius: 5px; border-top-left-radius: 5px;"
+						src="${pageContext.request.contextPath}/resources/img/categoryImg/${bvo.categoryVO.photo_path}">
+				</div>
+				<div class="card-info">
+					<div class="card-title">${bvo.title}</div>
+					<div class="card-detail">
+						작성자 : ${bvo.memberVO.id}<br> 작성일자 : ${bvo.timePosted} <br>
+					</div>
+				</div>
+				<div class="card-social">
+					<ul>
+						<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
+						<li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
+						<li>${bvo.hits}</li>
+					</ul>
+				</div>
 			</div>
-			<div class="card-social">
-				<ul>
-					<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
-					<li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
-					<li><i class="fa fa-share-alt" aria-hidden="true"></i></li>
-				</ul>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-image"></div>
-			<div class="card-info">
-				<div class="card-title">Hello</div>
-				<div class="card-detail">Lorem ipsum dolor sit amet,
-					consectetur adipisicing elit. Perspiciatis beatae nisi soluta ex
-					animi aperiam iste voluptatem, voluptatibus impedit rem natus
-					doloribus sed ullam provident sunt odit eaque excepturi modi.</div>
-			</div>
-			<div class="card-social">
-				<ul>
-					<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
-					<li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
-					<li><i class="fa fa-share-alt" aria-hidden="true"></i></li>
-				</ul>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-image"></div>
-			<div class="card-info">
-				<div class="card-title">How are you ?</div>
-				<div class="card-detail">Lorem ipsum dolor sit amet,
-					consectetur adipisicing elit. Perspiciatis beatae nisi soluta ex
-					animi aperiam iste voluptatem, voluptatibus impedit rem natus
-					doloribus sed ullam provident sunt odit eaque excepturi modi.</div>
-			</div>
-			<div class="card-social">
-				<ul>
-					<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
-					<li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
-					<li><i class="fa fa-share-alt" aria-hidden="true"></i></li>
-				</ul>
-			</div>
-		</div>
-		<div class="card">
-			<div class="card-image"></div>
-			<div class="card-info">
-				<div class="card-title">What's Up ?</div>
-				<div class="card-detail">Lorem ipsum dolor sit amet,
-					consectetur adipisicing elit. Perspiciatis beatae nisi soluta ex
-					animi aperiam iste voluptatem, voluptatibus impedit rem natus
-					doloribus sed ullam provident sunt odit eaque excepturi modi.</div>
-			</div>
-			<div class="card-social">
-				<ul>
-					<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
-					<li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
-					<li><i class="fa fa-share-alt" aria-hidden="true"></i></li>
-				</ul>
-			</div>
-		</div>
+		</c:forEach>
+
+
 	</div>
 	<!-- /.container -->
 

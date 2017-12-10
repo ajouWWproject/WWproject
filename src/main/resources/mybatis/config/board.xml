@@ -1,38 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Sql Mapper -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="board"> 	
+<mapper namespace="board">
 
 
 	<select id="findCategoryList" resultType="categoryVO">
-		select category_no as categoryNo,category_name as categoryName, photo_path from category
+		select category_no as
+		categoryNo,category_name as categoryName, photo_path from category
 	</select>
-	
-	<select id="findFolderList" resultType="folderVO">
-		select folder_no as folderNO,folder_name as folderName from folder
-	</select>
-	<insert id="write" parameterType="boardVO"  useGeneratedKeys="true" keyProperty="no">
- 		
- 		insert into board(board_no,title,content_back,content_detail,timePosted,id,category_no,folder_no)
- 		values(null,#{title},#{content_back},#{content_detail},now(),#{memberVO.id}, #{categoryVO.categoryNo}, #{folderVO.folderNo})
- 		<!-- 
- 		현제 시퀀스 값에 bvo의 정보를 데이터 베이스에 인설트 해준다 
- 		게시판 번호, 게시판 제목, 신고자, 신고 할 아이디, 내용, 작성 시간....
- 		
- 		-->
- 		
- 		<selectKey keyProperty="board_no" resultType="int">
- 			SELECT LAST_INSERT_ID() 
- 		</selectKey>
- 	</insert>
- 	
- 	<insert id = "insertFile" parameterType = "fileVO">
- 	
-		insert into file (file_no, board_no, file_path)
-		values(null,#{boardNo} , #{file})
- 	</insert>
 
+	<select id="findFolderList" resultType="folderVO">
+		select folder_no as
+		folderNO,folder_name as folderName from folder
+	</select>
+	<insert id="write" parameterType="boardVO" useGeneratedKeys="true"
+		keyProperty="no">
+
+		insert into
+		board(board_no,title,content_back,content_detail,timePosted,id,category_no,folder_no)
+		values(null,#{title},#{content_back},#{content_detail},now(),#{memberVO.id},
+		#{categoryVO.categoryNo}, #{folderVO.folderNo})
+		<!-- 현제 시퀀스 값에 bvo의 정보를 데이터 베이스에 인설트 해준다 게시판 번호, 게시판 제목, 신고자, 신고 할 아이디, 
+			내용, 작성 시간.... -->
+
+		<selectKey keyProperty="board_no" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<insert id="insertFile" parameterType="fileVO">
+
+		insert into file (file_no, board_no, file_path)
+		values(null,#{boardNo} ,
+		#{file})
+	</insert>
+
+	<select id="getBoardList" resultMap="boardRM">
+		select board_no, title,
+		content_back, content_detail, hits, likes,
+		Date_format(timePosted,'%Y-%m-%d') as timePosted, id, category_no,
+		folder_no
+		from board
+	</select>
+
+	<resultMap type="boardVO" id="boardRM">
+		<result column="id" property="memberVO.id" />
+		<result column="category_no" property="categoryVO.categoryNo" />
+		<result column="folder_no" property="folderVO.folderNo" />
+		
+	</resultMap>
 	
+	<select id = "findCategoryVOByNo" parameterType="int" resultType="categoryVO">
+		select category_no as categoryNo, category_name as categoryName, photo_path
+		from category
+		where category_no=#{value}
+	</select>
+	
+	<select id = "findFolderByNo" parameterType="int" resultType="folderVO">
+		select folder_no as folderNo, folder_name as folderName
+		from folder
+		where folder_no=#{value}
+	</select>
+	
+	<select id = "findBoardByNo" parameterType = "String" resultMap="boardRM">
+		select board_no, title,
+		content_back, content_detail, hits, likes,
+		Date_format(timePosted,'%Y-%m-%d') as timePosted, id, category_no,
+		folder_no
+		from board
+		where board_no=#{value}
+	</select>
+	
+	<update id = "updateHit" parameterType = "String">
+		update board set hits=hits+1 
+		where board_no = #{value}
+	</update>
 </mapper>
  
  

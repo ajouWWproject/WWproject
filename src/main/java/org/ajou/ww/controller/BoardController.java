@@ -36,7 +36,15 @@ public class BoardController {
 		// request.setAttribute("lvo", lvo);
 		
 		ArrayList<BoardVO> bvoList = boardService.getBoardList();
-		request.setAttribute("bvo", bvoList);
+		for(int i = 0; i<bvoList.size();i++) {
+			BoardVO bvo = bvoList.get(i);
+			bvo.setCategoryVO(boardService.findCategoryVOByNo(bvo.getCategoryVO().getCategoryNo()));
+			bvo.setFolderVO(boardService.findFolderByNo(bvo.getFolderVO().getFolderNo()));
+		}
+		//System.out.print("bvoList" + bvoList);
+		request.setAttribute("bvoList", bvoList);
+		
+		
 
 		return "board/opensource_list";
 		/*
@@ -50,7 +58,26 @@ public class BoardController {
 	public String moveToWrite(HttpServletRequest request) {
 		return "board/opensource_write";
 	}
-
+	@RequestMapping("board/moveToDetail.do")
+	public String moveToDetail(String boardNo, HttpServletRequest request) {
+		//System.out.println("boarNo" + boardNo);
+		
+		BoardVO bvo = boardService.findBoardByNo(boardNo);
+		boardService.updateHit(boardNo);
+		System.out.println(bvo);
+		CategoryVO cvo =new CategoryVO();
+		cvo = boardService.findCategoryVOByNo(bvo.getCategoryVO().getCategoryNo());
+		bvo.setCategoryVO(cvo);
+		
+		FolderVO foldervo = new FolderVO();
+		foldervo = boardService.findFolderByNo(bvo.getFolderVO().getFolderNo());
+		bvo.setFolderVO(foldervo);
+		
+		request.setAttribute("bvo", bvo);
+		
+		
+		return "board/opensource_detail";
+	}
 	@RequestMapping(value = "opensouce_register.do", method = RequestMethod.POST)
 	public String write(HttpServletRequest request, BoardVO bvo, MemberVO mvo, CategoryVO cvo, FolderVO foldervo) {
 		// boardService.write(bvo);
@@ -66,8 +93,13 @@ public class BoardController {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Iterator fileNameIter = multipartRequest.getFileNames();
 		bvo.setMemberVO(mvo);
+		
+		cvo = boardService.findCategoryVOByNo(cvo.getCategoryNo());
 		bvo.setCategoryVO(cvo);
+		
+		foldervo = boardService.findFolderByNo(foldervo.getFolderNo());
 		bvo.setFolderVO(foldervo);
+		
 		System.out.print(bvo);
 		
 		

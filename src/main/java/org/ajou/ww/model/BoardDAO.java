@@ -14,6 +14,14 @@ public interface BoardDAO {
 	public List<FolderVO> findFolderList();		
 
 	public List<BoardVO> getBoardList();
+
+	public CategoryVO findCategoryVOByNo(int categoryNo);
+
+	public FolderVO findFolderByNo(int folderNo);
+
+	public BoardVO findBoardByNo(String boardNo);
+
+	public void updateHit(String boardNo);
 	
 //	public  BoardVO showContent(int no);
 //

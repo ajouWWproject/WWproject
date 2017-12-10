@@ -14,6 +14,17 @@ public interface BoardService {
 	public ArrayList<FolderVO> findFolderList();	
 	
 	public  ArrayList<BoardVO> getBoardList();
+
+	public CategoryVO findCategoryVOByNo(int categoryNo);
+
+	public FolderVO findFolderByNo(int folderNo);
+
+	public BoardVO findBoardByNo(String boardNo);
+
+	public void updateHit(String boardNo);
+	
+
+	
 //	public  ListVO getBoardList(String pageNo);
 //	public  BoardVO showContent(int no);	
 //	public BoardVO showContentNoHit(int no);
