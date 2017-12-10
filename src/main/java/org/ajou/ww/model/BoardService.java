@@ -13,7 +13,7 @@ public interface BoardService {
 
 	public ArrayList<FolderVO> findFolderList();	
 	
-//	public  ListVO getBoardList();
+	public  ArrayList<BoardVO> getBoardList();
 //	public  ListVO getBoardList(String pageNo);
 //	public  BoardVO showContent(int no);	
 //	public BoardVO showContentNoHit(int no);
