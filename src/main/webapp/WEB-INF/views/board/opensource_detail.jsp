@@ -122,32 +122,29 @@ p {
 </style>
 
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
 						$("a[name='file']").on("click", function(e) { //파일 이름
 							e.preventDefault();
 							fn_downloadFile($(this));
 						});
 
-						$("#updateBtn")
-								.click(
-										function() {
-											location.href = "${pageContext.request.contextPath}/updateBoard.do?boardNo="
-													+ $
-											{
-												requestScope.bvo.board_no
-											}
-											;
+						$("#updateBtn").click(function() {
+							location.href = "${pageContext.request.contextPath}/updateBoard.do?boardNo="+ ${requestScope.bvo.board_no};
+						});
 
-										});
-
-					});
+						$("#insertCommentBtn").click(function(){
+							//$("#commentForm").submit();
+							alert("EEE");
+							location.href="${pageContext.request.contextPath}/insertComment.do?boardNo="+ ${requestScope.bvo.board_no}+"&content="+$("#content").text();;
+						});
+				
+					   
+					  
+	});
 
 	function fn_downloadFile(obj) {
 		var fileName = obj.text();
-		location.href = "${pageContext.request.contextPath}/board/fileDownload.do?fileName="
-				+ fileName;
+		location.href = "${pageContext.request.contextPath}/board/fileDownload.do?fileName="+ fileName;
 
 	}
 
@@ -347,8 +344,7 @@ p {
 				<c:forEach var="fvo" items="${requestScope.fList}">
 					<div id="fileDiv">
 						<input type="hidden" id="idx" value="${fvo.fileNo}"> <label
-							class="opensourceLabel"> 첨부 파일 : &nbsp; </label> <a href="#this"
-							name="file" style="float: left;">${fvo.file }</a>
+							class="opensourceLabel"> 첨부 파일 : &nbsp; </label> <a href="#this" name="file" style="float: left;">${fvo.file }</a>
 
 					</div>
 					<br>
@@ -379,34 +375,48 @@ p {
 			</form>
 			
 			<div class="comments">
+		
+        <c:if test="${sessionScope.mvo!=null}">
+			<div class="comment-wrap">
+					<div class="photo">
+							<div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg')"></div>
+					</div>
+					
+					<div class="comment-block">
+							<form id = "commentForm">
+									<input type = "hidden" name = "boardNo" value = "${requestScope.bvo.board_no}">
+									<textarea name="content" id="comment" cols="30" rows="3" placeholder="Add comment..."></textarea>
+							</form>
+							<div class="bottom-comment">
+									<ul class="comment-actions">
+											<li><input type = "button" class="btn-default"  id = "insertCommentBtn"  value = "확인 "></li>
+									</ul>								
+							</div>
+					</div>
+			</div>
+		</c:if>
+		
+		<c:forEach var="cvo" items="${requestScope.cvoList}">
 		<div class="comment-wrap">
 				<div class="photo">
-						<div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg')"></div>
+				<c:if test="${cvo.memberVO.profile_path ==''}">
+					<div class="avatar" ">
+						<img src="${pageContext.request.contextPath}/resources/img/profile.jpg" alt="Volton">
+               		</div>
 				</div>
+				</c:if>
 				<div class="comment-block">
-						<form action="">
-								<textarea name="content" id="content" cols="30" rows="3" placeholder="Add comment..."></textarea>
-						</form>
-				</div>
-		</div>
-
-		<div class="comment-wrap">
-				<div class="photo">
-						<div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg')"></div>
-				</div>
-				<div class="comment-block">
-						<p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto temporibus iste nostrum dolorem natus recusandae incidunt voluptatum. Eligendi voluptatum ducimus architecto tempore, quaerat explicabo veniam fuga corporis totam reprehenderit quasi
-								sapiente modi tempora at perspiciatis mollitia, dolores voluptate. Cumque, corrupti?</p>
+						<p class="comment-text">${cvo.content}</p>
 						<div class="bottom-comment">
-								<div class="comment-date">Aug 24, 2014 @ 2:35 PM</div>
+								<div class="comment-date">${cvo.timePosted}</div>
 								<ul class="comment-actions">
-										<li class="complain">Complain</li>
-										<li class="reply">Reply</li>
+										<li class="complain">수정 </li>
+										<li class="reply">삭제 </li>
 								</ul>
 						</div>
 				</div>
 		</div>
-
+	</c:forEach>
 		<div class="comment-wrap">
 				<div class="photo">
 						<div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/felipenogs/128.jpg')"></div>

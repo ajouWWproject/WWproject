@@ -28,6 +28,10 @@ public interface BoardService {
 	public ArrayList<BoardVO> getBoardListByKeyword(String keyword);
 
 	public ArrayList<BoardVO> getBoardListByCategoryNo(String categoryNo);
+
+	public void insertComment(CommentVO cvo);
+
+	public ArrayList<CommentVO> findCommentVOByBoardNo(int boardNo);
 	
 
 	

@@ -69,6 +69,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public ArrayList<BoardVO> getBoardListByCategoryNo(String categoryNo) {
 		return (ArrayList<BoardVO>)boardDAO.getBoardListByCategory(categoryNo);
+	}
+	@Override
+	public void insertComment(CommentVO cvo) {
+		boardDAO.insertComment(cvo);
+		
+	}
+	@Override
+	public ArrayList<CommentVO> findCommentVOByBoardNo(int boardNo) {
+		// TODO Auto-generated method stub
+		return (ArrayList<CommentVO>) boardDAO.findCommentVOByBoardNo(boardNo);
 	}	
 	
 	

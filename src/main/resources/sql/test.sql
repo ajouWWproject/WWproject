@@ -2,7 +2,7 @@
 
 drop table file;
 drop table board;
-drop table category
+drop table category;
 
 drop table member;
 drop table folder;
@@ -79,9 +79,10 @@ show variables like 'c%';
 
 select*from member;
 select * board;
+select * from comment;
 
 
-create table board_comment(
+create table opensource_comment(
    comment_no int auto_increment not null,
    board_no int not null,
    id varchar(30) not null ,
@@ -90,7 +91,7 @@ create table board_comment(
    primary key(comment_no,board_no, id),
    constraint fk_cbno foreign key(board_no) references board(board_no),
    constraint fo_cid foreign key(id) references member(id)
-);
+)ENGINE = InnoDB;
 
 
 

@@ -29,6 +29,10 @@ public interface BoardDAO {
 
 	public List<BoardVO> getBoardListByCategory(String categoryNo);
 	
+	public void insertComment(CommentVO cvo);
+
+	public List<CommentVO> findCommentVOByBoardNo(int boardNo);
+	
 //	public  BoardVO showContent(int no);
 //
 //	public  void updateCount(int no);

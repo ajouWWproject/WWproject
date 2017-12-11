@@ -99,6 +99,17 @@
 		from board
 		where category_no=#{value}
 	</select>
+	
+	<insert id = "insertComment" parameterType = "commentVO">
+		insert into comment(comment_no, board_no, id, contents, timePosted)
+		values(null, #{boardNo}, #{memberVO.id}, #{content}, now())
+	</insert>
+	
+	<select id = "findCommentVOByBoardNo" parameterType ="int" resultType="commentVO">
+		select comment_no,board_no,id,contents,Date_format(timePosted,'%Y-%m-%d') as timePosted
+		from comment
+		where board_no=#{value}
+	</select>
 </mapper>
  
  
