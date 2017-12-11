@@ -82,14 +82,14 @@ select * board;
 
 
 create table board_comment(
-	comment_no int auto_increment not null,
-	board_no int not null,
-	id varchar(30) not null ,
-	contents varchar(50) not null,
-	timePosted date not null,
-	primary key(comment_no,board_no, id),
-	constraint fk_cbno foreign key(board_no) references board(board_no),
-	constraint fo_cid foreign key(id) references member(id)
+   comment_no int auto_increment not null,
+   board_no int not null,
+   id varchar(30) not null ,
+   contents varchar(50) not null,
+   timePosted date not null,
+   primary key(comment_no,board_no, id),
+   constraint fk_cbno foreign key(board_no) references board(board_no),
+   constraint fo_cid foreign key(id) references member(id)
 );
 
 

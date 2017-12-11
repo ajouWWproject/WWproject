@@ -65,7 +65,7 @@
 		
 		$("#categoryDropdown").on("click", "li >a", function() {
 			//alert($(this).attr('value'));
-			$("#categoryBtn").text($(this).text());
+			$("#categoryBtn2").text($(this).text());
 			$("#categoryNo").val($(this).attr('value'));
 		});
 		
@@ -156,10 +156,10 @@
 				<div class="required-field-block" style="float: left">
 					<div class="dropdown">
 						<button class="btn btn-primary dropdown-toggle" type="button"
-							data-toggle="dropdown" id="categoryBtn">
+							data-toggle="dropdown" id="categoryBtn2">
 							Language Category <span class="caret"></span>
 						</button>
-						<ul class="dropdown-menu" id="categoryDropdown2"></ul>
+						<ul class="dropdown-menu" id="categoryDropdown"></ul>
 
 					</div>
 
