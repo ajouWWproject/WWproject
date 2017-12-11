@@ -44,7 +44,14 @@ public class MyPageController {
 		
 		ArrayList<BoardVO> myBoardList = (ArrayList<BoardVO>) myPageService.getMyBoardList(mvo);
 		
+		ArrayList<BoardVO> likeBoardList = (ArrayList<BoardVO>) myPageService.getLikeBoardList(mvo);
+		
 		for(BoardVO bvo : myBoardList) {
+			bvo.setCategoryVO(myPageService.findCategoryVOByNo(bvo.getCategoryVO().getCategoryNo()));
+			bvo.setFolderVO(myPageService.findFolderByNo(bvo.getFolderVO().getFolderNo()));
+		}
+		
+		for(BoardVO bvo : likeBoardList) {
 			bvo.setCategoryVO(myPageService.findCategoryVOByNo(bvo.getCategoryVO().getCategoryNo()));
 			bvo.setFolderVO(myPageService.findFolderByNo(bvo.getFolderVO().getFolderNo()));
 		}
@@ -56,6 +63,7 @@ public class MyPageController {
 		
 		request.setAttribute("mvo", mvo);
 		request.setAttribute("myBoardList", myBoardList);
+		request.setAttribute("likeBoardList", likeBoardList);
 		return "mypage";
 	}
 	

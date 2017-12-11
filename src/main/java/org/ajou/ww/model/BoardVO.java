@@ -14,6 +14,9 @@ public class BoardVO {
 	private CategoryVO categoryVO;
 	private FolderVO folderVO;
 	
+	// 로그인한 사용자의 좋아요 상태
+	private String board_like;
+	
 	public BoardVO() {
 		super();		
 	}
@@ -111,6 +114,15 @@ public class BoardVO {
 
 	public void setFolderVO(FolderVO folderVO) {
 		this.folderVO = folderVO;
+	}
+	
+
+	public String getBoard_like() {
+		return board_like;
+	}
+
+	public void setBoard_like(String board_like) {
+		this.board_like = board_like;
 	}
 
 	@Override
