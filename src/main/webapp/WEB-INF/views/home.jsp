@@ -100,14 +100,14 @@
 	<jsp:include page="header.jsp" />
 	<div class="bg">
 		<div class="container">
-			<div class="input-group stylish-input-group">
-				<input type="text" class="my_bar" placeholder="Enter whatever you want">
+			<form class="input-group stylish-input-group" action="searchByKeyword.do">
+				<input type="text" class="my_bar" name="keyword" placeholder="Enter whatever you want">
 				<span class="my_button">
 					<button type="submit">
 						<span class="glyphicon glyphicon-search"></span>
 					</button>
 				</span>
-			</div>	
+			</form>	
 		</div>
 	</div>
 </body>

@@ -62,13 +62,17 @@ public class BoardServiceImpl implements BoardService {
 		return (ArrayList<FileVO>) boardDAO.findFileByBoardNo(boardNo);
 	}
 	@Override
-	public ArrayList<BoardVO> getBoardListByKeyword(String keyword) {
-		
-		return (ArrayList<BoardVO>)boardDAO.getBoardListByKeyword(keyword);
-	}
-	@Override
 	public ArrayList<BoardVO> getBoardListByCategoryNo(String categoryNo) {
 		return (ArrayList<BoardVO>)boardDAO.getBoardListByCategory(categoryNo);
+	}
+	
+	@Override
+	public ArrayList<BoardVO> getBoardListByKeywordOnWriter(String keyword) {
+		return (ArrayList<BoardVO>)boardDAO.getBoardListByKeywordOnWriter(keyword);
+	}
+	@Override
+	public ArrayList<BoardVO> getBoardListByKeywordOnProject(String keyword) {
+		return (ArrayList<BoardVO>)boardDAO.getBoardListByKeywordOnProject(keyword);
 	}	
 	
 	

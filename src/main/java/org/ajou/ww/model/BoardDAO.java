@@ -24,8 +24,10 @@ public interface BoardDAO {
 	public void updateHit(String boardNo);
 
 	public List<FileVO> findFileByBoardNo(String boardNo);
-
-	public List<BoardVO> getBoardListByKeyword(String keyword);
+	
+	public List<BoardVO> getBoardListByKeywordOnWriter(String keyword);
+	
+	public List<BoardVO> getBoardListByKeywordOnProject(String keyword);
 
 	public List<BoardVO> getBoardListByCategory(String categoryNo);
 	

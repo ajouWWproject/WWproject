@@ -23,6 +23,23 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/jquery.min.js"></script>
 		
+		
+		
+		<link href="${pageContext.request.contextPath}/resources/css/style.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> 
+			addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+		</script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+		
+		<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+		
+		
+		 <!---strat-slider---->
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style2.css" />
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modernizr.custom.28468.js"></script>
+		
+		
 		<style class="cp-pen-styles">
 			body {
 				background: rgb(255, 255, 255);
@@ -151,22 +168,7 @@
 				transition: 0.35s all linear;
 				transition-delay: 0.1s;
 				transform: scaleY(1);
-			}
-			
-			/* .card:nth-of-type(2) .card-image {
-				background-image:
-					url("https://d13yacurqjgara.cloudfront.net/users/150724/screenshots/2164720/337_writing_blog_post_1x.png");
-			}
-			
-			.card:nth-of-type(3) .card-image {
-				background-image:
-					url("https://d13yacurqjgara.cloudfront.net/users/150724/screenshots/2377046/kaylo_ren_lighsaber_800x600_1x.png");
-			}
-			
-			.card:nth-of-type(4) .card-image {
-				background-image:
-					url("https://d13yacurqjgara.cloudfront.net/users/150724/screenshots/2203790/362_chasing_dreams_1x.png");
-			} */
+			}							
 		</style>
 		
 		<script>
@@ -175,14 +177,20 @@
 					var boardNo = $(this).children("#boardNo").val();
 					location.href = "${pageContext.request.contextPath}/board/moveToDetail.do?boardNo="+boardNo;
 				});
+				
 			});
 		</script>
+		
+		
+
+		
 	</head>
 	
 	<body>
 		<jsp:include page="../header.jsp" />
 	
-		<div class="card-container">
+
+	<div class="card-container">
 			<c:forEach var="bvo" items="${requestScope.bvoList}">
 				<div class="card" id="card${bvo.board_no}">
 					<input type="hidden" id="boardNo" value="${bvo.board_no}">

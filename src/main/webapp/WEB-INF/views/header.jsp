@@ -249,11 +249,11 @@ $(document).ready(function() {
                   
                  </li>
             </ul>
-            <form class="navbar-form navbar-left" role="search">
+            <form class="navbar-form navbar-left" role="search" action="searchByKeyword.do">
                <div class="form-group">
-                  <input type="text" class="form-control" id = "keyword" placeholder="검색  키워드">
+                  <input type="text" class="form-control" id = "keyword" name="keyword" placeholder="검색  키워드">
                </div>
-               <button type="button" id = "searchBtn"class="btn btn-primary">검색</button>
+               <button type="submit" id = "searchBtn" class="btn btn-primary">검색</button>
             </form>
             <c:choose>
                <c:when test="${sessionScope.mvo==null}">
@@ -299,7 +299,7 @@ $(document).ready(function() {
 
                <c:otherwise>
                   <ul class="nav navbar-nav navbar-right">
-                     <li><p class="navbar-text">${sessionScope.mvo.id }님로그인</p></li>
+                     <li><p class="navbar-text">${sessionScope.mvo.id }님 로그인</p></li>
                      <li>
                         <button type="button" id="mypageBtn" onclick="location.href='${pageContext.request.contextPath}/myPage/mypage.do'" style="background-color:transparent; border:none;">
                            <img style=" width:30px; height:30px;margin-top:8px;" src="${pageContext.request.contextPath}/resources/img/ic_mypage.png">

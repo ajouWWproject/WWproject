@@ -41,15 +41,17 @@
 		folder_no
 		from board
 	</select>
-	<select id="getBoardListByKeyword" resultMap="boardRM">
-		select board_no, title,
-		content_back, content_detail, hits, likes,
-		Date_format(timePosted,'%Y-%m-%d') as timePosted, id, category_no,
-		folder_no
-		from board
-		where title like CONCAT('%',#{value},'%')
-
-
+	
+	<select id="getBoardListByKeywordOnWriter" resultMap="boardRM">
+		SELECT board_no, title, content_back, content_detail, hits, likes, Date_format(timePosted,'%Y-%m-%d') as timePosted, id, category_no, folder_no
+		FROM board
+		WHERE id like CONCAT('%',#{value},'%')
+	</select>
+	
+	<select id="getBoardListByKeywordOnProject" resultMap="boardRM">
+		SELECT board_no, title, content_back, content_detail, hits, likes, Date_format(timePosted,'%Y-%m-%d') as timePosted, id, category_no, folder_no
+		FROM board
+		WHERE title like CONCAT('%',#{value},'%') or content_back like CONCAT('%',#{value},'%') or content_detail like CONCAT('%',#{value},'%')
 	</select>
 
 	<resultMap type="boardVO" id="boardRM">

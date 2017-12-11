@@ -24,9 +24,6 @@
 		<script src="//code.jquery.com/jquery.min.js"></script>
 		
 		<style class="cp-pen-styles">
-			body {
-				background: rgb(255, 255, 255);
-			}
 			
 			.card-container {
 				position: relative;
@@ -182,43 +179,90 @@
 	<body>
 		<jsp:include page="../header.jsp" />
 		
-	
-		<div class="card-container">
-			<h2>'카테고리'(으)로 검색한 내역</h2>
+		<div class="panel panel-default">
+        		<div class="panel-heading">
+	            	<h4 class="panel-title">
+	                	<a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-first">Menu 1</a>
+	            	</h4>
+             	</div>
+         		<ul id="sidebar-first" class="list-group panel-collapse collapse">
+                	<li class="list-group-item"><a href="#">Menu Item 1</a></li>
+                	<li class="list-group-item"><a href="#">Menu Item 2</a></li>
+                	<li class="list-group-item"><a href="#">Menu Item 3</a></li>
+            	</ul>
+           </div>
+               
+		
+		<div style="width:90%; padding: 10%;">
+		
+			<h3>'작성자'(으)로 검색한 내역</h3>
 			<hr>
-			<h2>'작성자'(으)로 검색한 내역</h2>
-			<hr>
-			<h2>'프로젝트 내용'(으)로 검색한 내역</h2>
-			<hr>
-			<c:forEach var="bvo" items="${requestScope.bvoList}">
-				<div class="card" id="card${bvo.board_no}">
-					<input type="hidden" id="boardNo" value="${bvo.board_no}">
-					<div class="card-image" style="background-color: #fff;">
-						<img style="width: 100%; position: relative; border-top-right-radius: 5px; border-top-left-radius: 5px;"
-							src="${pageContext.request.contextPath}/resources/img/categoryImg/${bvo.categoryVO.photo_path}">
-					</div>
-					<div class="card-info">
-						<div class="card-title">${bvo.title}</div>
-						<div class="card-detail">
-							작성자 : ${bvo.memberVO.id}<br> 작성일자 : ${bvo.timePosted} <br>
+				<div class="card-container">			
+					<c:forEach var="bvo" items="${swBvoList}">
+						<div class="card" id="card${bvo.board_no}">
+							<input type="hidden" id="boardNo" value="${bvo.board_no}">
+							<div class="card-image" style="background-color: #fff;">
+								<img style="width: 100%; position: relative; border-top-right-radius: 5px; border-top-left-radius: 5px;"
+									src="${pageContext.request.contextPath}/resources/img/categoryImg/${bvo.categoryVO.photo_path}">
+							</div>
+							<div class="card-info">
+								<div class="card-title">${bvo.title}</div>
+								<div class="card-detail">
+									작성자 : ${bvo.memberVO.id}<br> 작성일자 : ${bvo.timePosted} <br>
+								</div>
+							</div>
+							<div class="card-social">
+								<ul>
+									<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
+									<c:choose>
+										<c:when test="${bvo.board_like == 'true'}">
+											<li><i class="fa fa-heart" aria-hidden="true"></i></li>
+										</c:when>
+										<c:otherwise>
+											<li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
+										</c:otherwise>
+									</c:choose>
+									<li>${bvo.hits}</li>
+								</ul>
+							</div>
 						</div>
+					</c:forEach>
 					</div>
-					<div class="card-social">
-						<ul>
-							<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
-							<c:choose>
-								<c:when test="${bvo.board_like == 'true'}">
-									<li><i class="fa fa-heart" aria-hidden="true"></i></li>
-								</c:when>
-								<c:otherwise>
-									<li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
-								</c:otherwise>
-							</c:choose>
-							<li>${bvo.hits}</li>
-						</ul>
-					</div>
+				
+				
+				<h3>'프로젝트'(으)로 검색한 내역</h3>
+				<hr>
+				<div class="card-container">	
+					<c:forEach var="bvo" items="${spBvoList}">
+						<div class="card" id="card${bvo.board_no}">
+							<input type="hidden" id="boardNo" value="${bvo.board_no}">
+							<div class="card-image" style="background-color: #fff;">
+								<img style="width: 100%; position: relative; border-top-right-radius: 5px; border-top-left-radius: 5px;"
+									src="${pageContext.request.contextPath}/resources/img/categoryImg/${bvo.categoryVO.photo_path}">
+							</div>
+							<div class="card-info">
+								<div class="card-title">${bvo.title}</div>
+								<div class="card-detail">
+									작성자 : ${bvo.memberVO.id}<br> 작성일자 : ${bvo.timePosted} <br>
+								</div>
+							</div>
+							<div class="card-social">
+								<ul>
+									<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
+									<c:choose>
+										<c:when test="${bvo.board_like == 'true'}">
+											<li><i class="fa fa-heart" aria-hidden="true"></i></li>
+										</c:when>
+										<c:otherwise>
+											<li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
+										</c:otherwise>
+									</c:choose>
+									<li>${bvo.hits}</li>
+								</ul>
+							</div>
+						</div>
+					</c:forEach>			
 				</div>
-			</c:forEach>
-		</div>	
+			</div>	
 	</body>
 </html>
