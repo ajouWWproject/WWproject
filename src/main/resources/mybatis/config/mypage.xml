@@ -9,9 +9,29 @@
 	</select>	
 	
 	<update id="editMemberInfo" parameterType="memberVO">
-		UPDATE member SET password = #{password}, name = #{name}, phone = ${phone}, profile_path = "${profile_path}"
+		UPDATE member SET password = #{password}, name = #{name}, phone = #{phone}, profile_path = #{profile_path}
 		WHERE id = #{id}
-	</update>	
+	</update>
+	
+	<resultMap type="boardVO" id="boardRM">
+		<result column="id" property="memberVO.id" />
+		<result column="category_no" property="categoryVO.categoryNo" />
+		<result column="folder_no" property="folderVO.folderNo" />
+	</resultMap>
+	
+	<select id="getMyBoardList" parameterType="memberVO" resultType="boardRM">
+		SELECT board_no, title, content_back, content_detail, hits, likes, Date_format(timePosted,'%Y-%m-%d') as timePosted, id, category_no, folder_no
+		FROM board
+		WHERE id = #{id}
+	</select>
+	
+	<select id="getLikeBoardList" parameterType="memberVO" resultType="boardRM">
+		SELECT b.board_no, title, b.content_back, b.content_detail, b.hits, b.likes, Date_format(b.timePosted,'%Y-%m-%d') as timePosted, b.id, b.category_no, b.folder_no
+		FROM board as b
+		JOIN like_board as lb
+		ON b.board_no = lb.board_no
+		WHERE lb.id = #{id}
+	</select>	
 
 	
 </mapper>

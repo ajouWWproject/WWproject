@@ -48,10 +48,9 @@ public class MemberController {
 	@RequestMapping("register.do")
 	public String register(MemberVO mvo, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		System.out.println("register.do 실행!!");
-		System.out.print("넘어온 값 " + mvo);
 		String path = "";
 
+		mvo.setProfile_path("");
 		memberService.register(mvo); // 회원가입
 		MemberVO loginVO = memberService.login(mvo); // 바로 로그인
 
