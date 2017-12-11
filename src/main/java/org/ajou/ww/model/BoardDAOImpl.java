@@ -84,6 +84,23 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> getBoardListByCategory(String categoryNo) {
 		return sqlSessionTemplate.selectList("board.getBoardListByCategoryNo", categoryNo);
 	}
+
+	@Override
+	public void insertComment(CommentVO cvo) {
+		sqlSessionTemplate.insert("board.insertComment", cvo);
+		
+	}
+
+	@Override
+	public List<CommentVO> findCommentVOByBoardNo(int boardNo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("board.findCommentVOByBoardNo", boardNo);
+	}
+
+	@Override
+	public void insertFolder(String folderName) {
+		sqlSessionTemplate.insert("board.insertFolder", folderName);
+	}
 	
 //	@Override
 //	public BoardVO showContent(int no){

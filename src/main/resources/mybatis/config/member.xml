@@ -6,7 +6,7 @@
 
 	<!-- 로그인 -->
 	<select id="login" parameterType="memberVO" resultType="memberVO">
-		SELECT id,name 
+		SELECT id,name,profile_path 
 		FROM member
 		WHERE id = #{id} and password = #{password}
 	</select>	

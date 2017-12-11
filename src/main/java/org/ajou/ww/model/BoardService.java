@@ -30,6 +30,12 @@ public interface BoardService {
 	public ArrayList<BoardVO> getBoardListByKeywordOnProject(String keyword);
 
 	public ArrayList<BoardVO> getBoardListByCategoryNo(String categoryNo);
+
+	public void insertComment(CommentVO cvo);
+
+	public ArrayList<CommentVO> findCommentVOByBoardNo(int boardNo);
+
+	public void insertFolder(String folderName);
 	
 
 	

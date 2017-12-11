@@ -61,6 +61,12 @@
 			$("#insertFolderForm").submit();
 			
 		});
+		
+		$("#insertFolderBtn").on("click", function(){
+			var folderName = $("#folderName").val();
+			//alert(folderName);
+			location.href = "${pageContext.request.contextPath}/insertFolder.do?folderName="+folderName;
+		});
 
 		
 		$("#categoryDropdown").on("click", "li >a", function() {
@@ -146,7 +152,7 @@
 					aria-hidden="true"></span>
 			</h1>
 		</span> <br>
-		<div class="col-md-6 col-md-offset-3" style="height: 150%">
+		<div class="col-md-8 col-md-offset-2" style="height: 150%">
 			<form
 				action="${pageContext.request.contextPath}/opensouce_register.do"
 				enctype="multipart/form-data" method="post"

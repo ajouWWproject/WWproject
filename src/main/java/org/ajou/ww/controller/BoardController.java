@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.ajou.ww.model.BoardService;
 import org.ajou.ww.model.BoardVO;
 import org.ajou.ww.model.CategoryVO;
+import org.ajou.ww.model.CommentVO;
 import org.ajou.ww.model.FileVO;
 import org.ajou.ww.model.FolderVO;
 import org.ajou.ww.model.MemberVO;
@@ -83,7 +84,10 @@ public class BoardController {
 		request.setAttribute("fList", filevoList);
 		request.setAttribute("bvo", bvo);
 		
+		ArrayList<CommentVO> cvoList = new ArrayList<CommentVO>();
+		cvoList = boardService.findCommentVOByBoardNo(Integer.parseInt(boardNo));
 		
+		request.setAttribute("cvoList", cvoList);
 		return "board/opensource_detail";
 	}
 	@RequestMapping(value = "opensouce_register.do", method = RequestMethod.POST)
@@ -169,11 +173,8 @@ public class BoardController {
 	}
 
 	@RequestMapping("insertFolder.do")
-	public String insertFolder(HttpServletRequest request, FolderVO fvo) {
-		System.out.println("folderName : " + fvo);
-
-		// boardService.write(bvo);
-
+	public String insertFolder(HttpServletRequest request,String folderName) {
+		boardService.insertFolder(folderName);
 		return "redirect:opensource_write.do";
 
 	}
@@ -262,6 +263,23 @@ public class BoardController {
 		//System.out.print("bvoList" + bvoList);
 		request.setAttribute("bvoList", bvoList);
 		return "board/opensource_list";
+	}
+	
+	@RequestMapping("insertComment.do")
+	public String insertComment(int boardNo, String content, HttpServletRequest request) {
+		MemberVO memberVO = (MemberVO) request.getSession().getAttribute("mvo");
+		CommentVO cvo = new CommentVO();
+		cvo.setMemberVO(memberVO);
+		cvo.setBoardNo(boardNo);
+		cvo.setContent(content);
+		System.out.println("cvo!!!" + cvo);
+		boardService.insertComment(cvo);
+		return "redirect:board/moveToDetail.do?boardNo="+boardNo;
+	}
+	
+	@RequestMapping("updateComment.do")
+	public String updateComment(int commentNo, int boarNo){
+		return "redirect:board/moveToDetail.do?="+boarNo;
 	}
 
 }

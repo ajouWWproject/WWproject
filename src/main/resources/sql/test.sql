@@ -2,10 +2,10 @@
 
 drop table file;
 drop table board;
-drop table category
-
+drop table category;
 drop table member;
 drop table folder;
+drop table comment;
 
 create table member(
 	id varchar(30) not null,
@@ -15,7 +15,7 @@ create table member(
 	profile_path varchar(30),
 	primary key(id)
 
-)DEFAULT CHARSET=utf8
+)DEFAULT CHARSET=utf8;
 
 
 create table category(
@@ -61,7 +61,7 @@ create table file(
 	file_path varchar(30) not null,
 	primary key(file_no, board_no),
 	foreign key (board_no) references board(board_no)
-)DEFAULT CHARSET=utf8
+)DEFAULT CHARSET=utf8;
 
 insert into member values('ajou', '1234', '임소영 ', '01023991943','ruby.png');
 insert into folder values(null, 'Ajou 2017-2');
@@ -79,20 +79,29 @@ show variables like 'c%';
 
 select*from member;
 select * board;
+select * from comment;
 
 
-create table board_comment(
+create table comment(
    comment_no int auto_increment not null,
    board_no int not null,
    id varchar(30) not null ,
    contents varchar(50) not null,
    timePosted date not null,
-   primary key(comment_no,board_no, id),
-   constraint fk_cbno foreign key(board_no) references board(board_no),
-   constraint fo_cid foreign key(id) references member(id)
+   primary key(comment_no,board_no, id)
+
+)
+--   foreign key(board_no) references board(board_no),
+--   foreign key(id) references member(id)
+ENGINE = InnoDB;
+delete from comment
+create table like_board(
+   id varchar(30) not null,
+    board_no int not null
+  
 );
 
-
+select * from comment;
 
 SET FOREIGN_KEY_CHECKS=0;  
 delete from file;

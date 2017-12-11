@@ -15,7 +15,7 @@ import org.ajou.ww.model.BoardVO;
 import org.ajou.ww.model.CategoryVO;
 import org.ajou.ww.model.FileVO;
 import org.ajou.ww.model.FolderVO;
-import org.ajou.ww.model.ListVO;
+
 import org.ajou.ww.model.MemberVO;
 import org.ajou.ww.model.MyPageService;
 import org.springframework.stereotype.Controller;
