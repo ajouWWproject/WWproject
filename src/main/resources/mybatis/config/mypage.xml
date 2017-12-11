@@ -32,6 +32,28 @@
 		ON b.board_no = lb.board_no
 		WHERE lb.id = #{id}
 	</select>
+	
+	
+	<select id = "findCategoryVOByNo" parameterType="int" resultType="categoryVO">
+		select category_no as categoryNo, category_name as categoryName, photo_path
+		from category
+		where category_no=#{value}
+	</select>
+	
+	<select id = "findFolderByNo" parameterType="int" resultType="folderVO">
+		select folder_no as folderNo, folder_name as folderName
+		from folder
+		where folder_no=#{value}
+	</select>
+	
+	<select id = "findBoardByNo" parameterType = "String" resultMap="boardRM">
+		select board_no, title,
+		content_back, content_detail, hits, likes,
+		Date_format(timePosted,'%Y-%m-%d') as timePosted, id, category_no,
+		folder_no
+		from board
+		where board_no=#{value}
+	</select>
 
 	
 </mapper>
