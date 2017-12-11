@@ -68,11 +68,13 @@
 			$("#categoryBtn").text($(this).text());
 			$("#categoryNo").val($(this).attr('value'));
 		});
+		
 		$("#folderDropdown").on("click", "li >a", function() {
 			//alert($(this).attr('value'));
 			$("#folderBtn").text($(this).text());
 			$("#folderNo").val($(this).attr('value'));
 		});
+		
 		$("#list").on("click", function(e) { //목록으로 버튼
 			e.preventDefault();
 			fn_openBoardList();
@@ -157,7 +159,7 @@
 							data-toggle="dropdown" id="categoryBtn">
 							Language Category <span class="caret"></span>
 						</button>
-						<ul class="dropdown-menu" id="categoryDropdown"></ul>
+						<ul class="dropdown-menu" id="categoryDropdown2"></ul>
 
 					</div>
 
