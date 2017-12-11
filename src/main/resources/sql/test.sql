@@ -1,4 +1,5 @@
 
+
 drop table file;
 drop table board;
 drop table category
@@ -56,7 +57,7 @@ create table board(
 
 create table file(
 	file_no int auto_increment not null,
-	board_no int not null,
+	board_no int not null ,
 	file_path varchar(30) not null,
 	primary key(file_no, board_no),
 	foreign key (board_no) references board(board_no)
@@ -74,12 +75,26 @@ select * from member;
 show variables like 'c%';
 
 
-SELECT r.reportNo,r.reportTitle,r.reportDate,r.reporterId,r.blackId,r.contents FROM(
-			SELECT row_number() over(order by reportNo desc) as rnum,reportNo,reportTitle,reporterId,blackId,contents,
-			to_char(reportDate,'YYYY.MM.DD') as reportDate 
-			FROM rb_report
-) r where rnum between #{startRowNumber} and #{endRowNumber} order by reportNo desc
 
+
+select*from member;
+select * board;
+
+
+create table board_comment(
+	comment_no int auto_increment not null,
+	board_no int not null,
+	id varchar(30) not null ,
+	contents varchar(50) not null,
+	timePosted date not null,
+	primary key(comment_no,board_no, id),
+	constraint fk_cbno foreign key(board_no) references board(board_no),
+	constraint fo_cid foreign key(id) references member(id)
+);
+
+
+
+SET FOREIGN_KEY_CHECKS=0;  
 delete from file;
 delete from board;
 
