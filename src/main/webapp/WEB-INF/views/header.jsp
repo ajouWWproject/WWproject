@@ -120,6 +120,21 @@ $(document).ready(function() {
 		location.href = "${pageContext.request.contextPath}/searchByKeyword.do?keyword="+ keyword;
 	});
 	
+	$.ajax({
+		type : "post",
+		url : "findCategoryList.do",
+		dataType : "json",
+		success : function(json) {
+			var data = "";
+
+			for (var i = 0; i < json.length; i++) {
+				data += "<li><a href='${pageContext.request.contextPath}/searchByCategory.do?categoryNo="+ json[i].categoryNo+" value='"+json[i].categoryNo+"'>";
+				data += json[i].categoryName + "</a></li>";
+			}
+			$("#headerCategoryDropdown").html(data);
+		}//function
+	});//ajax
+	
 });
 
 	var idCheck = 0;
@@ -227,18 +242,12 @@ $(document).ready(function() {
 	           </c:otherwise>
                   </c:choose>
                <li class="dropdown"><a href="#" class="dropdown-toggle"
-                  data-toggle="dropdown">카테고리<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                     <li><a href="#">Java</a></li>
-                     <li><a href="#">C</a></li>
-                     <li><a href="#">HTML</a></li>
-                     <li class="divider"></li>
-                     <li><a href="#">Separated link</a></li>
-                     <li class="divider"></li>
-                     <li><a href="#">One more separated link</a></li>
+                  data-toggle="dropdown" id ="categoryBtn">카테고리<span class="caret"></span></a>
+                  <ul class="dropdown-menu" id="headerCategoryDropdown"role="menu">
+                     
                   </ul>
                   
-                  </li>
+                 </li>
             </ul>
             <form class="navbar-form navbar-left" role="search">
                <div class="form-group">

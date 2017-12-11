@@ -26,6 +26,8 @@ public interface BoardService {
 	public ArrayList<FileVO> findFileByBoardNo(String boardNo);
 
 	public ArrayList<BoardVO> getBoardListByKeyword(String keyword);
+
+	public ArrayList<BoardVO> getBoardListByCategoryNo(String categoryNo);
 	
 
 	

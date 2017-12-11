@@ -26,6 +26,8 @@ public interface BoardDAO {
 	public List<FileVO> findFileByBoardNo(String boardNo);
 
 	public List<BoardVO> getBoardListByKeyword(String keyword);
+
+	public List<BoardVO> getBoardListByCategory(String categoryNo);
 	
 //	public  BoardVO showContent(int no);
 //

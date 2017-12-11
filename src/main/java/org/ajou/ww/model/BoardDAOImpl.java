@@ -73,6 +73,11 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSessionTemplate.selectList("board.getBoardListByKeyword", keyword);
 	}
+
+	@Override
+	public List<BoardVO> getBoardListByCategory(String categoryNo) {
+		return sqlSessionTemplate.selectList("board.getBoardListByCategoryNo", categoryNo);
+	}
 	
 //	@Override
 //	public BoardVO showContent(int no){

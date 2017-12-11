@@ -65,6 +65,10 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<BoardVO> getBoardListByKeyword(String keyword) {
 		
 		return (ArrayList<BoardVO>)boardDAO.getBoardListByKeyword(keyword);
+	}
+	@Override
+	public ArrayList<BoardVO> getBoardListByCategoryNo(String categoryNo) {
+		return (ArrayList<BoardVO>)boardDAO.getBoardListByCategory(categoryNo);
 	}	
 	
 	

@@ -247,5 +247,18 @@ public class BoardController {
 		 * 메소드 부분을 보면 리턴값이 1로 되어있다. 그 리턴값 1을 lvo에 담아서 board_list로 리턴해주게 되면 1페이지가 뜨게 된다.
 		 */
 	}
+	
+	@RequestMapping("searchByCategory.do")
+	public String searchByCategory(String categoryNo, HttpServletRequest request) {
+		ArrayList<BoardVO> bvoList = boardService.getBoardListByCategoryNo(categoryNo);
+		for(int i = 0; i<bvoList.size();i++) {
+			BoardVO bvo = bvoList.get(i);
+			bvo.setCategoryVO(boardService.findCategoryVOByNo(bvo.getCategoryVO().getCategoryNo()));
+			bvo.setFolderVO(boardService.findFolderByNo(bvo.getFolderVO().getFolderNo()));
+		}
+		//System.out.print("bvoList" + bvoList);
+		request.setAttribute("bvoList", bvoList);
+		return "board/opensource_list";
+	}
 
 }
