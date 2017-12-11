@@ -24,6 +24,8 @@ public interface BoardDAO {
 	public void updateHit(String boardNo);
 
 	public List<FileVO> findFileByBoardNo(String boardNo);
+
+	public List<BoardVO> getBoardListByKeyword(String keyword);
 	
 //	public  BoardVO showContent(int no);
 //

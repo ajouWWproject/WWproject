@@ -114,6 +114,14 @@
 
 
 <script>
+$(document).ready(function() {
+	$("#searchBtn").click(function(){
+		var keyword = $("#keyword").val();
+		location.href = "${pageContext.request.contextPath}/searchByKeyword.do?keyword="+ keyword;
+	});
+	
+});
+
 	var idCheck = 0;
 	var pwCheck = 0;
 	
@@ -184,6 +192,9 @@
         	
         }
     }
+    
+    
+    
 </script>
 
 
@@ -205,9 +216,16 @@
          <div class="collapse navbar-collapse"
             id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-               <li><a href="${pageContext.request.contextPath}/board_list.do">프로젝트 </a></li>
-               <li><a
-                  href="${pageContext.request.contextPath}/opensource_write.do">프로젝트 추가 </a></li>
+             <li><a href="${pageContext.request.contextPath}/board_list.do">프로젝트 </a></li>
+            <c:choose>
+               <c:when test="${sessionScope.mvo!=null}">
+	               <li><a
+	                  href="${pageContext.request.contextPath}/opensource_write.do">프로젝트 추가 </a></li>
+	              
+	           </c:when>
+	           <c:otherwise>
+	           </c:otherwise>
+                  </c:choose>
                <li class="dropdown"><a href="#" class="dropdown-toggle"
                   data-toggle="dropdown">카테고리<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
@@ -218,13 +236,15 @@
                      <li><a href="#">Separated link</a></li>
                      <li class="divider"></li>
                      <li><a href="#">One more separated link</a></li>
-                  </ul></li>
+                  </ul>
+                  
+                  </li>
             </ul>
             <form class="navbar-form navbar-left" role="search">
                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="검색  키워드">
+                  <input type="text" class="form-control" id = "keyword" placeholder="검색  키워드">
                </div>
-               <button type="submit" class="btn btn-primary">검색</button>
+               <button type="button" id = "searchBtn"class="btn btn-primary">검색</button>
             </form>
             <c:choose>
                <c:when test="${sessionScope.mvo==null}">

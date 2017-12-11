@@ -60,6 +60,11 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<FileVO> findFileByBoardNo(String boardNo) {
 		// TODO Auto-generated method stub
 		return (ArrayList<FileVO>) boardDAO.findFileByBoardNo(boardNo);
+	}
+	@Override
+	public ArrayList<BoardVO> getBoardListByKeyword(String keyword) {
+		
+		return (ArrayList<BoardVO>)boardDAO.getBoardListByKeyword(keyword);
 	}	
 	
 	

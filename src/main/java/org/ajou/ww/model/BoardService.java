@@ -24,6 +24,8 @@ public interface BoardService {
 	public void updateHit(String boardNo);
 
 	public ArrayList<FileVO> findFileByBoardNo(String boardNo);
+
+	public ArrayList<BoardVO> getBoardListByKeyword(String keyword);
 	
 
 	
