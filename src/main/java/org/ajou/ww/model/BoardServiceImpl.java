@@ -79,6 +79,10 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<CommentVO> findCommentVOByBoardNo(int boardNo) {
 		// TODO Auto-generated method stub
 		return (ArrayList<CommentVO>) boardDAO.findCommentVOByBoardNo(boardNo);
+	}
+	@Override
+	public void insertFolder(String folderName) {
+		boardDAO.insertFolder(folderName);
 	}	
 	
 	

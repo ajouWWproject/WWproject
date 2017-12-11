@@ -32,6 +32,8 @@ public interface BoardService {
 	public void insertComment(CommentVO cvo);
 
 	public ArrayList<CommentVO> findCommentVOByBoardNo(int boardNo);
+
+	public void insertFolder(String folderName);
 	
 
 	

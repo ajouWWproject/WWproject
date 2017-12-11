@@ -106,10 +106,16 @@
 	</insert>
 	
 	<select id = "findCommentVOByBoardNo" parameterType ="int" resultType="commentVO">
-		select comment_no,board_no,id,contents,Date_format(timePosted,'%Y-%m-%d') as timePosted
+		select comment_no,board_no,id,contents as content,
+		Date_format(timePosted,'%Y-%m-%d') as timePosted
 		from comment
 		where board_no=#{value}
 	</select>
+	
+	<insert id = "insertFolder" parameterType = "String">
+		insert into folder(folder_no,folder_name)
+		values(null,#{value})
+	</insert>
 </mapper>
  
  

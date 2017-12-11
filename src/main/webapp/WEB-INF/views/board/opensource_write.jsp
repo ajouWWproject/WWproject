@@ -61,6 +61,12 @@
 			$("#insertFolderForm").submit();
 			
 		});
+		
+		$("#insertFolderBtn").on("click", function(){
+			var folderName = $("#folderName").val();
+			//alert(folderName);
+			location.href = "${pageContext.request.contextPath}/insertFolder.do?folderName="+folderName;
+		});
 
 		
 		$("#categoryDropdown").on("click", "li >a", function() {

@@ -90,6 +90,11 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectList("board.findCommentVOByBoardNo", boardNo);
 	}
+
+	@Override
+	public void insertFolder(String folderName) {
+		sqlSessionTemplate.insert("board.insertFolder", folderName);
+	}
 	
 //	@Override
 //	public BoardVO showContent(int no){

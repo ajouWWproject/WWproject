@@ -173,11 +173,8 @@ public class BoardController {
 	}
 
 	@RequestMapping("insertFolder.do")
-	public String insertFolder(HttpServletRequest request, FolderVO fvo) {
-		System.out.println("folderName : " + fvo);
-
-		// boardService.write(bvo);
-
+	public String insertFolder(HttpServletRequest request,String folderName) {
+		boardService.insertFolder(folderName);
 		return "redirect:opensource_write.do";
 
 	}
@@ -275,6 +272,11 @@ public class BoardController {
 		System.out.println("cvo!!!" + cvo);
 		boardService.insertComment(cvo);
 		return "redirect:board/moveToDetail.do?boardNo="+boardNo;
+	}
+	
+	@RequestMapping("updateComment.do")
+	public String updateComment(int commentNo, int boarNo){
+		return "redirect:board/moveToDetail.do?="+boarNo;
 	}
 
 }
