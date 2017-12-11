@@ -29,6 +29,31 @@
 		     
         </style>
         
+        <script>
+        	$(document).ready(function() {
+        		if(${filePath == null}) {
+        			console.log("없음");
+        			$('#profile').attr("src", "${pageContext.request.contextPath}/resources/img/user.png");
+        		} else {
+        			console.log("있음");
+        			$('#profile').attr("src", "${filePath}");
+        		}        		
+        	});
+        	
+        	function profile_change() {
+        		$('#file').trigger("click");
+        	}
+        	
+        	function file_change() {
+        		var reader = new FileReader();
+        		reader.onload = function (event) {
+        		    $('#profile').attr("src", event.target.result);
+        		}
+        		reader.readAsDataURL($('#file').prop('files')[0]);
+        	}
+        	
+        </script>
+        
     </head>
     <body>
     	<jsp:include page="header.jsp" />
@@ -68,37 +93,28 @@
                     <div class="page-section" id="about">
 	                    <div class="row">
 	                        <div class="col-md-12">
-	                            <h4 class="widget-title">About Me</h4>
+	                            <h2 class="widget-title">About Me</h2>
 	                       
 								<div id="register-form">
 									<div class="w3-modal-content w3-card-4 w3-animate-zoom"
 										style="max-width: 600px; border-radius: 20px; padding: 30px;">
 	
-										<form action="">
+										<form action="${pageContext.request.contextPath}/myPage/editInfo.do" method="post" enctype="multipart/form-data">
 											<table>
 												<tr>
 													<th></th>
-													<td>
-														<c:choose>
-															<c:when test="${mvo.profile_path == null}">
-																<img style="width:50%;" src="${pageContext.request.contextPath}/resources/img/user.png" border='0' onclick='document.all.file.click(); document.all.filePath.value=document.all.file.value; this.src=document.all.file.value'>
-															</c:when>
-															<c:otherwise>
-																<img style="width:50%;" src="${pageContext.request.contextPath}/resources/img/user.png" border='0' onclick='document.all.file.click(); document.all.filePath.value=document.all.file.value; this.src=document.all.file.value'>
-															</c:otherwise>
-														</c:choose>
+													<td style="padding-left:10%;">
+														<img id="profile" style="width:50%;" border='0' onclick='profile_change()'>
 														<br><br>
 													</td>
 												</tr>
-												
-											
 												<tr>
 													<th><label><b>아이디</b></label></th>
-													<td><input class="register-form-input" id="id_e" type="text" value="${mvo.id}" name="id_e" readonly="readonly"><br><br></td>
+													<td><input class="register-form-input" id="id_e" type="text" value="${mvo.id}" name="id" readonly="readonly"><br><br></td>
 												</tr>
 												<tr>
 													<th><label><b>비밀번호</b></label></th>
-													<td><input class="register-form-input" id="pw_e" type="password" placeholder="바꿀 비밀번호를 입력해주세요" name="pw_e" required><br><br></td>
+													<td><input class="register-form-input" id="pw_e" type="password" placeholder="바꿀 비밀번호를 입력해주세요" name="password" required><br><br></td>
 												</tr>
 												<tr>
 													<th><label><b>비밀번호 확인</b></label></th>
@@ -106,28 +122,22 @@
 												</tr>
 												<tr>
 													<th><label><b>이름</b></label></th>
-													<td><input class="register-form-input" id="name_e" type="text" placeholder="이름을 입력해주세요" value="${mvo.name}" name="name_e" required><br><br></td>
+													<td><input class="register-form-input" id="name_e" type="text" placeholder="이름을 입력해주세요" value="${mvo.name}" name="name" required><br><br></td>
 												</tr>
 												<tr>
 													<th><label><b>전화번호</b></label></th>
-													<td><input class="register-form-input" type="text" id="phone_e" placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" value="${mvo.phone}" name="phone_e" required><br><br></td>
+													<td><input class="register-form-input" type="text" id="phone_e" placeholder="'-'를 제외한 휴대폰 번호를 입력해주세요" value="${mvo.phone}" name="phone" required><br><br></td>
 												</tr>
 											</table>
 											
-											<input type="file" name="file" style="display: none;"> 
-											<input type="text" name="filePath" id="filePath" style="display: none;">
+											<input type="file" name="file" id="file" onchange="file_change()" style="display: none;">
 											
 											<br>
 											
-											<button class="btn btn-primary btn-block register-btn"
-												type="submit">수정</button>
+											<button class="btn btn-primary btn-block register-btn" type="submit">수정</button>
 										</form>
 									</div>
 								</div>
-	
-	
-	
-	
 								<hr>
 	                        </div>
 	                    </div> <!-- #about -->
@@ -137,77 +147,36 @@
                     <div class="page-section" id="portfolio">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="widget-title">My Portfolio</h4>
-                            <p>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Maecenas et lorem molestie, maximus justo dignissim, cursus nisl. Nullam at ante quis ex pharetra pulvinar quis id dolor. Integer lorem odio, euismod ut sem sit amet, imperdiet condimentum diam.</p>
+                            <h2 class="widget-title">My Portfolio</h2>
                         </div>
                     </div>
                     <div class="row projects-holder">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/1.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/2.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/3.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/4.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/5.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/6.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="card-container">
+							<c:forEach var="bvo" items="${myBoardList}">
+								<div class="card" id = "card${bvo.board_no}" >
+									<input type = "hidden" id = "boardNo" value = "${bvo.board_no}">
+									<div class="card-image" style="background-color: #fff;">
+										<img
+											style="width: 100%; position: relative; border-top-right-radius: 5px; border-top-left-radius: 5px;"
+											src="${pageContext.request.contextPath}/resources/img/categoryImg/${bvo.categoryVO.photo_path}">
+									</div>
+									<div class="card-info">
+										<div class="card-title">${bvo.title}</div>
+										<div class="card-detail">
+											작성자 : ${bvo.memberVO.id}<br> 작성일자 : ${bvo.timePosted} <br>
+										</div>
+									</div>
+									<div class="card-social">
+										<ul>
+											<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
+											<li>${bvo.hits}</li>
+										</ul>
+									</div>
+								</div>
+							</c:forEach>
+					
+						</div>
                     </div> <!-- my projects -->
                     </div>
                     <hr>
