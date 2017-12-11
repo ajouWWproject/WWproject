@@ -274,27 +274,8 @@
                         </div>
                     </div>
                     <div class="row projects-holder">
-						
-						
+						<div class="card-container">
 							<c:forEach var="bvo" items="${myBoardList}">
-								<div class="col-md-4 col-sm-6" id = "card${bvo.board_no}">
-									<div class="project-item">
-										<img
-											src="${pageContext.request.contextPath}/resources/img/1.jpg"
-											alt="">
-										<div class="project-hover">
-											<div class="inside">
-												<h5>
-													<a href="#">Pellentesque porta ligula</a>
-												</h5>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-													elit. Aliquam cursus</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								
 								<div class="card" id = "card${bvo.board_no}" >
 									<input type = "hidden" id = "boardNo" value = "${bvo.board_no}">
 									<div class="card-image" style="background-color: #fff;">
@@ -308,9 +289,15 @@
 											작성자 : ${bvo.memberVO.id}<br> 작성일자 : ${bvo.timePosted} <br>
 										</div>
 									</div>
-									
+									<div class="card-social">
+										<ul>
+											<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
+											<li>${bvo.hits}</li>
+										</ul>
+									</div>
 								</div>
 							</c:forEach>
+						</div>
 					
 						
                     </div> <!-- my projects -->
@@ -319,79 +306,110 @@
 
                     <!-- CONTACT -->
                     <div class="page-section" id="like">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 class="widget-title">What I Like</h2>
-                        </div>
-                    </div>
-                    <div class="row projects-holder">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/1.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/2.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/3.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/4.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/5.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="project-item">
-                                <img src="${pageContext.request.contextPath}/resources/img/6.jpg" alt="">
-                                <div class="project-hover">
-                                    <div class="inside">
-                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
-                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- like project -->
+	                    <div class="row">
+	                        <div class="col-md-12">
+	                            <h2 class="widget-title">What I Like</h2>
+	                        </div>
+	                    </div>
+	                    <div class="row projects-holder">
+		                    <div class="card-container">
+								<c:forEach var="bvo" items="${likeBoardList}">
+									<div class="card" id = "card${bvo.board_no}" >
+										<input type = "hidden" id = "boardNo" value = "${bvo.board_no}">
+										<div class="card-image" style="background-color: #fff;">
+											<img
+												style="width: 100%; position: relative; border-top-right-radius: 5px; border-top-left-radius: 5px;"
+												src="${pageContext.request.contextPath}/resources/img/categoryImg/${bvo.categoryVO.photo_path}">
+										</div>
+										<div class="card-info">
+											<div class="card-title">${bvo.title}</div>
+											<div class="card-detail">
+												작성자 : ${bvo.memberVO.id}<br> 작성일자 : ${bvo.timePosted} <br>
+											</div>
+										</div>
+										<div class="card-social">
+											<ul>
+												<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
+												<li><i class="fa fa-heart" aria-hidden="true"></i></li>
+												<li>${bvo.hits}</li>
+											</ul>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+						
+						<%-- <div class="row projects-holder">
+	                        <div class="col-md-4 col-sm-6">
+	                            <div class="project-item">
+	                                <img src="${pageContext.request.contextPath}/resources/img/1.jpg" alt="">
+	                                <div class="project-hover">
+	                                    <div class="inside">
+	                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+	                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4 col-sm-6">
+	                            <div class="project-item">
+	                                <img src="${pageContext.request.contextPath}/resources/img/2.jpg" alt="">
+	                                <div class="project-hover">
+	                                    <div class="inside">
+	                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+	                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4 col-sm-6">
+	                            <div class="project-item">
+	                                <img src="${pageContext.request.contextPath}/resources/img/3.jpg" alt="">
+	                                <div class="project-hover">
+	                                    <div class="inside">
+	                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+	                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4 col-sm-6">
+	                            <div class="project-item">
+	                                <img src="${pageContext.request.contextPath}/resources/img/4.jpg" alt="">
+	                                <div class="project-hover">
+	                                    <div class="inside">
+	                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+	                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4 col-sm-6">
+	                            <div class="project-item">
+	                                <img src="${pageContext.request.contextPath}/resources/img/5.jpg" alt="">
+	                                <div class="project-hover">
+	                                    <div class="inside">
+	                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+	                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4 col-sm-6">
+	                            <div class="project-item">
+	                                <img src="${pageContext.request.contextPath}/resources/img/6.jpg" alt="">
+	                                <div class="project-hover">
+	                                    <div class="inside">
+	                                        <h5><a href="#">Pellentesque porta ligula</a></h5>
+	                                        <p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div> <!-- like project --> --%>
+						
+						
+                   
                     </div>
                     <hr>
 

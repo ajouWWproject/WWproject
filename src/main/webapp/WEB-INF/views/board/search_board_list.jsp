@@ -181,8 +181,15 @@
 	
 	<body>
 		<jsp:include page="../header.jsp" />
+		
 	
 		<div class="card-container">
+			<h2>'카테고리'(으)로 검색한 내역</h2>
+			<hr>
+			<h2>'작성자'(으)로 검색한 내역</h2>
+			<hr>
+			<h2>'프로젝트 내용'(으)로 검색한 내역</h2>
+			<hr>
 			<c:forEach var="bvo" items="${requestScope.bvoList}">
 				<div class="card" id="card${bvo.board_no}">
 					<input type="hidden" id="boardNo" value="${bvo.board_no}">

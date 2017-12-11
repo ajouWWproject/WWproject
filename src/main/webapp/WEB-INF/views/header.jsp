@@ -225,7 +225,7 @@ $(document).ready(function() {
                   class="icon-bar"></span> <span class="icon-bar"></span> <span
                   class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">WW PROJECT</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do">WW PROJECT</a>
          </div>
 
          <div class="collapse navbar-collapse"
