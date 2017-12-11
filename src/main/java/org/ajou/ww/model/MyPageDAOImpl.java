@@ -31,7 +31,7 @@ public class MyPageDAOImpl implements MyPageDAO{
 		return template.selectList("mypage.getLikeBoardList", memberVO);
 	}
 	
-	/*@Override
+	@Override
 	public CategoryVO findCategoryVOByNo(int categoryNo) {
 		return template.selectOne("mypage.findCategoryVOByNo", categoryNo);
 	}
@@ -44,5 +44,5 @@ public class MyPageDAOImpl implements MyPageDAO{
 	@Override
 	public BoardVO findBoardByNo(String boardNo) {
 		return template.selectOne("mypage.findBoardByNo", boardNo);
-	}*/
+	}
 }

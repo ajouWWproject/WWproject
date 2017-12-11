@@ -12,10 +12,10 @@ public interface MyPageService {
 	
 	public List<BoardVO> getLikeBoardList(MemberVO memberVO);
 
-	/*public CategoryVO findCategoryVOByNo(int categoryNo);
+	public CategoryVO findCategoryVOByNo(int categoryNo);
 
 	public FolderVO findFolderByNo(int folderNo);
 
-	public BoardVO findBoardByNo(String boardNo);*/
+	public BoardVO findBoardByNo(String boardNo);
 
 }

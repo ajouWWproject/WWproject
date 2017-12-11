@@ -45,8 +45,8 @@ public class MyPageController {
 		ArrayList<BoardVO> myBoardList = (ArrayList<BoardVO>) myPageService.getMyBoardList(mvo);
 		
 		for(BoardVO bvo : myBoardList) {
-			/*bvo.setCategoryVO(myPageService.findCategoryVOByNo(bvo.getCategoryVO().getCategoryNo()));
-			bvo.setFolderVO(myPageService.findFolderByNo(bvo.getFolderVO().getFolderNo()));*/
+			bvo.setCategoryVO(myPageService.findCategoryVOByNo(bvo.getCategoryVO().getCategoryNo()));
+			bvo.setFolderVO(myPageService.findFolderByNo(bvo.getFolderVO().getFolderNo()));
 		}
 		
 		if(!mvo.getProfile_path().equals("")) {

@@ -31,7 +31,7 @@ public class MyPageServiceImpl implements MyPageService{
 		return mypageDAO.getLikeBoardList(memberVO);
 	}
 
-	/*@Override
+	@Override
 	public CategoryVO findCategoryVOByNo(int categoryNo) {
 		
 		return mypageDAO.findCategoryVOByNo(categoryNo);
@@ -45,5 +45,5 @@ public class MyPageServiceImpl implements MyPageService{
 	public BoardVO findBoardByNo(String boardNo) {
 		
 		return mypageDAO.findBoardByNo(boardNo);
-	}*/
+	}
 }
