@@ -36,8 +36,6 @@ public class MyPageController {
 
 	@RequestMapping("mypage.do")
 	public String mypage(HttpServletRequest request) {
-		
-		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/upload/");
 
 		HttpSession session = request.getSession();
 		MemberVO mvo = myPageService.getMemberInfo((MemberVO)session.getAttribute("mvo"));
@@ -54,11 +52,6 @@ public class MyPageController {
 		for(BoardVO bvo : likeBoardList) {
 			bvo.setCategoryVO(myPageService.findCategoryVOByNo(bvo.getCategoryVO().getCategoryNo()));
 			bvo.setFolderVO(myPageService.findFolderByNo(bvo.getFolderVO().getFolderNo()));
-		}
-		
-		if(!mvo.getProfile_path().equals("")) {
-			String filePath = uploadPath.replace("\\", "/") + "/" + mvo.getProfile_path();
-			request.setAttribute("filePath", filePath);
 		}
 		
 		request.setAttribute("mvo", mvo);
@@ -78,10 +71,11 @@ public class MyPageController {
 		
 		try {
 			String fileName = (String) file.getOriginalFilename();
-			System.out.println("filename : " + fileName);
+			System.out.println(fileName);
 			if(!fileName.equals("")) {
 				String reNameFile = mvo.getId() + fileName;
 				file.transferTo(new File(uploadPath + File.separator + reNameFile));
+	//			file.transferTo(new File(request.getContextPath() + "/src/main/webapp/resources/upload/" + reNameFile));
 				mvo.setProfile_path(reNameFile);
 			} else {
 				mvo.setProfile_path(myPageService.getMemberInfo(mvo).getProfile_path());

@@ -231,6 +231,8 @@ public class BoardController {
 	@RequestMapping("searchByKeyword.do")
 	public String searchByKeyword(String keyword, HttpServletRequest request) {
 		
+		ArrayList<CategoryVO> cvoList = boardService.findCategoryList();
+		
 		ArrayList<BoardVO> swBvoList = boardService.getBoardListByKeywordOnWriter(keyword);
 		ArrayList<BoardVO> spBvoList = boardService.getBoardListByKeywordOnProject(keyword);
 		
@@ -246,6 +248,7 @@ public class BoardController {
 			bvo.setFolderVO(boardService.findFolderByNo(bvo.getFolderVO().getFolderNo()));
 		}
 		
+		request.setAttribute("cvoList", cvoList);
 		request.setAttribute("swBvoList", swBvoList);
 		request.setAttribute("spBvoList", spBvoList);
 

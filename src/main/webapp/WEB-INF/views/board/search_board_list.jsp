@@ -173,6 +173,8 @@
 					location.href = "${pageContext.request.contextPath}/board/moveToDetail.do?boardNo="+boardNo;
 				});
 			});
+			
+
 		</script>
 	</head>
 	
@@ -182,13 +184,13 @@
 		<div class="panel panel-default">
         		<div class="panel-heading">
 	            	<h4 class="panel-title">
-	                	<a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-first">Menu 1</a>
+	                	<a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-first">CATEGORY</a>
 	            	</h4>
              	</div>
          		<ul id="sidebar-first" class="list-group panel-collapse collapse">
-                	<li class="list-group-item"><a href="#">Menu Item 1</a></li>
-                	<li class="list-group-item"><a href="#">Menu Item 2</a></li>
-                	<li class="list-group-item"><a href="#">Menu Item 3</a></li>
+         			<c:forEach var="cvo" items="${cvoList}">
+         				<li class='list-group-item'><a href='${pageContext.request.contextPath}/searchByCategory.do?categoryNo='${cvo.categoryNo}>${cvo.categoryName}</a></li>
+         			</c:forEach>
             	</ul>
            </div>
                

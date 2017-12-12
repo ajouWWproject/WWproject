@@ -154,12 +154,15 @@
 	
 	<script>
         	$(document).ready(function() {
-        		if(${filePath == null}) {
+        		if(${mvo.profile_path == null}) {
         			console.log("없음");
         			$('#profile').attr("src", "${pageContext.request.contextPath}/resources/img/user.png");
+        			$('#profile-image').attr("src", "${pageContext.request.contextPath}/resources/img/user.png");
         		} else {
         			console.log("있음");
-        			$('#profile').attr("src", "${filePath}");
+        			$('#profile').attr("src", "${pageContext.request.contextPath}/resources/upload/${mvo.profile_path}");
+        			$('#profile-image').attr("src", "${pageContext.request.contextPath}/resources/upload/${mvo.profile_path}");
+        			                                  
         		}        		
         	});
         	
@@ -179,12 +182,12 @@
         
     </head>
     <body>
-    	<jsp:include page="header.jsp" />
+    	<jsp:include page="./header.jsp" />
         
         <div class="sidebar-menu hidden-xs hidden-sm">
             <div class="top-section">
                 <div class="profile-image">
-                    <img src="${pageContext.request.contextPath}/resources/img/profile.jpg" alt="Volton">
+                    <img id="profile-image" >
                 </div>
                 <h3 class="profile-title">${mvo.name}</h3>
                 <p class="profile-description">${mvo.id}</p>
