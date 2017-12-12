@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,26 +12,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.ajou.ww.model.BoardService;
 import org.ajou.ww.model.BoardVO;
 import org.ajou.ww.model.CategoryVO;
 import org.ajou.ww.model.CommentVO;
 import org.ajou.ww.model.FileVO;
 import org.ajou.ww.model.FolderVO;
+import org.ajou.ww.model.LikeVO;
 import org.ajou.ww.model.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 public class BoardController {
 	@Resource(name = "boardServiceImpl")
 	private org.ajou.ww.model.BoardService boardService;
+	
+	private org.ajou.ww.model.MyPageService myPageService;
 
 	@RequestMapping("board_list.do")
 	public String list(HttpServletRequest request) {
@@ -85,6 +86,7 @@ public class BoardController {
 		request.setAttribute("bvo", bvo);
 		
 		ArrayList<CommentVO> cvoList = new ArrayList<CommentVO>();
+		
 		cvoList = boardService.findCommentVOByBoardNo(Integer.parseInt(boardNo));
 		
 		request.setAttribute("cvoList", cvoList);
@@ -205,8 +207,33 @@ public class BoardController {
 		     return "redirect:board/opensource_detail";
 		
 	}
+	
+	@RequestMapping(value="Like.do", method=RequestMethod.GET)
+	public @ResponseBody String likeChange(HttpServletRequest request, @RequestParam int board_no, @RequestParam String borad_like) {
+		
+		
+		HttpSession session = request.getSession();
+		
+		MemberVO mvo = myPageService.getMemberInfo((MemberVO)session.getAttribute("mvo"));
+		LikeVO lvo = new LikeVO(0, mvo, board_no);
+		
+		String change = "";
+		
+		if(borad_like.equals("true")){
+			boardService.deleteLike(lvo);
+		//	routePostscriptservice.downLikeNum(routePostscriptLike);
+			change = "tTf"; //true to false
+		}else{
+			boardService.insertLike(lvo);
+		//	routePostscriptservice.upLikeNum(routePostscriptLike);
+			change = "fTt"; //false to true
+		}
+		
+		return change;
+	}
+	
 
-	@RequestMapping("updateBoard.do")
+	@RequestMapping("board/updateBoard.do")
 	public String updateBoard(HttpServletRequest request, String boardNo) {
 		
 		BoardVO bvo = boardService.findBoardByNo(boardNo);

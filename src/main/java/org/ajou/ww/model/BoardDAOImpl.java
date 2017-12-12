@@ -101,6 +101,18 @@ public class BoardDAOImpl implements BoardDAO {
 	public void insertFolder(String folderName) {
 		sqlSessionTemplate.insert("board.insertFolder", folderName);
 	}
+
+	@Override
+	public void insertLike(LikeVO likevo) {
+		sqlSessionTemplate.insert("board.insertLike", likevo);
+		
+	}
+
+	@Override
+	public void deleteLike(LikeVO likevo) {
+		sqlSessionTemplate.insert("board.deleteLike", likevo);
+		
+	}
 	
 //	@Override
 //	public BoardVO showContent(int no){

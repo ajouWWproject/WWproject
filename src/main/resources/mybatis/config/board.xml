@@ -118,6 +118,16 @@
 		insert into folder(folder_no,folder_name)
 		values(null,#{value})
 	</insert>
+	
+	<insert id = "insertLike" parameterType = "LikeVO">
+		INSERT INTO board_like (like_no, id, board)
+		VALUES (null, #{memberVO.id}, #{board_no})
+	</insert>
+	
+	<delete id = "deleteLike" parameterType = "LikeVO">
+		DELETE FROM board_liek
+		WHERE id = #{memberVO.id} and board_no = #{board_no}
+	</delete>
 </mapper>
  
  

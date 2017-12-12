@@ -1,15 +1,17 @@
 package org.ajou.ww.model;
 
 public class LikeVO {
+	private int like_no;
 	private MemberVO memberVO;
-	private int boardNo;
+	private int board_no;
 	public LikeVO() {
 		super();
 	}
-	public LikeVO(MemberVO memberVO, int boardNo) {
+	public LikeVO(int like_no, MemberVO memberVO, int board_no) {
 		super();
+		this.like_no = like_no;
 		this.memberVO = memberVO;
-		this.boardNo = boardNo;
+		this.board_no = board_no;
 	}
 	public MemberVO getMemberVO() {
 		return memberVO;
@@ -18,14 +20,14 @@ public class LikeVO {
 		this.memberVO = memberVO;
 	}
 	public int getBoardNo() {
-		return boardNo;
+		return board_no;
 	}
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
+	public void setBoard_no(int board_no) {
+		this.board_no = board_no;
 	}
 	@Override
 	public String toString() {
-		return "LikeVO [memberVO=" + memberVO + ", boardNo=" + boardNo + "]";
+		return "LikeVO [memberVO=" + memberVO + ", board_no =" + board_no + "]";
 	}
 	
 }

@@ -173,12 +173,43 @@
 		
 		<script>
 			$(document).ready(function() {
-				$(".card").on("click", function(){
-					var boardNo = $(this).children("#boardNo").val();
+				$(".card-info").on("click", function(){
+					var boardNo = $(this).parent().children("#boardNo").val();
 					location.href = "${pageContext.request.contextPath}/board/moveToDetail.do?boardNo="+boardNo;
 				});
 				
 			});
+			
+			
+			function likeChange(i){
+				console.log("클릭");
+				$.ajax({
+					type : "get",
+					url : 'Like.do',
+					data : {
+							"board_no" : $(i).parent().parent().parent().children('#board_no').val(),
+							"board_like" : $(i).parent().parent().parent().children('#board_like').val()
+							},
+					success : function(result){
+							console.log(result);
+							if (!result) { 
+								console.log("잘못된 값");
+							}else if (result=='tTf'){
+								console.log("찜콩 해제");
+								$(i).parent().attr("class", "fa fa-heart-o");
+								$(i).parent().parent().parent().children('#board_like').val("false");
+							}else if (result=='fTt'){
+								console.log("찜콩 설정");
+								$(i).children().attr("class", "fa fa-heart");
+								$(i).parent().parent().parent().children('#board_like').val("true");
+							}
+					},
+					error : function(xhr) {
+						console.log("에러남 : " + xhr);
+					}
+				});
+			}
+
 		</script>
 		
 		
@@ -209,14 +240,16 @@
 							<li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
 							<c:choose>
 								<c:when test="${bvo.board_like == 'true'}">
-									<li><i class="fa fa-heart" aria-hidden="true"></i></li>
+									<li><a onclick="likeChange(this)"><i id="heart" class="fa fa-heart" aria-hidden="true"></i></a></li>
 								</c:when>
 								<c:otherwise>
-									<li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
+									<li><a onclick="likeChange(this)"><i id="heart" class="fa fa-heart-o" aria-hidden="true"></i></a></li>
 								</c:otherwise>
 							</c:choose>
 							<li>${bvo.hits}</li>
 						</ul>
+						<input type="hidden" id="board_no" value="${bvo.board_no}">
+						<input type="hidden" id="board_like" value="${bvo.board_like}">
 					</div>
 				</div>
 			</c:forEach>

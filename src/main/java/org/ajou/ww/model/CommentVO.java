@@ -7,6 +7,8 @@ public class CommentVO {
 	private String content;
 	private String timePosted;
 	
+	private String profile_path;
+	
 	public CommentVO() {
 		super();
 	}
@@ -58,6 +60,16 @@ public class CommentVO {
 
 	public void setTimePosted(String timePosted) {
 		this.timePosted = timePosted;
+	}
+	
+	
+
+	public String getProfile_path() {
+		return profile_path;
+	}
+
+	public void setProfile_path(String profile_path) {
+		this.profile_path = profile_path;
 	}
 
 	@Override

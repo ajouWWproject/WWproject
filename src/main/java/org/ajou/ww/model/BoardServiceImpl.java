@@ -87,6 +87,15 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertFolder(String folderName) {
 		boardDAO.insertFolder(folderName);
+	}
+	@Override
+	public void insertLike(LikeVO likevo) {
+		boardDAO.insertLike(likevo);
+	}
+	@Override
+	public void deleteLike(LikeVO likevo) {
+		boardDAO.deleteLike(likevo);
+		
 	}	
 	
 	

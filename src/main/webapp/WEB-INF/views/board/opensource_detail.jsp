@@ -134,9 +134,17 @@ p {
 
 						$("#insertCommentBtn").click(function(){
 							//$("#commentForm").submit();
-							alert($("#content").val());
+							alert('댓글이 등록되었습니다.');
 							location.href="${pageContext.request.contextPath}/insertComment.do?boardNo=${requestScope.bvo.board_no}&content="+$("#content").val();
 						});
+						
+						if(${cvo.memberVO.profile_path == null}) {
+		        			console.log("없음");
+		        			$('#c_profile').attr("src", "${pageContext.request.contextPath}/resources/img/user.png");
+		        		} else {
+		        			console.log("있음");
+		        			$('#c_profile').attr("src", "${pageContext.request.contextPath}/resources/upload/${cvo.memberVO.profile_path}");                            
+		        		} 
 				
 					   
 					  
@@ -397,7 +405,7 @@ p {
 				<div class="photo">
 				
 					<div class="avatar">
-						<img style=" width:30px; height:30px;margin-top:8px;" src="${pageContext.request.contextPath}/resources/img/profile.jpg" alt="Volton">
+						<img style=" width:30px; height:30px;margin-top:8px;" id="c_profile" >
                		</div>
 				</div>
 				

@@ -37,6 +37,10 @@ public interface BoardDAO {
 
 	public void insertFolder(String folderName);
 	
+	public void insertLike(LikeVO likevo);
+	
+	public void deleteLike(LikeVO likevo);
+	
 //	public  BoardVO showContent(int no);
 //
 //	public  void updateCount(int no);
